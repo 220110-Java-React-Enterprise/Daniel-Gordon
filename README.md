@@ -1,5 +1,5 @@
 # Daniel-Gordon
-Core_0  
+[Core_0]  
 *MainLoop;  
 *ConsoleThread;  
 *DB created;  
