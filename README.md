@@ -1,2 +1,5 @@
 # Daniel-Gordon
-ayy lmao
+Core_0  
+*MainLoop;  
+*ConsoleThread;  
+*DB created;  
