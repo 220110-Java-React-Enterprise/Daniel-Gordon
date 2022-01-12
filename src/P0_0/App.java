@@ -34,7 +34,6 @@ public class App {
 		L.add(666);
 		L.remove(2);
 
-		
 		try {
 			this.loop();
 		} finally {
@@ -66,10 +65,11 @@ public class App {
 	public void terminate() {
 		this.running = false;
 		this.dispose();
+		System.exit(0);
 	}
 
 	public void dispose() {
-		// Log("D-------------------------------------------------------");
+		Log("D-------------------------------------------------------G");
 
 	}
 

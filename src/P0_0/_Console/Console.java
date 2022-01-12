@@ -51,7 +51,7 @@ public class Console {
 				if (tmp.equals("SHELL:TERMINATE")) {
 					Log(this.toLog());
 					post("SHELL:TERMINATE");
-					this.Target.terminate();
+					Target.terminate();
 				}
 
 				if (tmp.equals(":LOG") || tmp.equals("")) {
@@ -85,10 +85,7 @@ public class Console {
 			ConsoleLogger.toLog(input);
 			ConsoleLogger.logOut();
 		}
-		// works, just need to reimp
-		// Message m = new Message(input);
-		// if (Metatron.CURRENT != null)
-		// Metatron.CURRENT.handle(m);
+	
 
 	}
 
@@ -98,11 +95,9 @@ public class Console {
 	}
 
 	public String toLog() {
-		// java.lang.Thread.activeCount()
-
+		
 		String log = "";
 
-		// log+=Metatron.CURRENT.toLog();
 
 		log += "\n";
 		log += "#ThreadsActive- " + java.lang.Thread.activeCount();
