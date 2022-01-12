@@ -25,19 +25,6 @@ public class App {
 
 		this.createNewDatabase("RevDB.db");
 
-		final Thread mainThread = Thread.currentThread();
-		Runtime.getRuntime().addShutdownHook(new ShutDownHook() {
-			public void run() {
-				Current.terminate();
-				try {
-					mainThread.join();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
-
 		L = new aList<Integer>();
 		L.add(1);
 		L.add(32);
