@@ -1,7 +1,6 @@
 package Core._Console;
 
-import static prime.PRIME.uAppUtils.*;
-import static prime.PRIME.uSketcher.*;
+
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,7 +8,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
-import com.badlogic.gdx.InputProcessor;
+import Core.App;
+
 
 
 public class ConsoleInputAdapter {
@@ -19,9 +19,9 @@ public class ConsoleInputAdapter {
 	protected BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 	protected BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
 
-	protected InputProcessor shell;
+	protected App shell;
 
-	public ConsoleInputAdapter(InputProcessor shell) {
+	public ConsoleInputAdapter(App shell) {
 		this.shell = shell;
 
 	}
