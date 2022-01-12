@@ -85,7 +85,6 @@ public class Console {
 			ConsoleLogger.toLog(input);
 			ConsoleLogger.logOut();
 		}
-	
 
 	}
 
@@ -95,10 +94,10 @@ public class Console {
 	}
 
 	public String toLog() {
-		
+
 		String log = "";
 
-
+		log += App.DB_Link;
 		log += "\n";
 		log += "#ThreadsActive- " + java.lang.Thread.activeCount();
 		log += "\n";

@@ -20,6 +20,7 @@ public class App {
 	aList<Integer> L = new aList<Integer>();
 
 	public static Console AppConsole;
+	public static Connection DB_Link;
 
 	public App() {
 		App.Current = this;
@@ -86,6 +87,7 @@ public class App {
 
 		try (Connection conn = DriverManager.getConnection(url)) {
 			if (conn != null) {
+				DB_Link = conn;
 				DatabaseMetaData meta = conn.getMetaData();
 				Log("The driver name is " + meta.getDriverName());
 				Log("A new database has been created.");
