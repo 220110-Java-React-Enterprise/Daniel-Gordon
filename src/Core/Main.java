@@ -7,30 +7,21 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import Core._PRIM.aList;
+
 public class Main {
+
+	public aList<Float> flts;
+	public boolean running = false;
+	public static App Main;
 
 	public static void main(String[] args) {
 		Log("---");
-		createNewDatabase("RevDB.db");
+		// 
+		Main = new App();
 		Log("___");
 	}
 
-	public static void createNewDatabase(String fileName) {
 
-
-		String url = "jdbc:sqlite:C:\\Users\\SU\\" + fileName;
-
-		try (Connection conn = DriverManager.getConnection(url)) {
-			if (conn != null) {
-				DatabaseMetaData meta = conn.getMetaData();
-				Log("The driver name is " + meta.getDriverName());
-				Log("A new database has been created.");
-			}
-
-		} catch (SQLException e) {
-			Log(e.getMessage());
-		}
-
-	}
 
 }
