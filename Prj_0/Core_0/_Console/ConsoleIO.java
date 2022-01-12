@@ -1,7 +1,5 @@
 package Core._Console;
 
-
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -10,18 +8,14 @@ import java.io.OutputStreamWriter;
 
 import Core.App;
 
-
-
-public class ConsoleInputAdapter {
-
-	
+public class ConsoleIO {
 
 	protected BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 	protected BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
 
 	protected App shell;
 
-	public ConsoleInputAdapter(App shell) {
+	public ConsoleIO(App shell) {
 		this.shell = shell;
 
 	}
@@ -34,7 +28,7 @@ public class ConsoleInputAdapter {
 	public String readLine() throws IOException {
 
 		return reader.readLine();
-		
+
 	}
 
 	public void write(String str) throws IOException {
@@ -46,5 +40,4 @@ public class ConsoleInputAdapter {
 		this.write(str);
 	}
 
-	
 }

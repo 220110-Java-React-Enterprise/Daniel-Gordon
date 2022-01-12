@@ -1,23 +1,20 @@
 package Core._Console;
 
-
 import static Core.AppUtils.*;
-
-
 
 import Core.App;
 import Core._PRIM.aList;
 
-public class mConsoleLogger {
+public class ConsoleLogger {
 
 	public boolean active = true;
-	public static mConsoleLogger DefaultLogger;
+	public static ConsoleLogger DefaultLogger;
 	private static aList<String> pending = new aList<String>();
 	private static aList<String> toLog = new aList<String>();
 
 	App owner;
 
-	public mConsoleLogger(App owner) {
+	public ConsoleLogger(App owner) {
 		DefaultLogger = this;
 		this.owner = owner;
 

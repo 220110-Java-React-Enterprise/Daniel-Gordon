@@ -15,7 +15,10 @@ public class AppUtils {
 	}
 
 	public static void Log(Object o) {
-		System.out.println(o.toString());
+		if (o == null)
+			System.out.println(o);
+		else
+			System.out.println(o.toString());
 	}
 
 	public static void Page() {

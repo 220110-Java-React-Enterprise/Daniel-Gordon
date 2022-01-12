@@ -11,8 +11,6 @@ import Core._PRIM.aList;
 
 public class Main {
 
-	public aList<Float> flts;
-	public boolean running = false;
 	public static App Main;
 
 	public static void main(String[] args) {

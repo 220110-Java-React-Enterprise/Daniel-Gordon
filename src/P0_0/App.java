@@ -6,9 +6,8 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.time.Duration;
-import java.time.Instant;
 
+import Core._Console.Console;
 import Core._PRIM.aList;
 
 public class App {
@@ -20,9 +19,12 @@ public class App {
 
 	aList<Integer> L = new aList<Integer>();
 
+	public static Console AppConsole;
+
 	public App() {
 		App.Current = this;
-
+		this.running = true;
+		AppConsole = new Console(Current);
 		this.createNewDatabase("RevDB.db");
 
 		L = new aList<Integer>();
@@ -32,12 +34,16 @@ public class App {
 		L.add(666);
 		L.remove(2);
 
-		this.running = true;
+		
 		try {
 			this.loop();
 		} finally {
 			this.dispose();
 		}
+	}
+
+	public float getDeltaTime() {
+		return this.deltaTime;
 	}
 
 	public void loop() {
@@ -46,14 +52,13 @@ public class App {
 			float dT = ((time - prevTime) / 1000000f);
 			prevTime = time;
 			this.deltaTime = dT;
-			Log(getDeltaTime());
-			Log(L);
-			Log("  " + L.get(1));
+			// Log(getDeltaTime());
+			// Log(L);
+			// Log(" " + L.get(1));
 
 			for (Integer i : this.L) {
-				Log("*" + i);
+				// Log("*" + i);
 			}
-
 		}
 		this.dispose();
 	}
@@ -64,11 +69,13 @@ public class App {
 	}
 
 	public void dispose() {
-		Log("D-------------------------------------------------------");
+		// Log("D-------------------------------------------------------");
+
 	}
 
-	public float getDeltaTime() {
-		return this.deltaTime;
+	public String toLog() {
+		String log = "\n";
+		return log;
 	}
 
 	////////////////
