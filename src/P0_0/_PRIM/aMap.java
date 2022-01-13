@@ -3,12 +3,12 @@ package Core._PRIM;
 public class aMap<K, V> {
 
 	// index-linked lists
-	private aSet<K> keys;
-	private aSet<V> values;
+	private aList<K> keys;
+	private aList<V> values;
 
 	public aMap() {
-		this.keys = new aSet<K>();
-		this.values = new aSet<V>();
+		this.keys = new aList<K>();
+		this.values = new aList<V>();
 	}
 
 	public void put(K key, V val) {
@@ -39,7 +39,7 @@ public class aMap<K, V> {
 	}
 
 	public String toString() {
-		String log = "aMap{" + this.keys.getSize() + "}\n";
+		String log = this.getClass().getSimpleName() + "{" + this.keys.getSize() + "}\n";
 		for (int i = 0; i < this.keys.getSize(); i++) {
 			log += "[" + i + "]" + this.keys.get(i) + "|" + this.values.get(i) + "\n";
 		}

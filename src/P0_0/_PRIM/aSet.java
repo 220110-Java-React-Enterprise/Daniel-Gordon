@@ -7,30 +7,37 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class aSet<T> implements Iterable<T> {
+import Core._PRIM.A_I.iCollection;
 
-	//susceptible to duplicates
+public class aSet<T> implements Iterable<T>, iCollection<T> {
 
-	
 	private Object[] data;
-	
 
 	public aSet() {
 		this.data = new Object[0];
 	}
-	
 
 	private void growTo(int toCap) {
 		data = Arrays.copyOf(data, toCap);
 	}
 
 	public void add(T object) {
-		
-		
-		int i = data.length + 1;
-		this.growTo(i);
-		data[i - 1] = object;
-		
+
+		if (!this.contains(object)) {
+			int i = data.length + 1;
+			this.growTo(i);
+			data[i - 1] = object;
+		}
+	}
+	
+	@Override
+	public void insert(T entry, int atIndex) {
+		aSet<T> tmpAll = new aSet<T>();
+		aSet<T> tmpNew = new aSet<T>();
+		for(int i =0; i < atIndex; i++)
+		{
+			
+		}
 	}
 
 	public void remove(int i) {
@@ -54,7 +61,7 @@ public class aSet<T> implements Iterable<T> {
 	}
 
 	public int indexOf(T object) {
-		
+
 		for (int i = 0; i < this.data.length; i++) {
 			if (data[i] == object)
 				return i;
@@ -63,8 +70,8 @@ public class aSet<T> implements Iterable<T> {
 	}
 
 	public boolean contains(Object obj) {
-		String log = "aList{" + this.getSize()+"}\n";
-		for (int i = 0; i <= this.data.length - 1; i++) {			
+		String log = "aList{" + this.getSize() + "}\n";
+		for (int i = 0; i <= this.data.length - 1; i++) {
 			if (data[i] == obj)
 				return true;
 		}
@@ -79,7 +86,7 @@ public class aSet<T> implements Iterable<T> {
 
 	@Override
 	public String toString() {
-		String s  = "aSet{" + this.getSize()+"}\n";
+		String s = this.getClass().getSimpleName()+"{" + this.getSize() + "}\n";
 		if (this.data != null)
 			for (int i = 0; i < this.data.length; i++) {
 				s += "[" + i + "]" + this.data[i] + "\n";
@@ -124,4 +131,6 @@ public class aSet<T> implements Iterable<T> {
 		}
 
 	}
+
+	
 }

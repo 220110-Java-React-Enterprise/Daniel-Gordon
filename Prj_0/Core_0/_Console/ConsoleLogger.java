@@ -3,14 +3,14 @@ package Core._Console;
 import static Core.AppUtils.*;
 
 import Core.App;
-import Core._PRIM.aList;
+import Core._PRIM.aSet;
 
 public class ConsoleLogger {
 
 	public boolean active = true;
 	public static ConsoleLogger DefaultLogger;
-	private static aList<String> pending = new aList<String>();
-	private static aList<String> toLog = new aList<String>();
+	private static aSet<String> pending = new aSet<String>();
+	private static aSet<String> toLog = new aSet<String>();
 
 	App owner;
 
@@ -54,7 +54,7 @@ public class ConsoleLogger {
 		pending.add(res);
 	}
 
-	public static void toLog(aList<String> to) {
+	public static void toLog(aSet<String> to) {
 		for (String s : to) {
 			pending.add(s);
 		}

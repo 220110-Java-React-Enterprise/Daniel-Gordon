@@ -7,29 +7,34 @@ import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import Core._Banko.MGMT.AccountManager;
 import Core._Console.Console;
-import Core._PRIM.aList;
+import Core._PRIM.aSet;
 import Core._PRIM.aMap;
+import Core._PRIM.aList;
 
 public class App {
 
 	public static App Current;
 	public boolean running;
 	private long prevTime = System.nanoTime();
-	private float deltaTime = 0f;	
+	private float deltaTime = 0f;
 
 	public static Console AppConsole;
 	public static Connection DB_Link;
-	
-	
-	aList<Integer> L = new aList<Integer>();
-	aMap<String, String> M = new aMap<String,String>();
+
+	public AccountManager Accounts;
+
+	aList<Integer> S = new aList<Integer>();
+	aSet<Integer> L = new aSet<Integer>();
+	aMap<String, String> M = new aMap<String, String>();
 
 	public App() {
 		App.Current = this;
 		this.running = true;
 		AppConsole = new Console(Current);
 		this.createNewDatabase("RevDB.db");
+		this.Accounts = new AccountManager();
 
 		genTestList();
 		genTestMap();
@@ -52,11 +57,11 @@ public class App {
 			prevTime = time;
 			this.deltaTime = dT;
 			// Log(getDeltaTime());
-			//logTestList();
+			logTestList();
 			logTestMap();
-
+			Log(this.toLog());
 		}
-		this.dispose();
+
 	}
 
 	public void terminate() {
@@ -72,6 +77,8 @@ public class App {
 
 	public String toLog() {
 		String log = "\n";
+		log += this.Accounts + "\n";
+		log += this.DB_Link + "\n";
 		return log;
 	}
 
@@ -105,7 +112,7 @@ public class App {
 	}
 
 	public void genTestList() {
-		L = new aList<Integer>();
+		L = new aSet<Integer>();
 		L.add(1);
 		L.add(1);
 		L.add(32);
@@ -125,15 +132,16 @@ public class App {
 	}
 
 	public void genTestMap() {
-		M=new aMap<String,String>();
-		M.put("A","1" );
-		M.put("A","2" );
-		M.put("A","1" );
-		M.put("B","1" );
-		M.put("B","2" );
+		M = new aMap<String, String>();
+		M.put("A", "1");
+		M.put("A", "2");
+		M.put("A", "1");
+		M.put("B", "1");
+		M.put("B", "2");
 	}
 
 	public void logTestMap() {
+		Log();
 		Log(M);
 	}
 }

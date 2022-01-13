@@ -7,7 +7,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import Core._PRIM.aList;
+import Core._PRIM.aSet;
 
 public class Main {
 

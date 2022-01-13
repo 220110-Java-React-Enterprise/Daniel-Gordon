@@ -7,7 +7,11 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class aList<T> implements Iterable<T> {
+import Core._PRIM.A_I.iCollection;
+
+public class aList<T> implements Iterable<T>, iCollection<T> {
+
+	// susceptible to duplicates
 
 	private Object[] data;
 
@@ -21,11 +25,16 @@ public class aList<T> implements Iterable<T> {
 
 	public void add(T object) {
 
-		if (!this.contains(object)) {
-			int i = data.length + 1;
-			this.growTo(i);
-			data[i - 1] = object;
-		}
+		int i = data.length + 1;
+		this.growTo(i);
+		data[i - 1] = object;
+
+	}
+	
+	@Override
+	public void insert(T entry, int atIndex) {
+	
+		
 	}
 
 	public void remove(int i) {
@@ -74,7 +83,7 @@ public class aList<T> implements Iterable<T> {
 
 	@Override
 	public String toString() {
-		String s = "aList{" + this.getSize() + "}\n";
+		String s = this.getClass().getSimpleName() + "{" + this.getSize() + "}\n";
 		if (this.data != null)
 			for (int i = 0; i < this.data.length; i++) {
 				s += "[" + i + "]" + this.data[i] + "\n";
@@ -119,4 +128,6 @@ public class aList<T> implements Iterable<T> {
 		}
 
 	}
+
+	
 }

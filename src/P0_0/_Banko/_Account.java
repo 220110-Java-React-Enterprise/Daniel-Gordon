@@ -2,9 +2,11 @@ package Core._Banko;
 
 public class _Account {
 
-	public final Type AccountType;
-	public final int AccountNumber;
-	public final int RouttingNumber;
+	protected final Type AccountType;
+	protected final int AccountNumber;
+	protected final int RouttingNumber;
+
+	public float fundage = 0;
 
 	public _Account(Type type) {
 		this.AccountType = type;
