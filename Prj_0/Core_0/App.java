@@ -28,12 +28,7 @@ public class App {
 		AppConsole = new Console(Current);
 		this.createNewDatabase("RevDB.db");
 
-		L = new aList<Integer>();
-		L.add(1);
-		L.add(32);
-		L.add(64);
-		L.add(666);
-		L.remove(2);
+		genTestList();
 
 		try {
 			this.loop();
@@ -53,12 +48,8 @@ public class App {
 			prevTime = time;
 			this.deltaTime = dT;
 			// Log(getDeltaTime());
-			// Log(L);
-			// Log(" " + L.get(1));
+			logTestList();
 
-			for (Integer i : this.L) {
-				// Log("*" + i);
-			}
 		}
 		this.dispose();
 	}
@@ -102,6 +93,26 @@ public class App {
 	private static class ShutDownHook extends Thread {
 		public void run() {
 			Current.terminate();
+		}
+	}
+
+	private void SEC0_TESTING() {
+	}
+
+	public void genTestList() {
+		L = new aList<Integer>();
+		L.add(1);
+		L.add(1);
+		L.add(32);
+		L.add(64);
+		L.add(666);
+		L.remove(2);
+	}
+
+	public void logTestList() {
+		Log(L);
+		for (Integer i : this.L) {
+			Log("*[" + L.indexOf(i) + "]" + i);
 		}
 	}
 }

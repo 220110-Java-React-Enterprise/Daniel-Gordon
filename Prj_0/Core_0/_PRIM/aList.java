@@ -9,8 +9,10 @@ import java.util.NoSuchElementException;
 
 public class aList<T> implements Iterable<T> {
 
+	
+	
 	private Object[] data;
-	ArrayList n;
+
 
 	public aList() {
 		this.data = new Object[0];
@@ -48,7 +50,8 @@ public class aList<T> implements Iterable<T> {
 	}
 
 	public int indexOf(T object) {
-		for (int i = 0; i < this.data.length - 1; i++) {
+		
+		for (int i = 0; i < this.data.length; i++) {
 			if (data[i] == object)
 				return i;
 		}
@@ -63,10 +66,6 @@ public class aList<T> implements Iterable<T> {
 		return false;
 	}
 
-	public Class getType() {
-		return ((T[]) this.data).getClass().getComponentType();
-	}
-
 	public void clear() {
 		for (int i = 0; i < this.data.length; i++) {
 			this.remove(i);
@@ -75,7 +74,7 @@ public class aList<T> implements Iterable<T> {
 
 	@Override
 	public String toString() {
-		String s = "List<" + this.getType().getSimpleName() + ">\n";
+		String s = "";
 		if (this.data != null)
 			for (int i = 0; i < this.data.length; i++) {
 				s += "[" + i + "]" + this.data[i] + "\n";
