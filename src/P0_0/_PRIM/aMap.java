@@ -19,6 +19,23 @@ public class aMap<K, V> {
 		}
 	}
 
+	// public Entry get
+	// public aList<
+	public V get(int index) {
+		return this.values.get(index);
+	}
+
+	public aList<V> get(K key) {
+		aList<V> result = new aList<V>();
+		for (int i = 0; i < this.getSize(); i++) {
+			if (this.keys.get(i) == key || this.keys.get(i).equals(key)) {
+				result.add(this.values.get(i));
+			}
+		}
+
+		return result;
+	}
+
 	public boolean has(K key, V val) {
 		for (int i = 0; i < this.keys.getSize(); i++) {
 			if (this.keys.get(i) == key && this.values.get(i) == val)
@@ -38,6 +55,10 @@ public class aMap<K, V> {
 		}
 	}
 
+	public int getSize() {
+		return this.keys.getSize();
+	}
+
 	public String toString() {
 		String log = this.getClass().getSimpleName() + "{" + this.keys.getSize() + "}\n";
 		for (int i = 0; i < this.keys.getSize(); i++) {
@@ -45,6 +66,10 @@ public class aMap<K, V> {
 		}
 
 		return log;
+	}
+
+	public class Entry<K, V> {
+
 	}
 
 }

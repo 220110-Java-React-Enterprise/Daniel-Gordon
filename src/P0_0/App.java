@@ -138,10 +138,18 @@ public class App {
 		M.put("A", "1");
 		M.put("B", "1");
 		M.put("B", "2");
+		M.put("A", "5");
+		M.put("A", "5");
+		M.put("A", "1");
 	}
 
 	public void logTestMap() {
 		Log();
 		Log(M);
+		Log("----");
+		Log("All: A");
+		aList r = M.get("A");
+		Log(r);
+
 	}
 }
