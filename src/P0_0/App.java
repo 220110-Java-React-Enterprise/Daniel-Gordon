@@ -7,6 +7,7 @@ import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import Core._Banko.aTransaction;
 import Core._Banko.MGMT.AccountManager;
 import Core._Console.Console;
 import Core._PRIM.aSet;
@@ -22,7 +23,6 @@ public class App {
 	private float deltaTime = 0f;
 
 	public static Console AppConsole;
-	public static Connection DB_Link;
 
 	public AccountManager Accounts;
 
@@ -35,7 +35,7 @@ public class App {
 		App.Current = this;
 		this.running = true;
 		AppConsole = new Console(Current);
-		this.createNewDatabase("RevDB.db");
+
 		this.Accounts = new AccountManager();
 
 		genTestSet();
@@ -64,8 +64,13 @@ public class App {
 			logTestSet();
 			logTestList();
 			// logTestMap();
-			//logTestMultiMap();
+			// logTestMultiMap();
 			// Log(this.toLog());
+			
+			aTransaction.Type T = aTransaction.Type.Deposit;
+			Log(T.getDirection() + "  " + T.signum());
+			T = aTransaction.Type.Withdrawal;
+			Log(T.getDirection() + "  " + T.signum());
 		}
 
 	}
@@ -84,29 +89,11 @@ public class App {
 	public String toLog() {
 		String log = "\n";
 		log += this.Accounts + "\n";
-		log += this.DB_Link + "\n";
+		log += this.Accounts.DB_Link + "\n";
 		return log;
 	}
 
 	////////////////
-
-	public static void createNewDatabase(String fileName) {
-
-		String url = "jdbc:sqlite:C:\\Users\\SU\\" + fileName; // <storage path
-
-		try (Connection conn = DriverManager.getConnection(url)) {
-			if (conn != null) {
-				DB_Link = conn;
-				DatabaseMetaData meta = conn.getMetaData();
-				Log("The driver name is " + meta.getDriverName());
-				Log("A new database has been created.");
-			}
-
-		} catch (SQLException e) {
-			Log(e.getMessage());
-		}
-
-	}
 
 	private static class ShutDownHook extends Thread {
 		public void run() {
@@ -119,7 +106,7 @@ public class App {
 
 	public void genTestSet() {
 		S = new aSet<Integer>();
-		S.add(1,1);
+		S.add(1, 1);
 		S.add(1);
 		S.add(32);
 		S.add(64);
@@ -129,13 +116,14 @@ public class App {
 
 	public void genTestList() {
 		L = new aList<Integer>();
-		L.add(1,1);
+		L.add(1, 1);
 		L.add(1);
 		L.add(32);
 		L.add(64);
 		L.add(666);
-		
+
 		L.insert(42, 1);
+		L.set(0, 100);
 		// L.clear();
 	}
 

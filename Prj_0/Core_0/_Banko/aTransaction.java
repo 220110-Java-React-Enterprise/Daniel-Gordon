@@ -2,15 +2,18 @@ package Core._Banko;
 
 public class aTransaction {
 
-	
-	
-	public void post(_Account a, float ammount)
-	{
-		
+	public void post(_Account a, float ammount) {
+
 	}
-	
+
 	public enum Direction {
-		Credit, Debit;
+		Credit(1), Debit(-1);
+
+		public final int signum;
+
+		private Direction(int sig) {
+			this.signum = sig;
+		}
 	}
 
 	public enum Type {
@@ -23,12 +26,11 @@ public class aTransaction {
 		}
 
 		public int signum() {
-			if (this.dir == Direction.Credit)
-				return 1;
-			if (this.dir == Direction.Debit)
-				return -1;
+			return this.dir.signum;
+		}
 
-			return 0;
+		public Direction getDirection() {
+			return this.dir;
 		}
 	}
 

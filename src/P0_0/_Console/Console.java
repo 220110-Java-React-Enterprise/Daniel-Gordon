@@ -97,7 +97,7 @@ public class Console {
 
 		String log = "";
 
-		log += App.DB_Link;
+		log += this.Target.toLog();
 		log += "\n";
 		log += "#ThreadsActive- " + java.lang.Thread.activeCount();
 		log += "\n";

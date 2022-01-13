@@ -19,11 +19,10 @@ public class aList<T> implements Iterable<T>, iCollection<T> {
 		this.data = new Object[0];
 	}
 
-	protected void grow(int by)
-	{
-		data = Arrays.copyOf(data, data.length+by);
+	protected void grow(int by) {
+		data = Arrays.copyOf(data, data.length + by);
 	}
-	
+
 	protected void growTo(int toCap) {
 		data = Arrays.copyOf(data, toCap);
 	}
@@ -35,11 +34,9 @@ public class aList<T> implements Iterable<T>, iCollection<T> {
 		data[i - 1] = object;
 
 	}
-	
-	public void add(T...objects)
-	{
-		for(int i =0; i < objects.length; i++)
-		{
+
+	public void add(T... objects) {
+		for (int i = 0; i < objects.length; i++) {
 			this.add(objects[i]);
 		}
 	}
@@ -68,6 +65,12 @@ public class aList<T> implements Iterable<T>, iCollection<T> {
 			this.add(pst.get(j));
 		}
 
+	}
+	
+	public void set(int atIndex, T entry)
+	{
+		if(atIndex <= this.getSize())
+			this.data[atIndex] = entry;
 	}
 
 	public void remove(int i) {
@@ -135,8 +138,8 @@ public class aList<T> implements Iterable<T>, iCollection<T> {
 	@Override
 	public String toString() {
 
-		//String s = this.getClass().getSimpleName() + "{" + this.getSize() + "}\n";
-		String s ="";
+		// String s = this.getClass().getSimpleName() + "{" + this.getSize() + "}\n";
+		String s = "";
 		s += "{";
 		if (this.data != null)
 			for (int i = 0; i < this.data.length; i++) {

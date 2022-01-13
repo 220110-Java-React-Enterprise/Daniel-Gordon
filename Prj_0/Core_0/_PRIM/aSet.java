@@ -29,11 +29,9 @@ public class aSet<T> implements Iterable<T>, iCollection<T> {
 			data[i - 1] = object;
 		}
 	}
-	
-	public void add(T...objects)
-	{
-		for(int i =0; i < objects.length; i++)
-		{
+
+	public void add(T... objects) {
+		for (int i = 0; i < objects.length; i++) {
 			this.add(objects[i]);
 		}
 	}
@@ -61,6 +59,11 @@ public class aSet<T> implements Iterable<T>, iCollection<T> {
 			return (T) data[index];
 		} else
 			return null;
+	}
+
+	public void set(int atIndex, T entry) {
+		if (atIndex <= this.getSize())
+			this.data[atIndex] = entry;
 	}
 
 	public int getSize() {
@@ -91,7 +94,7 @@ public class aSet<T> implements Iterable<T>, iCollection<T> {
 		else
 			return false;
 	}
-	
+
 	public void clear() {
 		for (int i = 0; i < this.data.length; i++) {
 			this.remove(i);
@@ -101,19 +104,19 @@ public class aSet<T> implements Iterable<T>, iCollection<T> {
 	@Override
 	public String toString() {
 
-		//String s = this.getClass().getSimpleName() + "{" + this.getSize() + "}\n";
+		// String s = this.getClass().getSimpleName() + "{" + this.getSize() + "}\n";
 		String s = "";
 		s += "{";
 		if (this.data != null)
 			for (int i = 0; i < this.data.length; i++) {
-				s += /*"[" + i + "]" + */this.data[i];
+				s += /* "[" + i + "]" + */this.data[i];
 				if (i != this.data.length - 1)
 					s += ",";
 			}
 		s += "}";
 		return s;
 	}
-	
+
 	public String toLog() {
 		String log = this.getClass().getSimpleName() + "{" + this.getSize() + "}\n";
 		if (this.data != null)

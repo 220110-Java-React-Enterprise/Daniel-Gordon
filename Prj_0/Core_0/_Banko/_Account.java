@@ -1,6 +1,10 @@
 package Core._Banko;
 
+import Core._PRIM.aList;
+
 public class _Account {
+
+	public aList<_CustomerProfile> ValidUsers = new aList<_CustomerProfile>();
 
 	protected final Type AccountType;
 	protected final int AccountNumber;
@@ -8,7 +12,8 @@ public class _Account {
 
 	public float fundage = 0;
 
-	public _Account(Type type) {
+	public _Account(_CustomerProfile user, Type type) {
+		this.ValidUsers.add(user);
 		this.AccountType = type;
 		this.AccountNumber = this.genAcctNum();
 		this.RouttingNumber = this.genRtnNum();
@@ -22,8 +27,18 @@ public class _Account {
 		return 0;
 	}
 
+	public void addValidUser(_CustomerProfile user, _Account.User as) {
+		this.ValidUsers.add(user);
+		user.accounts.put(this, as);
+
+	}
+
 	public String toString() {
 		return this.AccountType.pfx + this.AccountNumber + "::" + this.RouttingNumber;
+	}
+
+	public enum User {
+		Owner, Access;
 	}
 
 	public enum Type {
