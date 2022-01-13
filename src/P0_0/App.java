@@ -9,18 +9,21 @@ import java.sql.SQLException;
 
 import Core._Console.Console;
 import Core._PRIM.aList;
+import Core._PRIM.aMap;
 
 public class App {
 
 	public static App Current;
 	public boolean running;
 	private long prevTime = System.nanoTime();
-	private float deltaTime = 0f;
-
-	aList<Integer> L = new aList<Integer>();
+	private float deltaTime = 0f;	
 
 	public static Console AppConsole;
 	public static Connection DB_Link;
+	
+	
+	aList<Integer> L = new aList<Integer>();
+	aMap<String, String> M = new aMap<String,String>();
 
 	public App() {
 		App.Current = this;
@@ -29,6 +32,7 @@ public class App {
 		this.createNewDatabase("RevDB.db");
 
 		genTestList();
+		genTestMap();
 
 		try {
 			this.loop();
@@ -48,7 +52,8 @@ public class App {
 			prevTime = time;
 			this.deltaTime = dT;
 			// Log(getDeltaTime());
-			logTestList();
+			//logTestList();
+			logTestMap();
 
 		}
 		this.dispose();
@@ -110,9 +115,25 @@ public class App {
 	}
 
 	public void logTestList() {
+		Log();
+		Log("for{");
 		Log(L);
+		Log("forEach{");
 		for (Integer i : this.L) {
 			Log("*[" + L.indexOf(i) + "]" + i);
 		}
+	}
+
+	public void genTestMap() {
+		M=new aMap<String,String>();
+		M.put("A","1" );
+		M.put("A","2" );
+		M.put("A","1" );
+		M.put("B","1" );
+		M.put("B","2" );
+	}
+
+	public void logTestMap() {
+		Log(M);
 	}
 }
