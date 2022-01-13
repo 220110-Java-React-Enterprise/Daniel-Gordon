@@ -19,6 +19,12 @@ public class aMap<K, V> {
 		}
 	}
 
+	public void put(K key, V... vals) {
+		for (V v : vals) {
+			this.put(key, v);
+		}
+	}
+
 	// public Entry get
 	// public aList<
 	public V get(int index) {
