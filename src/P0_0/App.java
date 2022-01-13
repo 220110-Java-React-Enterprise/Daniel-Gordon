@@ -25,8 +25,8 @@ public class App {
 
 	public AccountManager Accounts;
 
-	aList<Integer> S = new aList<Integer>();
-	aSet<Integer> L = new aSet<Integer>();
+	aList<Integer> L = new aList<Integer>();
+	aSet<Integer> S = new aSet<Integer>();
 	aMap<String, String> M = new aMap<String, String>();
 
 	public App() {
@@ -36,6 +36,7 @@ public class App {
 		this.createNewDatabase("RevDB.db");
 		this.Accounts = new AccountManager();
 
+		genTestSet();
 		genTestList();
 		genTestMap();
 
@@ -57,6 +58,7 @@ public class App {
 			prevTime = time;
 			this.deltaTime = dT;
 			// Log(getDeltaTime());
+			logTestSet();
 			logTestList();
 			logTestMap();
 			Log(this.toLog());
@@ -111,24 +113,24 @@ public class App {
 	private void SEC0_TESTING() {
 	}
 
+	public void genTestSet() {
+		S = new aSet<Integer>();
+		S.add(1);
+		S.add(1);
+		S.add(32);
+		S.add(64);
+		S.add(666);
+		S.remove(2);
+	}
+
 	public void genTestList() {
-		L = new aSet<Integer>();
+		L = new aList<Integer>();
 		L.add(1);
 		L.add(1);
 		L.add(32);
 		L.add(64);
 		L.add(666);
 		L.remove(2);
-	}
-
-	public void logTestList() {
-		Log();
-		Log("for{");
-		Log(L);
-		Log("forEach{");
-		for (Integer i : this.L) {
-			Log("*[" + L.indexOf(i) + "]" + i);
-		}
 	}
 
 	public void genTestMap() {
@@ -141,15 +143,38 @@ public class App {
 		M.put("A", "5");
 		M.put("A", "5");
 		M.put("A", "1");
+
+	}
+
+	public void logTestSet() {
+		Log();
+		Log("for{");
+		Log(S);
+		Log("forEach{");
+		for (Integer i : this.S) {
+			Log("*[" + S.indexOf(i) + "]" + i);
+		}
+		Log("----");
+	}
+
+	public void logTestList() {
+		Log();
+		Log("for{");
+		Log(L);
+		Log("forEach{");
+		for (Integer i : this.L) {
+			Log("*[" + L.indexOf(i) + "]" + i);
+		}
+		Log("----");
 	}
 
 	public void logTestMap() {
 		Log();
 		Log(M);
-		Log("----");
 		Log("All: A");
 		aList r = M.get("A");
 		Log(r);
+		Log("----");
 
 	}
 }
