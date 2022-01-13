@@ -20,6 +20,8 @@ public class AccountManager {
 	private aList<_CustomerProfile> UserCache;
 
 	public AccountManager() {
+
+		// get or create
 		this.createNewDatabase("RevDB.db");
 	}
 
@@ -42,6 +44,8 @@ public class AccountManager {
 		} catch (SQLException e) {
 			Log(e.getMessage());
 		}
+
+		// build schema
 
 	}
 

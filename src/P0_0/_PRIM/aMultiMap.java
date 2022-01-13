@@ -1,8 +1,5 @@
 package Core._PRIM;
 
-import Core._PRIM.A_I.iCollection;
-import Core._PRIM.A_I.iMap;
-
 public class aMultiMap<K, V> implements iMap<K, iCollection<V>> {
 	public aMap<K, iCollection<V>> data;
 

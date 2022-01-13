@@ -1,6 +1,6 @@
-package Core._PRIM.A_I;
+package Core._PRIM;
 
-public interface iCollection<E>{
+public interface iCollection<E> extends Iterable<E>{
 
 	public int getSize();
 	public void add(E entry);

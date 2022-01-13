@@ -7,9 +7,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import Core._PRIM.A_I.iCollection;
-
-public class aSet<T> implements Iterable<T>, iCollection<T> {
+public class aSet<T> implements iCollection<T> {
 
 	private Object[] data;
 

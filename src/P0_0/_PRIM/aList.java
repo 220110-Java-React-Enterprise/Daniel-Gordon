@@ -7,9 +7,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import Core._PRIM.A_I.iCollection;
-
-public class aList<T> implements Iterable<T>, iCollection<T> {
+public class aList<T> implements iCollection<T> {
 
 	// susceptible to duplicates
 

@@ -1,4 +1,4 @@
-package Core._PRIM.A_I;
+package Core._PRIM;
 
 public interface iMap<K, V> {
 

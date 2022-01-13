@@ -6,8 +6,11 @@ import java.io.IOException;
 import java.util.Map;
 
 import Core.App;
+import Core._Console.UI.iConsoleListener;
+import Core._PRIM.aList;
+import Core._PRIM.iCollection;
 
-public class Console {
+public class Console implements iConsoleListener {
 
 	// holds the input thread
 
@@ -17,6 +20,8 @@ public class Console {
 
 	protected Thread ConsoleInputThread;
 	public boolean echo = true;
+
+	public aList<iConsoleListener> Subscribers = new aList<iConsoleListener>();
 
 	public Console(App target) {
 		this.Target = target;
@@ -28,7 +33,7 @@ public class Console {
 			public void run() {
 				if (Target == null && App.Current != null)
 					Target = App.Current;
-				if (Target.running) {
+				if (Target.running && Target!=null) {
 					try {
 						Console.this.consoleLoop();
 					} catch (Throwable t) {
@@ -70,7 +75,7 @@ public class Console {
 					System.out.println("$&: [" + tmp + "]");
 
 			}
-
+			boolean b = this.input(tmp);
 			System.in.mark(0);
 			System.in.reset();
 
@@ -114,5 +119,20 @@ public class Console {
 		log += "\n";
 
 		return log;
+	}
+
+	public boolean input(String msg) {
+		for (iConsoleListener c : this.getSubscribers()) {
+			if (c.input(msg))
+				return true;
+		}
+		return false;
+	}
+
+	@Override
+	public iCollection<iConsoleListener> getSubscribers() {
+		if (this.Subscribers == null)
+			this.Subscribers = new aList<iConsoleListener>();
+		return this.Subscribers;
 	}
 }

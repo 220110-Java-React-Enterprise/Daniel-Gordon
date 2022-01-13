@@ -10,12 +10,15 @@ import java.sql.SQLException;
 import Core._Banko.aTransaction;
 import Core._Banko.MGMT.AccountManager;
 import Core._Console.Console;
+import Core._Console.ConsoleUI;
+import Core._Console.UI.iConsoleListener;
 import Core._PRIM.aSet;
+import Core._PRIM.iCollection;
 import Core._PRIM.aMap;
 import Core._PRIM.aMultiMap;
 import Core._PRIM.aList;
 
-public class App {
+public class App implements iConsoleListener {
 
 	public static App Current;
 	public boolean running;
@@ -23,6 +26,7 @@ public class App {
 	private float deltaTime = 0f;
 
 	public static Console AppConsole;
+	public static ConsoleUI UI;
 
 	public AccountManager Accounts;
 
@@ -35,7 +39,10 @@ public class App {
 		App.Current = this;
 		this.running = true;
 		AppConsole = new Console(Current);
-
+		
+		UI = new ConsoleUI();
+		AppConsole.getSubscribers().add(this);
+		
 		this.Accounts = new AccountManager();
 
 		genTestSet();
@@ -61,16 +68,16 @@ public class App {
 			prevTime = time;
 			this.deltaTime = dT;
 			// Log(getDeltaTime());
-			logTestSet();
-			logTestList();
+			// logTestSet();
+			// logTestList();
 			// logTestMap();
 			// logTestMultiMap();
 			// Log(this.toLog());
-			
-			aTransaction.Type T = aTransaction.Type.Deposit;
-			Log(T.getDirection() + "  " + T.signum());
-			T = aTransaction.Type.Withdrawal;
-			Log(T.getDirection() + "  " + T.signum());
+
+			// aTransaction.Type T = aTransaction.Type.Deposit;
+			// Log(T.getDirection() + " " + T.signum());
+			// T = aTransaction.Type.Withdrawal;
+			// Log(T.getDirection() + " " + T.signum());
 		}
 
 	}
@@ -84,6 +91,20 @@ public class App {
 	public void dispose() {
 		Log("D-------------------------------------------------------G");
 
+	}
+
+	@Override
+	public boolean input(String inp) {
+		Log(this.getClass().getSimpleName() + ":" + inp);
+		UI.input(inp);
+		
+		return false;
+	}
+
+	@Override
+	public iCollection<iConsoleListener> getSubscribers() {
+		
+		return UI.getSubscribers();
 	}
 
 	public String toLog() {
@@ -197,4 +218,5 @@ public class App {
 		Log("----");
 
 	}
+
 }
