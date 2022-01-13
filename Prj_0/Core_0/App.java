@@ -61,10 +61,10 @@ public class App {
 			prevTime = time;
 			this.deltaTime = dT;
 			// Log(getDeltaTime());
-			// logTestSet();
-			// logTestList();
-			//logTestMap();
-			logTestMultiMap();
+			logTestSet();
+			logTestList();
+			// logTestMap();
+			//logTestMultiMap();
 			// Log(this.toLog());
 		}
 
@@ -119,7 +119,7 @@ public class App {
 
 	public void genTestSet() {
 		S = new aSet<Integer>();
-		S.add(1);
+		S.add(1,1);
 		S.add(1);
 		S.add(32);
 		S.add(64);
@@ -129,12 +129,12 @@ public class App {
 
 	public void genTestList() {
 		L = new aList<Integer>();
-		L.add(1);
+		L.add(1,1);
 		L.add(1);
 		L.add(32);
 		L.add(64);
 		L.add(666);
-		L.remove(1);
+		
 		L.insert(42, 1);
 		// L.clear();
 	}
@@ -166,7 +166,7 @@ public class App {
 	}
 
 	public void logTestSet() {
-		Log();
+		Log("aSet>>");
 		Log("for{");
 		Log(S);
 		Log("forEach{");
@@ -177,7 +177,7 @@ public class App {
 	}
 
 	public void logTestList() {
-		Log();
+		Log("aList>>");
 		Log("for{");
 		Log(L);
 		Log("forEach{");
@@ -189,7 +189,7 @@ public class App {
 
 	public void logTestMap() {
 		// needs to sort lol
-		Log();
+		Log("aMap>>");
 		Log(M);
 		Log("All: A");
 		aList r = M.pull("A");
@@ -200,11 +200,12 @@ public class App {
 
 	public void logTestMultiMap() {
 		// needs to sort lol
-		Log();
+		Log("aMultiMap");
 		Log(MM);
 		Log("All: A");
-		//aList r = (aList) MM.pull("A");
+		// aList r = (aList) MM.pull("A");
 		Log(MM.pull("A"));
+		Log(MM.pull("A").get(2));
 		Log("----");
 
 	}

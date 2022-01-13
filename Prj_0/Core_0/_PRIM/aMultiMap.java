@@ -25,7 +25,9 @@ public class aMultiMap<K, V> implements iMap<K, iCollection<V>> {
 
 	@Override
 	public void put(K key, Object... val) {
-		// TODO Auto-generated method stub
+		for (int i = 0; i < val.length - 1; i++) {
+			this.put(key, val[i]);
+		}
 
 	}
 

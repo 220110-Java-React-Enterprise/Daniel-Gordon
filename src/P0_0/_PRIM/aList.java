@@ -30,6 +30,14 @@ public class aList<T> implements Iterable<T>, iCollection<T> {
 		data[i - 1] = object;
 
 	}
+	
+	public void add(T...objects)
+	{
+		for(int i =0; i < objects.length; i++)
+		{
+			this.add(objects[i]);
+		}
+	}
 
 	@Override
 	public void insert(T entry, int atIndex) {
