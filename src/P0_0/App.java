@@ -11,6 +11,7 @@ import Core._Banko.MGMT.AccountManager;
 import Core._Console.Console;
 import Core._PRIM.aSet;
 import Core._PRIM.aMap;
+import Core._PRIM.aMultiMap;
 import Core._PRIM.aList;
 
 public class App {
@@ -28,6 +29,7 @@ public class App {
 	aList<Integer> L = new aList<Integer>();
 	aSet<Integer> S = new aSet<Integer>();
 	aMap<String, String> M = new aMap<String, String>();
+	aMultiMap<String, String> MM = new aMultiMap<String, String>();
 
 	public App() {
 		App.Current = this;
@@ -39,6 +41,7 @@ public class App {
 		genTestSet();
 		genTestList();
 		genTestMap();
+		genTestMultiMap();
 
 		try {
 			this.loop();
@@ -60,7 +63,8 @@ public class App {
 			// Log(getDeltaTime());
 			// logTestSet();
 			// logTestList();
-			logTestMap();
+			//logTestMap();
+			logTestMultiMap();
 			// Log(this.toLog());
 		}
 
@@ -148,6 +152,19 @@ public class App {
 
 	}
 
+	public void genTestMultiMap() {
+		MM = new aMultiMap<String, String>();
+		MM.put("A", "1");
+		MM.put("A", "2");
+		MM.put("A", "1");
+		MM.put("B", "1");
+		MM.put("B", "2");
+		MM.put("A", "5");
+		MM.put("A", "5");
+		MM.put("A", "1");
+
+	}
+
 	public void logTestSet() {
 		Log();
 		Log("for{");
@@ -177,6 +194,17 @@ public class App {
 		Log("All: A");
 		aList r = M.pull("A");
 		Log(r);
+		Log("----");
+
+	}
+
+	public void logTestMultiMap() {
+		// needs to sort lol
+		Log();
+		Log(MM);
+		Log("All: A");
+		//aList r = (aList) MM.pull("A");
+		Log(MM.pull("A"));
 		Log("----");
 
 	}

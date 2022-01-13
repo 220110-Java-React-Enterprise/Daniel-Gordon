@@ -93,7 +93,8 @@ public class aSet<T> implements Iterable<T>, iCollection<T> {
 	@Override
 	public String toString() {
 
-		String s = this.getClass().getSimpleName() + "{" + this.getSize() + "}\n";
+		//String s = this.getClass().getSimpleName() + "{" + this.getSize() + "}\n";
+		String s = "";
 		s += "{";
 		if (this.data != null)
 			for (int i = 0; i < this.data.length; i++) {

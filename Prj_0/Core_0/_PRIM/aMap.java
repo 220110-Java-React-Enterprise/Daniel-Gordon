@@ -6,8 +6,8 @@ import Core._PRIM.A_I.iMap;
 public class aMap<K, V> implements iMap<K, V> {
 
 	// index-linked lists
-	private aList<K> keys;
-	private aList<V> values;
+	protected aList<K> keys;
+	protected aList<V> values;
 
 	public aMap() {
 		this.keys = new aList<K>();
@@ -68,8 +68,6 @@ public class aMap<K, V> implements iMap<K, V> {
 		return this.keys.getSize();
 	}
 
-
-
 	@Override
 	public iCollection getKeys() {
 		return this.keys;
@@ -81,21 +79,20 @@ public class aMap<K, V> implements iMap<K, V> {
 	}
 
 	@Override
-	public String toString()
-	{
-		String s = this.getClass().getSimpleName() + "{" + this.getSize() + "}\n";
+	public String toString() {
+		//String s = this.getClass().getSimpleName() + "{" + this.getSize() + "}\n";
+		String s = "";
 		s += "{";
 		if (this.keys != null && !this.keys.isEmpty())
 			for (int i = 0; i < this.keys.getSize(); i++) {
-				s +=  "["+this.keys.get(i) + "|" + this.values.get(i)+"]";
+				s += "[" + this.keys.get(i) + "|" + this.values.get(i) + "]";
 				if (i != this.keys.getSize() - 1)
 					s += ",";
 			}
 		s += "}";
 		return s;
 	}
-	
-	
+
 	public String toLog() {
 		String log = this.getClass().getSimpleName() + "{" + this.keys.getSize() + "}\n";
 		for (int i = 0; i < this.keys.getSize(); i++) {
@@ -104,7 +101,7 @@ public class aMap<K, V> implements iMap<K, V> {
 
 		return log;
 	}
-	
+
 	public class Entry<K, V> {
 
 	}
