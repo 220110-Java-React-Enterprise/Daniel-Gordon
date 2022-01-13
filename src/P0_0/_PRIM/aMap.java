@@ -1,6 +1,9 @@
 package Core._PRIM;
 
-public class aMap<K, V> {
+import Core._PRIM.A_I.iCollection;
+import Core._PRIM.A_I.iMap;
+
+public class aMap<K, V> implements iMap<K, V> {
 
 	// index-linked lists
 	private aList<K> keys;
@@ -13,7 +16,7 @@ public class aMap<K, V> {
 
 	public void put(K key, V val) {
 
-		if (!this.has(key, val)) {
+		if (!this.contains(key, val)) {
 			this.keys.add(key);
 			this.values.add(val);
 		}
@@ -42,7 +45,7 @@ public class aMap<K, V> {
 		return result;
 	}
 
-	public boolean has(K key, V val) {
+	public boolean contains(K key, V val) {
 		for (int i = 0; i < this.keys.getSize(); i++) {
 			if (this.keys.get(i) == key && this.values.get(i) == val)
 				return true;
@@ -76,6 +79,16 @@ public class aMap<K, V> {
 
 	public class Entry<K, V> {
 
+	}
+
+	@Override
+	public iCollection getKeys() {
+		return this.keys;
+	}
+
+	@Override
+	public iCollection getValues() {
+		return this.values;
 	}
 
 }

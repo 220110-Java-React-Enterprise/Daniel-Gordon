@@ -29,14 +29,13 @@ public class aSet<T> implements Iterable<T>, iCollection<T> {
 			data[i - 1] = object;
 		}
 	}
-	
+
 	@Override
 	public void insert(T entry, int atIndex) {
 		aSet<T> tmpAll = new aSet<T>();
 		aSet<T> tmpNew = new aSet<T>();
-		for(int i =0; i < atIndex; i++)
-		{
-			
+		for (int i = 0; i < atIndex; i++) {
+
 		}
 	}
 
@@ -86,7 +85,7 @@ public class aSet<T> implements Iterable<T>, iCollection<T> {
 
 	@Override
 	public String toString() {
-		String s = this.getClass().getSimpleName()+"{" + this.getSize() + "}\n";
+		String s = this.getClass().getSimpleName() + "{" + this.getSize() + "}\n";
 		if (this.data != null)
 			for (int i = 0; i < this.data.length; i++) {
 				s += "[" + i + "]" + this.data[i] + "\n";
@@ -132,5 +131,4 @@ public class aSet<T> implements Iterable<T>, iCollection<T> {
 
 	}
 
-	
 }

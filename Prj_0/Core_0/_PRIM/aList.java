@@ -40,21 +40,18 @@ public class aList<T> implements Iterable<T>, iCollection<T> {
 		for (int i = 0; i < atIndex; i++) {
 			pre.add(this.get(i));
 		}
-		
-		for(int j =atIndex; j < this.getSize(); j++)
-		{
+
+		for (int j = atIndex; j < this.getSize(); j++) {
 			pst.add(this.get(j));
 		}
-		
+
 		this.clear();
-		for(int i=0; i < pre.getSize();i++)
-		{
+		for (int i = 0; i < pre.getSize(); i++) {
 			this.add(pre.get(i));
 		}
-		
+
 		this.add(entry);
-		for(int j=0; j < pst.getSize();j++)
-		{
+		for (int j = 0; j < pst.getSize(); j++) {
 			this.add(pst.get(j));
 		}
 
