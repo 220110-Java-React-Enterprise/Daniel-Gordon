@@ -19,7 +19,12 @@ public class aList<T> implements Iterable<T>, iCollection<T> {
 		this.data = new Object[0];
 	}
 
-	private void growTo(int toCap) {
+	protected void grow(int by)
+	{
+		data = Arrays.copyOf(data, data.length+by);
+	}
+	
+	protected void growTo(int toCap) {
 		data = Arrays.copyOf(data, toCap);
 	}
 
