@@ -1,6 +1,6 @@
 # Daniel-Gordon
 [Core_0]  
 *MainLoop;  
-*ConsoleThread;  
-*DB created;  
-*Basic List impl;
+*Console Input;  
+*DB created, but still empty;  
+*Basic DataStructs impl;
