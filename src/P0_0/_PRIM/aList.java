@@ -30,19 +30,52 @@ public class aList<T> implements Iterable<T>, iCollection<T> {
 		data[i - 1] = object;
 
 	}
-	
+
 	@Override
 	public void insert(T entry, int atIndex) {
-	
+
+		// this.clear();
+		aList<T> pre = new aList<T>();
+		aList<T> pst = new aList<T>();
+		for (int i = 0; i < atIndex; i++) {
+			pre.add(this.get(i));
+		}
 		
+		for(int j =atIndex; j < this.getSize(); j++)
+		{
+			pst.add(this.get(j));
+		}
+		
+		this.clear();
+		for(int i=0; i < pre.getSize();i++)
+		{
+			this.add(pre.get(i));
+		}
+		
+		this.add(entry);
+		for(int j=0; j < pst.getSize();j++)
+		{
+			this.add(pst.get(j));
+		}
+
 	}
 
 	public void remove(int i) {
-		final int newSize;
-		if ((newSize = data.length - 1) > i)
-			System.arraycopy(this.data, i + 1, this.data, i, newSize - i);
-		this.data[newSize] = null;
-		this.growTo(data.length - 1);
+
+		// anti-insert
+		aList<T> res = new aList<T>();
+
+		this.data[i] = null;
+		for (int j = 0; j < this.getSize(); j++) {
+			if (this.get(j) != null)
+				res.add(this.get(j));
+		}
+
+		this.growTo(0);
+
+		for (int j = 0; j < res.getSize(); j++) {
+			this.add(res.get(j));
+		}
 	}
 
 	public T get(int index) {
@@ -76,9 +109,10 @@ public class aList<T> implements Iterable<T>, iCollection<T> {
 	}
 
 	public void clear() {
-		for (int i = 0; i < this.data.length; i++) {
+		for (int i = 0; i <= this.getSize() - 1; i++) {
 			this.remove(i);
 		}
+		this.growTo(0);
 	}
 
 	@Override
@@ -129,5 +163,4 @@ public class aList<T> implements Iterable<T>, iCollection<T> {
 
 	}
 
-	
 }

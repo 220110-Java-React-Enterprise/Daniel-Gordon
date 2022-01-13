@@ -58,10 +58,10 @@ public class App {
 			prevTime = time;
 			this.deltaTime = dT;
 			// Log(getDeltaTime());
-			logTestSet();
+			// logTestSet();
 			logTestList();
-			logTestMap();
-			Log(this.toLog());
+			// logTestMap();
+			// Log(this.toLog());
 		}
 
 	}
@@ -130,7 +130,9 @@ public class App {
 		L.add(32);
 		L.add(64);
 		L.add(666);
-		L.remove(2);
+		L.remove(1);
+		L.insert(42, 1);
+		// L.clear();
 	}
 
 	public void genTestMap() {
