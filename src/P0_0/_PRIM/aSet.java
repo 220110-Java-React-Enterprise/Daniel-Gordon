@@ -77,6 +77,13 @@ public class aSet<T> implements Iterable<T>, iCollection<T> {
 		return false;
 	}
 
+	public boolean isEmpty() {
+		if (this.data.length <= 0)
+			return true;
+		else
+			return false;
+	}
+	
 	public void clear() {
 		for (int i = 0; i < this.data.length; i++) {
 			this.remove(i);
@@ -85,12 +92,26 @@ public class aSet<T> implements Iterable<T>, iCollection<T> {
 
 	@Override
 	public String toString() {
+
 		String s = this.getClass().getSimpleName() + "{" + this.getSize() + "}\n";
+		s += "{";
 		if (this.data != null)
 			for (int i = 0; i < this.data.length; i++) {
-				s += "[" + i + "]" + this.data[i] + "\n";
+				s += /*"[" + i + "]" + */this.data[i];
+				if (i != this.data.length - 1)
+					s += ",";
 			}
+		s += "}";
 		return s;
+	}
+	
+	public String toLog() {
+		String log = this.getClass().getSimpleName() + "{" + this.getSize() + "}\n";
+		if (this.data != null)
+			for (int i = 0; i < this.data.length; i++) {
+				log += "[" + i + "]" + this.data[i] + "\n";
+			}
+		return log;
 	}
 
 	@Override

@@ -59,8 +59,8 @@ public class App {
 			this.deltaTime = dT;
 			// Log(getDeltaTime());
 			// logTestSet();
-			logTestList();
-			// logTestMap();
+			// logTestList();
+			logTestMap();
 			// Log(this.toLog());
 		}
 
@@ -171,10 +171,11 @@ public class App {
 	}
 
 	public void logTestMap() {
+		// needs to sort lol
 		Log();
 		Log(M);
 		Log("All: A");
-		aList r = M.get("A");
+		aList r = M.pull("A");
 		Log(r);
 		Log("----");
 

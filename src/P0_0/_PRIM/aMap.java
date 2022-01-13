@@ -14,16 +14,16 @@ public class aMap<K, V> implements iMap<K, V> {
 		this.values = new aList<V>();
 	}
 
-	public void put(K key, V val) {
+	public void put(K key, Object val) {
 
 		if (!this.contains(key, val)) {
 			this.keys.add(key);
-			this.values.add(val);
+			this.values.add((V) val);
 		}
 	}
 
-	public void put(K key, V... vals) {
-		for (V v : vals) {
+	public void put(K key, Object... vals) {
+		for (Object v : vals) {
 			this.put(key, v);
 		}
 	}
@@ -34,7 +34,7 @@ public class aMap<K, V> implements iMap<K, V> {
 		return this.values.get(index);
 	}
 
-	public aList<V> get(K key) {
+	public aList<V> pull(K key) {
 		aList<V> result = new aList<V>();
 		for (int i = 0; i < this.getSize(); i++) {
 			if (this.keys.get(i) == key || this.keys.get(i).equals(key)) {
@@ -45,7 +45,7 @@ public class aMap<K, V> implements iMap<K, V> {
 		return result;
 	}
 
-	public boolean contains(K key, V val) {
+	public boolean contains(K key, Object val) {
 		for (int i = 0; i < this.keys.getSize(); i++) {
 			if (this.keys.get(i) == key && this.values.get(i) == val)
 				return true;
@@ -68,18 +68,7 @@ public class aMap<K, V> implements iMap<K, V> {
 		return this.keys.getSize();
 	}
 
-	public String toString() {
-		String log = this.getClass().getSimpleName() + "{" + this.keys.getSize() + "}\n";
-		for (int i = 0; i < this.keys.getSize(); i++) {
-			log += "[" + i + "]" + this.keys.get(i) + "|" + this.values.get(i) + "\n";
-		}
 
-		return log;
-	}
-
-	public class Entry<K, V> {
-
-	}
 
 	@Override
 	public iCollection getKeys() {
@@ -89,6 +78,35 @@ public class aMap<K, V> implements iMap<K, V> {
 	@Override
 	public iCollection getValues() {
 		return this.values;
+	}
+
+	@Override
+	public String toString()
+	{
+		String s = this.getClass().getSimpleName() + "{" + this.getSize() + "}\n";
+		s += "{";
+		if (this.keys != null && !this.keys.isEmpty())
+			for (int i = 0; i < this.keys.getSize(); i++) {
+				s +=  "["+this.keys.get(i) + "|" + this.values.get(i)+"]";
+				if (i != this.keys.getSize() - 1)
+					s += ",";
+			}
+		s += "}";
+		return s;
+	}
+	
+	
+	public String toLog() {
+		String log = this.getClass().getSimpleName() + "{" + this.keys.getSize() + "}\n";
+		for (int i = 0; i < this.keys.getSize(); i++) {
+			log += "[" + i + "]" + this.keys.get(i) + "|" + this.values.get(i) + "\n";
+		}
+
+		return log;
+	}
+	
+	public class Entry<K, V> {
+
 	}
 
 }

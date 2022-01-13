@@ -8,6 +8,6 @@ public interface iCollection<E>{
 	public void remove(int index);	
 	public void clear();
 	public boolean contains(E entry);
-	
+	public boolean isEmpty();
 	
 }

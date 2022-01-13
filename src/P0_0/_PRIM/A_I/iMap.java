@@ -4,20 +4,20 @@ public interface iMap<K,V> {
 
 	
 	
-	public void put(K key, V val);
+	public void put(K key, Object val);
 	
-	public void put(K key, V...val);
+	public void put(K key, Object...val);
 	
-	public iCollection get(K key);
+	public iCollection pull(K key);
 	
-	public boolean contains(K key, V val);
+	public boolean contains(K key, Object val);
 	
 	public default boolean containsKey(K key)
 	{
 		return this.getKeys().contains(key);
 	}
 	
-	public default boolean containsValue(V val)
+	public default boolean containsValue(Object val)
 	{
 		return this.getValues().contains(val);
 	}
