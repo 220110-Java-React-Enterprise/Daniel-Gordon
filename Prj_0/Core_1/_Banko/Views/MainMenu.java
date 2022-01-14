@@ -6,22 +6,31 @@ import java.awt.*;
 import Core._Console.ConsoleUI;
 import Core._Console.UI.ConsoleView;
 import Core._Console.UI.iConsoleListener;
+import Core._Math.Maths;
 import Core._PRIM.aMap;
+import Core.zCHEAT_CODEX.AbstractDoodad;
 
 public class MainMenu extends ConsoleView {
+
+	public AbstractDoodad D1;
 
 	public MainMenu(ConsoleUI manager) {
 		super(manager);
 
-		
 	}
-	
+
 	@Override
-	public void init()
-	{
+	public void init() {
 		super.init();
 		this.options.put("1", "USER");
 		this.options.put("2", "MGMT");
+
+		this.D1 = new AbstractDoodad() {
+			@Override
+			public void init() {
+				logTo();
+			}
+		};
 	}
 
 	@Override
@@ -32,6 +41,7 @@ public class MainMenu extends ConsoleView {
 
 		Log(this.options.toString());
 		Log("");
+		Log(""+Maths.round(5.56f, 2));
 	}
 
 	@Override
@@ -52,17 +62,17 @@ public class MainMenu extends ConsoleView {
 
 	@Override
 	public boolean handle(String inp) {
-		if(super.handle(inp))
+		if (super.handle(inp))
 			return true;
-		
-		//if (Integer.parseInt(inp) == 1) {
-		if(inp.equals("1")) {
+
+		// if (Integer.parseInt(inp) == 1) {
+		if (inp.equals("1")) {
 			this.manager.setView(new UserLogin(this.manager));
 			return true;
 		}
 
-		//if (Integer.parseInt(inp) == 2) {
-		if(inp.equals("2")) {
+		// if (Integer.parseInt(inp) == 2) {
+		if (inp.equals("2")) {
 			this.manager.setView(new BankLogin(this.manager));
 			return true;
 		}

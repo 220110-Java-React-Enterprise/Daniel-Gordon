@@ -9,6 +9,10 @@ public class aNode<T> implements iNode<T> {
 	public aNode parent;
 	public aMultiMap<String, aNode> connections = new aMultiMap<String, aNode>();
 
+	public aNode() {
+
+	}
+
 	@Override
 	public iNode getRoot() {
 
@@ -22,6 +26,22 @@ public class aNode<T> implements iNode<T> {
 	public iNode getParent() {
 
 		return this.parent;
+	}
+
+	@Override
+	public void setParent(aNode parent) {
+		if (this.parent != null)
+			this.removeParent();
+
+		this.parent = (aNode) parent;
+		this.parent.connections.put("Children", this);
+	}
+
+	public void removeParent() {
+		if (this.parent != null) {
+			aList children = (aList) this.parent.getConnected("Children");
+			children.remove(children.indexOf(this));
+		}
 	}
 
 	@Override

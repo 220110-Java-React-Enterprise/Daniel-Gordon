@@ -66,10 +66,9 @@ public class aList<T> implements iCollection<T> {
 		}
 
 	}
-	
-	public void set(int atIndex, T entry)
-	{
-		if(atIndex <= this.getSize())
+
+	public void set(int atIndex, T entry) {
+		if (atIndex <= this.getSize())
 			this.data[atIndex] = entry;
 	}
 
@@ -91,12 +90,28 @@ public class aList<T> implements iCollection<T> {
 		}
 	}
 
+	public void remove(T object) {
+		if (this.contains(object)) {
+			int i = this.indexOf(object);
+			this.remove(i);
+		}
+	}
+
 	public T get(int index) {
 
 		if (index < data.length) {
 			return (T) data[index];
 		} else
 			return null;
+	}
+
+	public T getFirst() {
+		return this.get(0);
+	}
+
+	public T getLast() {
+		int s = this.getSize() - 1;
+		return this.get(s);
 	}
 
 	public int getSize() {

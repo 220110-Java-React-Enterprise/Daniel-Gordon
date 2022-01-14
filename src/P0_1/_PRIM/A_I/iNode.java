@@ -1,10 +1,14 @@
 package Core._PRIM.A_I;
 
+import Core._PRIM.aNode;
+
 public interface iNode<T> {
 
 	public iNode getRoot();
 
 	public iNode getParent();
+	
+	public void setParent(aNode parent);
 
 	public iCollection<iNode> getConnected(String type);
 
