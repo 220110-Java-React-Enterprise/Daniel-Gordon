@@ -41,7 +41,7 @@ public class MainMenu extends ConsoleView {
 
 		Log(this.options.toString());
 		Log("");
-		Log(""+Maths.round(5.56f, 2));
+		Log("" + Maths.round(5.55f, 2));
 	}
 
 	@Override

@@ -93,6 +93,7 @@ public class App implements iConsoleListener {
 	}
 
 	public void dispose() {
+		AppConsole.IO.dispose();
 		Log("D-------------------------------------------------------G");
 
 	}
@@ -140,7 +141,7 @@ public class App implements iConsoleListener {
 		S.append(32);
 		S.append(64);
 		S.append(666);
-		S.remove(2);
+
 	}
 
 	public void genTestList() {
@@ -152,7 +153,9 @@ public class App implements iConsoleListener {
 		L.append(666);
 
 		L.insert(42, 1);
+		S.remove(0);
 		L.set(0, 100);
+
 		// L.clear();
 	}
 

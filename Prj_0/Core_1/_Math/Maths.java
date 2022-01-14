@@ -2,8 +2,6 @@ package Core._Math;
 
 import java.math.BigDecimal;
 
-
-
 public class Maths {
 
 	// EXP4j Expressions
@@ -146,21 +144,16 @@ public class Maths {
 		return (1f / value) * min + max * value;
 	}
 
-	
 	// bets value's magnitude between min-max
 	public static float inverseLerp(float min, float max, float value) {
 		return (value - min) / (max - min);
 	}
-
 
 	// remaps value from oMin-oMax to range between nMin-nMax
 	public static float remap(float nMin, float nMax, float oMin, float oMax, float value) {
 		float t = inverseLerp(oMin, oMax, value);
 		return lerp(nMin, nMax, t);
 	}
-
-	
-
 
 	private static <T> void printArray(T[] input, char d) {
 		System.out.print('\n');

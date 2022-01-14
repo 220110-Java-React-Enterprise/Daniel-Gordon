@@ -11,6 +11,8 @@ import Core._PRIM.A_I.iCollection;
 
 public class aSet<T> implements iCollection<T> {
 
+	// no duplicatess
+
 	private Object[] data;
 
 	public aSet() {

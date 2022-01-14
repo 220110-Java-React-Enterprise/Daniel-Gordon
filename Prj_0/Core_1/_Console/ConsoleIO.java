@@ -2,6 +2,7 @@ package Core._Console;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -23,6 +24,7 @@ public class ConsoleIO {
 	public int read() throws IOException {
 
 		return reader.read();
+
 	}
 
 	public String readLine() throws IOException {
@@ -38,6 +40,18 @@ public class ConsoleIO {
 	public void writeLine(String str) throws IOException {
 
 		this.write(str);
+
+	}
+
+	public void dispose() {
+		if (this.reader != null && this.writer != null)
+			try {
+				this.reader.close();
+				this.writer.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
 	}
 
 }

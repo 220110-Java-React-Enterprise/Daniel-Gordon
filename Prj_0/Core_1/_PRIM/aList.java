@@ -23,14 +23,14 @@ public class aList<T> implements iCollection<T> {
 		data = Arrays.copyOf(data, data.length + by);
 	}
 
-	protected void growTo(int toCap) {
+	protected void sizeTo(int toCap) {
 		data = Arrays.copyOf(data, toCap);
 	}
 
 	public void append(T object) {
 
 		int i = data.length + 1;
-		this.growTo(i);
+		this.sizeTo(i);
 		data[i - 1] = object;
 
 	}
@@ -72,21 +72,21 @@ public class aList<T> implements iCollection<T> {
 			this.data[atIndex] = entry;
 	}
 
-	public void remove(int i) {
+	public void remove(int index) {
 
 		// anti-insert
-		aList<T> res = new aList<T>();
+		aList<T> result = new aList<T>();
 
-		this.data[i] = null;
-		for (int j = 0; j < this.getSize(); j++) {
-			if (this.get(j) != null)
-				res.append(this.get(j));
+		this.data[index] = null;
+		for (int i = 0; i < this.getSize(); i++) {
+			if (this.get(i) != null)
+				result.append(this.get(i));
 		}
 
-		this.growTo(0);
+		this.sizeTo(0);
 
-		for (int j = 0; j < res.getSize(); j++) {
-			this.append(res.get(j));
+		for (int i = 0; i < result.getSize(); i++) {
+			this.append(result.get(i));
 		}
 	}
 
@@ -147,7 +147,7 @@ public class aList<T> implements iCollection<T> {
 		for (int i = 0; i <= this.getSize() - 1; i++) {
 			this.remove(i);
 		}
-		this.growTo(0);
+		this.sizeTo(0);
 	}
 
 	@Override
