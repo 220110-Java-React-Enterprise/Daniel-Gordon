@@ -1,6 +1,6 @@
 package Core._PRIM.A_I;
 
-public interface iMap<K, V> {
+public interface iMap<K, V>{
 
 	public void put(K key, Object val);
 

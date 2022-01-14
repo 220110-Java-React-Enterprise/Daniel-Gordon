@@ -78,9 +78,18 @@ public class aMap<K, V> implements iMap<K, V> {
 		return this.values;
 	}
 
+	public iCollection getEntries() {
+		aList<Entry<K, V>> result = new aList<Entry<K, V>>();
+		for (int i = 0; i < this.getSize() - 1; i++) {
+			result.append(new Entry(this.getKeys().get(i), this.getValues().get(i)));
+		}
+
+		return result;
+	}
+
 	@Override
 	public String toString() {
-		//String s = this.getClass().getSimpleName() + "{" + this.getSize() + "}\n";
+		// String s = this.getClass().getSimpleName() + "{" + this.getSize() + "}\n";
 		String s = "";
 		s += "{";
 		if (this.keys != null && !this.keys.isEmpty())
@@ -103,6 +112,22 @@ public class aMap<K, V> implements iMap<K, V> {
 	}
 
 	public class Entry<K, V> {
+
+		private K key;
+		private V value;
+
+		public Entry(K key, V val) {
+			this.key = key;
+			this.value = val;
+		}
+
+		public K getKey() {
+			return this.key;
+		}
+
+		public V getValue() {
+			return this.value;
+		}
 
 	}
 
