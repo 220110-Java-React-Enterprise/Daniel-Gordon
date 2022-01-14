@@ -125,17 +125,17 @@ public class Maths {
 		input[b] = tmp;
 	}
 
-	// Mapping function for doubles (standard only for floats)
+	// remaps value from oMin-oMax to range between nMin-nMax
 	public static double map(double val, double oMin, double oMax, double nMin, double nMax) {
 		return ((val - oMin) / (oMax - oMin)) * (nMax - nMin) + nMin;
 	}
 
-	// Mapping function for doubles (standard only for floats)
+	// remaps value from oMin-oMax to range between nMin-nMax
 	public static float map(float val, float oMin, float oMax, float nMin, float nMax) {
 		return ((val - oMin) / (oMax - oMin)) * (nMax - nMin) + nMin;
 	}
 
-	// Mapping function for doubles (standard only for floats)
+	// remaps value from oMin-oMax to range between nMin-nMax
 	public static int map(int val, float oMin, float oMax, float nMin, float nMax) {
 		return (int) (((val - oMin) / (oMax - oMin)) * (nMax - nMin) + nMin);
 	}
@@ -147,13 +147,13 @@ public class Maths {
 	}
 
 	
-
+	// bets value's magnitude between min-max
 	public static float inverseLerp(float min, float max, float value) {
 		return (value - min) / (max - min);
 	}
 
 
-
+	// remaps value from oMin-oMax to range between nMin-nMax
 	public static float remap(float nMin, float nMax, float oMin, float oMax, float value) {
 		float t = inverseLerp(oMin, oMax, value);
 		return lerp(nMin, nMax, t);
