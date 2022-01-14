@@ -53,21 +53,6 @@ public class Console implements iConsoleListener {
 
 			synchronized (IO) {
 				tmp = IO.readLine();
-				if (tmp.equals("SHELL:TERMINATE")) {
-					Log(this.toLog());
-					post("SHELL:TERMINATE");
-					Target.terminate();
-				}
-
-				if (tmp.equals(":LOG") || tmp.equals("")) {
-					post(":LOG");
-					Log(this.toLog());
-
-				}
-
-				if (tmp.equals("APP:LOG")) {
-					Log(App.Current.toLog());
-				}
 
 				// post(tmp);
 
@@ -91,6 +76,38 @@ public class Console implements iConsoleListener {
 			ConsoleLogger.logOut();
 		}
 
+	}
+
+	public boolean input(String msg) {
+
+		if (msg.equals("SHELL:TERMINATE")) {
+			Log(this.toLog());
+			post("SHELL:TERMINATE");
+			Target.terminate();
+		}
+
+		if (msg.equals(":LOG") || msg.equals("")) {
+			post(":LOG");
+			Log(this.toLog());
+
+		}
+
+		if (msg.equals("APP:LOG")) {
+			Log(App.Current.toLog());
+		}
+
+		for (iConsoleListener c : this.getSubscribers()) {
+			if (c.input(msg))
+				return true;
+		}
+		return false;
+	}
+
+	@Override
+	public iCollection<iConsoleListener> getSubscribers() {
+		if (this.Subscribers == null)
+			this.Subscribers = new aList<iConsoleListener>();
+		return this.Subscribers;
 	}
 
 	public static void post(Object o) {
@@ -119,20 +136,5 @@ public class Console implements iConsoleListener {
 		log += "\n";
 
 		return log;
-	}
-
-	public boolean input(String msg) {
-		for (iConsoleListener c : this.getSubscribers()) {
-			if (c.input(msg))
-				return true;
-		}
-		return false;
-	}
-
-	@Override
-	public iCollection<iConsoleListener> getSubscribers() {
-		if (this.Subscribers == null)
-			this.Subscribers = new aList<iConsoleListener>();
-		return this.Subscribers;
 	}
 }

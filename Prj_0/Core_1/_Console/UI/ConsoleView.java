@@ -3,11 +3,13 @@ package Core._Console.UI;
 import static Core.AppUtils.*;
 import static Core._Console.ConsoleUI.*;
 
+import Core.App;
 import Core._Console.ConsoleUI;
 import Core._PRIM.aMap;
+import Core._PRIM.aNode;
 import Core._PRIM.A_I.iCollection;
 
-public class ConsoleView implements iConsoleListener {
+public class ConsoleView extends aNode<ConsoleView> implements iConsoleListener {
 
 	protected ConsoleUI manager;
 
@@ -22,6 +24,7 @@ public class ConsoleView implements iConsoleListener {
 	protected void init() {
 		if (ConsoleUI.PreviousView != null)
 			this.options.put("<", "BACK");
+		this.options.put("X", "EXIT");
 	}
 
 	public boolean input(String inp) {
@@ -40,10 +43,16 @@ public class ConsoleView implements iConsoleListener {
 	}
 
 	protected boolean handle(String inp) {
-		if (inp.equals("<") || inp.equals("BACK")) {
+		if (inp.toUpperCase().equals("X") || inp.toUpperCase().equals("EXIT")) {
+			//System.exit(0);
+			App.AppConsole.post("SHELL:TERMINATE");
+		}
+
+		if (inp.equals("<") || inp.toUpperCase().equals("BACK")) {
 			this.manager.back();
 			return true;
 		}
+
 		return false;
 	}
 
