@@ -45,7 +45,8 @@ public class ConsoleView extends aNode<ConsoleView> implements iConsoleListener 
 	protected boolean handle(String inp) {
 		if (inp.toUpperCase().equals("X") || inp.toUpperCase().equals("EXIT")) {
 			//System.exit(0);
-			App.AppConsole.post("SHELL:TERMINATE");
+			App.AppConsole.input("SHELL:TERMINATE");
+			return true;
 		}
 
 		if (inp.equals("<") || inp.toUpperCase().equals("BACK")) {

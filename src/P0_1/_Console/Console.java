@@ -78,6 +78,8 @@ public class Console implements iConsoleListener {
 
 	}
 
+	
+
 	public boolean input(String msg) {
 
 		if (msg.equals("SHELL:TERMINATE")) {
@@ -109,7 +111,7 @@ public class Console implements iConsoleListener {
 			this.Subscribers = new aList<iConsoleListener>();
 		return this.Subscribers;
 	}
-
+	
 	public static void post(Object o) {
 		String r = "" + o.toString();
 		post(r);
