@@ -92,8 +92,8 @@ public class aLinkedList<T> implements iCollection<T> {
 
 	@Override
 	public void set(int at, T to) {
-		// TODO Auto-generated method stub
-
+		aNode N = (aNode) this.get(at);
+		N.set(to);
 	}
 
 	@Override
@@ -153,7 +153,15 @@ public class aLinkedList<T> implements iCollection<T> {
 
 	@Override
 	public boolean contains(T entry) {
-		// TODO Auto-generated method stub
+		for (T n : this) {
+			if (n == entry || n.equals(entry))
+				return true;
+			if (n instanceof aNode) {
+				aNode N = (aNode) n;
+				if (N.get() == entry || N.get().equals(entry))
+					return true;
+			}
+		}
 		return false;
 	}
 
