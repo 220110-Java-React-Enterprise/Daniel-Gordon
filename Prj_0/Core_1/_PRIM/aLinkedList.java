@@ -98,7 +98,11 @@ public class aLinkedList<T> implements iCollection<T> {
 
 	@Override
 	public T get(int index) {
-		// TODO Auto-generated method stub
+		for (T n : this) {
+			if (this.indexOf(n) == index)// inefficient
+				return n;
+
+		}
 		return null;
 	}
 
@@ -119,10 +123,10 @@ public class aLinkedList<T> implements iCollection<T> {
 		// aNode current = this.first;
 		int c = 0;
 		for (T n : this) {
-			
+
 			if (n instanceof aNode) {
 				aNode N = (aNode) n;
-				if(object == N || object == N.get())
+				if (object == N || object == N.get())
 					return c;
 			}
 			c++;
@@ -134,7 +138,10 @@ public class aLinkedList<T> implements iCollection<T> {
 
 	@Override
 	public void remove(int index) {
-		// TODO Auto-generated method stub
+		for (T n : this) {
+			// if(this.indexOf(n)==index)
+
+		}
 
 	}
 
@@ -216,10 +223,5 @@ public class aLinkedList<T> implements iCollection<T> {
 	// I never understood the purpose of LinkedList.
 	// You end up overriding literally everything
 	// depending on the use-case. Maybe its just me.
-	// The relationships exist whether you limit
-	// yourself to 2 in a class or no class at all.
-	// A list is a list, Java's 'LinkedList' is
-	// basically a 'branch' of a Tree. You always
-	// end up iterating by index anyway
 
 }

@@ -75,7 +75,7 @@ public class App implements iConsoleListener {
 			// Log(getDeltaTime());
 			// logTestSet();
 			// logTestList();
-			// logTestLinkedList();
+			//logTestLinkedList();
 			// logTestMap();
 			// logTestMultiMap();
 			// Log(this.toLog());
@@ -175,9 +175,9 @@ public class App implements iConsoleListener {
 		LL.append(64);
 		LL.append(666);
 
-		this.logTestLinkedList();
-
 		// L.clear();
+		logTestLinkedList();
+		Log(">> "+ LL.get(4));
 	}
 
 	public void genTestMap() {

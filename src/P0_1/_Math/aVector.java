@@ -113,8 +113,7 @@ public class aVector<N extends Number> extends aNumber
 	}
 
 	@Override
-	public int indexOf(Number object) {
-		// since duplicate numbers can exist, probably a bad idea
+	public int indexOf(Object object) {
 		return 0;
 	}
 }
