@@ -239,15 +239,17 @@ public class App implements iConsoleListener {
 		Log("aLinkedList>>");
 		Log("for{");
 		Log(LL);
-		Log("forEach{");
+		Log("forEach[" + LL.getSize() + "]{");
 
 		for (Object o : this.LL) {
 
 			// Log("*" + o);
 			aNode n = (aNode) o;
-			if (n.has("NEXT"))
-				//Log("*[" + LL.indexOf(n) + "]");
-				Log(o + " => " + ((aConnection) n.connections.get("NEXT")).target);
+			Log("*[" + LL.indexOf(n) + "]" + o);
+			if (n.has("NEXT")) {
+				aNode next = ((aConnection) n.connections.get("NEXT")).target;
+				Log("    <NEXT>=> [" + LL.indexOf(next) + "]" + next);
+			}
 
 		}
 

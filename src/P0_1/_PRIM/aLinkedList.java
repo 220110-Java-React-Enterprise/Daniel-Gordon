@@ -18,8 +18,6 @@ public class aLinkedList<T> implements iCollection<T> {
 
 	LinkedList L;
 
-
-
 	@Override
 	public void append(T entry) {
 
@@ -105,29 +103,31 @@ public class aLinkedList<T> implements iCollection<T> {
 	}
 
 	@Override
-	public int getSize()
-	{
+	public int getSize() {
+		int c = 0;
+		for (T N : this) {
+			c++;
+		}
 
-
-		return 0;
+		return c;
 	}
-	
 
-
-	
 	@Override
 	public int indexOf(Object object) {
 		// loop thru till you find the target, return iteration count
 
-		
+		// aNode current = this.first;
 		int c = 0;
-		aNode current = this.first;
-		//if (current.has("NEXT") && current.get() != object) {
+		for (T n : this) {
+			
+			if (n instanceof aNode) {
+				aNode N = (aNode) n;
+				if(object == N || object == N.get())
+					return c;
+			}
+			c++;
 
-			//c++;
-		//} else
-			//return c;
-		
+		}
 
 		return -1;
 	}
