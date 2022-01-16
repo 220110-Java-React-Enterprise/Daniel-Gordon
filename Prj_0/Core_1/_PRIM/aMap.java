@@ -1,5 +1,7 @@
 package Core._PRIM;
 
+import java.util.Iterator;
+
 import Core._PRIM.A_I.iCollection;
 import Core._PRIM.A_I.iMap;
 
@@ -20,6 +22,8 @@ public class aMap<K, V> implements iMap<K, V> {
 			this.keys.append(key);
 			this.values.append((V) val);
 		}
+		
+		
 	}
 
 	public void put(K key, Object... vals) {
@@ -30,8 +34,8 @@ public class aMap<K, V> implements iMap<K, V> {
 
 	// public Entry get
 	// public aList<
-	public V get(int index) {
-		return this.values.get(index);
+	public K get(int index) {
+		return this.keys.get(index);
 	}
 
 	public aList<V> pull(K key) {
@@ -52,6 +56,8 @@ public class aMap<K, V> implements iMap<K, V> {
 		}
 		return false;
 	}
+	
+
 
 	public void remove(K key) {
 		int kI = -1;
@@ -62,6 +68,17 @@ public class aMap<K, V> implements iMap<K, V> {
 			this.keys.remove(kI);
 			this.values.remove(kI);
 		}
+	}
+
+	@Override
+	public void clear() {
+		this.keys.clear();
+		this.values.clear();
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return this.keys.isEmpty();
 	}
 
 	public int getSize() {
@@ -129,6 +146,11 @@ public class aMap<K, V> implements iMap<K, V> {
 			return this.value;
 		}
 
+	}
+
+	@Override
+	public Iterator<K> iterator() {
+		return this.keys.iterator();
 	}
 
 }

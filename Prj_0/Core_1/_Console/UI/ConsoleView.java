@@ -16,6 +16,7 @@ public class ConsoleView extends aNode<ConsoleView> implements iConsoleListener 
 	protected aMap<String, String> options;
 
 	public ConsoleView(ConsoleUI manager) {
+		super();
 		this.manager = manager;
 		this.options = new aMap<String, String>();
 

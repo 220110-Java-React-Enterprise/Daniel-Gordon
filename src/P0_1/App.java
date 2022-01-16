@@ -2,23 +2,19 @@ package Core;
 
 import static Core.AppUtils.*;
 
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
-import javax.swing.JFrame;
-
-import Core._Banko.aTransaction;
 import Core._Banko.MGMT.AccountManager;
 import Core._Console.Console;
 import Core._Console.ConsoleUI;
 import Core._Console.UI.iConsoleListener;
+import Core._Math.Maths;
 import Core._Math.aVector;
 import Core._PRIM.aSet;
 import Core._PRIM.A_I.iCollection;
 import Core._PRIM.aMap;
 import Core._PRIM.aMultiMap;
+import Core._PRIM.aNode;
+import Core._PRIM.aConnection;
+import Core._PRIM.aLinkedList;
 import Core._PRIM.aList;
 
 public class App implements iConsoleListener {
@@ -33,10 +29,15 @@ public class App implements iConsoleListener {
 
 	public AccountManager Accounts;
 
-	aList<Integer> L = new aList<Integer>();
 	aSet<Integer> S = new aSet<Integer>();
+	aList<Integer> L = new aList<Integer>();
+	aLinkedList<Integer> LL = new aLinkedList<Integer>();
 	aMap<String, String> M = new aMap<String, String>();
 	aMultiMap<String, String> MM = new aMultiMap<String, String>();
+
+	aNode N1;
+	aNode N2;
+	aNode N3;
 
 	public App() {
 		System.setProperty("java.awt.headless", "true");
@@ -50,9 +51,10 @@ public class App implements iConsoleListener {
 
 		genTestSet();
 		genTestList();
+		genTestLinkedList();
 		genTestMap();
 		genTestMultiMap();
-
+		genTestNodes();
 		try {
 			this.loop();
 		} finally {
@@ -73,15 +75,21 @@ public class App implements iConsoleListener {
 			// Log(getDeltaTime());
 			// logTestSet();
 			// logTestList();
+			// logTestLinkedList();
 			// logTestMap();
 			// logTestMultiMap();
 			// Log(this.toLog());
+			// logTestNodes();
 
 			// aTransaction.Type T = aTransaction.Type.Deposit;
 			// Log(T.getDirection() + " " + T.signum());
 			// T = aTransaction.Type.Withdrawal;
 			// Log(T.getDirection() + " " + T.signum());
 
+			// aVector V = new aVector(1, 5, 7, 9);
+			// V.append(3.1f);
+			// Log(V);
+			// Log("" + Maths.round(5.55f, 2));
 		}
 
 	}
@@ -153,8 +161,21 @@ public class App implements iConsoleListener {
 		L.append(666);
 
 		L.insert(42, 1);
-		S.remove(0);
+		L.remove(0);
 		L.set(0, 100);
+
+		// L.clear();
+	}
+
+	public void genTestLinkedList() {
+		LL = new aLinkedList<Integer>();
+		LL.append(1, 1);
+		LL.append(1);
+		LL.append(32);
+		LL.append(64);
+		LL.append(666);
+
+		this.logTestLinkedList();
 
 		// L.clear();
 	}
@@ -185,6 +206,12 @@ public class App implements iConsoleListener {
 
 	}
 
+	public void genTestNodes() {
+		this.N1 = new aNode("Node1");
+		this.N2 = new aNode(42);
+		this.N3 = new aNode(new aList<Float>(1f, 2f, 3f));
+	}
+
 	public void logTestSet() {
 		Log("aSet>>");
 		Log("for{");
@@ -204,7 +231,31 @@ public class App implements iConsoleListener {
 		for (Integer i : this.L) {
 			Log("*[" + L.indexOf(i) + "]" + i);
 		}
+		Log("     -0 " + L.getLast());
 		Log("----");
+	}
+
+	public void logTestLinkedList() {
+		Log("aLinkedList>>");
+		Log("for{");
+		Log(LL);
+		Log("forEach{");
+
+		for (Object o : this.LL) {
+
+			// Log("*" + o);
+			aNode n = (aNode) o;
+			if (n.has("NEXT"))
+				//Log("*[" + LL.indexOf(n) + "]");
+				Log(o + " => " + ((aConnection) n.connections.get("NEXT")).target);
+
+		}
+
+		// Log(" -0 "+LL.getLast());
+		Log("----");
+		Log(LL.first.toLog());
+
+		Log("________");
 	}
 
 	public void logTestMap() {
@@ -225,9 +276,22 @@ public class App implements iConsoleListener {
 		Log("All: A");
 		// aList r = (aList) MM.pull("A");
 		Log(MM.pull("A"));
-		Log(MM.pull("A").get(2));
+		// Log(MM.pull("A").get(2));
+		Log(">" + MM.get("A", 2));
 		Log("----");
+		// MM.clear();
+		// Log(MM);
 
+	}
+
+	public void logTestNodes() {
+		// Log(N1 + " " + N1.get().toString());
+		// Log(N2 + " " + N2.get().toString());
+		// Log(N3 + " " + N3.get().toString());
+		Log(N1.toLog());
+		Log(N2.toLog());
+		Log(N3.toLog());
+		Log();
 	}
 
 }

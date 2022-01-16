@@ -13,10 +13,17 @@ public class aSet<T> implements iCollection<T> {
 
 	// no duplicatess
 
-	private Object[] data;
+	protected Object[] data;
 
 	public aSet() {
 		this.data = new Object[0];
+	}
+	
+	public aSet(T... entries) {
+		this();
+		for (int i = 0; i < entries.length; i++) {
+			this.append(entries[i]);
+		}
 	}
 
 	private void growTo(int toCap) {
@@ -72,7 +79,7 @@ public class aSet<T> implements iCollection<T> {
 		return this.data.length;
 	}
 
-	public int indexOf(T object) {
+	public int indexOf(Object object) {
 
 		for (int i = 0; i < this.data.length; i++) {
 			if (data[i] == object)

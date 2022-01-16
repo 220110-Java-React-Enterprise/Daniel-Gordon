@@ -13,10 +13,17 @@ public class aList<T> implements iCollection<T> {
 
 	// susceptible to duplicates
 
-	private Object[] data;
+	protected Object[] data;
 
 	public aList() {
 		this.data = new Object[0];
+	}
+
+	public aList(T... entries) {
+		this();
+		for (int i = 0; i < entries.length; i++) {
+			this.append(entries[i]);
+		}
 	}
 
 	protected void grow(int by) {
@@ -27,6 +34,7 @@ public class aList<T> implements iCollection<T> {
 		data = Arrays.copyOf(data, toCap);
 	}
 
+	// add()
 	public void append(T object) {
 
 		int i = data.length + 1;
@@ -35,6 +43,7 @@ public class aList<T> implements iCollection<T> {
 
 	}
 
+	// add()
 	public void append(T... objects) {
 		for (int i = 0; i < objects.length; i++) {
 			this.append(objects[i]);
@@ -118,7 +127,7 @@ public class aList<T> implements iCollection<T> {
 		return this.data.length;
 	}
 
-	public int indexOf(T object) {
+	public int indexOf(Object object) {
 
 		for (int i = 0; i < this.data.length; i++) {
 			if (data[i] == object)
@@ -128,9 +137,18 @@ public class aList<T> implements iCollection<T> {
 	}
 
 	public boolean contains(Object obj) {
-		String log = "aList{" + this.getSize() + "}\n";
+
 		for (int i = 0; i <= this.data.length - 1; i++) {
 			if (data[i] == obj)
+				return true;
+		}
+		return false;
+	}
+
+	public boolean has(Object obj) {
+
+		for (int i = 0; i <= this.data.length - 1; i++) {
+			if (data[i].equals(obj))
 				return true;
 		}
 		return false;

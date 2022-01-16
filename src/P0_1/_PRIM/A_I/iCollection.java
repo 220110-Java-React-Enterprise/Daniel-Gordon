@@ -8,9 +8,11 @@ public interface iCollection<E> extends Iterable<E>{
 	public void insert(E entry, int atIndex);
 	public void set(int at, E to);
 	public E get(int index);
+	public int indexOf(Object object);
 	public void remove(int index);	
 	public void clear();
 	public boolean contains(E entry);
 	public boolean isEmpty();
+	
 	
 }

@@ -4,12 +4,13 @@ import java.util.Iterator;
 
 import static Core._Math.A_I.N_Resolver.*;
 
+import Core._Math.A_I.N_Resolver;
 import Core._PRIM.aList;
 import Core._PRIM.A_I.iCollection;
 
 public class aVector<N extends Number> extends aNumber
 		implements Iterable<Number>, CharSequence, Comparable<Number>, iCollection<Number> {
-	public aList elements;
+	public aList<Number> elements;
 
 	public aVector() {
 		this(0f);
@@ -23,7 +24,7 @@ public class aVector<N extends Number> extends aNumber
 	public aVector(Number... values) {
 		this.elements = new aList();
 		for (int i = 0; i < values.length; i++) {
-			elements.append(values[i]);
+			this.append(values[i]);
 		}
 	}
 
@@ -35,7 +36,10 @@ public class aVector<N extends Number> extends aNumber
 
 	@Override
 	public void append(Number entry) {
-		this.elements.append(entry);
+		if (!this.elements.isEmpty())
+			this.elements.append(as(entry, this.elements.get(0)));
+		else
+			this.elements.append(entry);
 
 	}
 
@@ -106,5 +110,11 @@ public class aVector<N extends Number> extends aNumber
 			}
 		s += ")";
 		return s;
+	}
+
+	@Override
+	public int indexOf(Number object) {
+		// since duplicate numbers can exist, probably a bad idea
+		return 0;
 	}
 }

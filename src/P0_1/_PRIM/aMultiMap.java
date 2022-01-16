@@ -1,5 +1,9 @@
 package Core._PRIM;
 
+import java.util.HashMap;
+import java.util.Iterator;
+
+import Core._PRIM.aMap.Entry;
 import Core._PRIM.A_I.iCollection;
 import Core._PRIM.A_I.iMap;
 
@@ -7,7 +11,7 @@ public class aMultiMap<K, V> implements iMap<K, iCollection<V>> {
 	public aMap<K, iCollection<V>> data;
 
 	// defaults to set-backed, so no duplicates in each section
-
+	HashMap m;
 	public aMultiMap() {
 		this.data = new aMap<K, iCollection<V>>();
 	}
@@ -23,6 +27,11 @@ public class aMultiMap<K, V> implements iMap<K, iCollection<V>> {
 
 	}
 
+	public void put(K key) {
+		if (!this.containsKey(key))
+			this.data.put(key, new aList<V>());
+	}
+
 	@Override
 	public void put(K key, Object... val) {
 		for (int i = 0; i < val.length - 1; i++) {
@@ -30,6 +39,8 @@ public class aMultiMap<K, V> implements iMap<K, iCollection<V>> {
 		}
 
 	}
+	
+	
 
 	@Override
 	public iCollection pull(K key) {
@@ -39,6 +50,46 @@ public class aMultiMap<K, V> implements iMap<K, iCollection<V>> {
 		return null;
 	}
 
+	public K get(int index)
+	{
+		return (K) this.getKeys().get(index);
+	}
+	
+	public V get(K key, int index) {
+		return (V) this.pull(key).get(index);
+	}
+
+	public V get(K key, Object val) {
+		aList L = (aList) this.pull(key);
+		if (L.contains(val))
+			return (V) L.get(L.indexOf(val));
+		else
+			return null;
+	}
+
+	
+	
+	@Override
+	public void clear() {
+		this.data.clear();
+
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return this.data.isEmpty();
+	}
+
+	public boolean isEmpty(K key) {
+		return this.pull(key).isEmpty();
+	}
+	
+	@Override
+	public int getSize()
+	{
+		return this.getKeys().getSize();
+	}
+
 	@Override
 	public boolean contains(K key, Object val) {
 		if (this.containsKey(key)) {
@@ -46,6 +97,9 @@ public class aMultiMap<K, V> implements iMap<K, iCollection<V>> {
 		}
 		return false;
 	}
+	
+
+
 
 	@Override
 	public iCollection getKeys() {
@@ -61,21 +115,25 @@ public class aMultiMap<K, V> implements iMap<K, iCollection<V>> {
 	public String toString() {
 		String s = this.getClass().getSimpleName() + "{" + this.data.getSize() + "}\n";
 
-		s += "[";
-		for (int i = 0; i < this.data.getSize(); i++) {
-			s += this.getKeys().get(i) + ":" + this.getValues().get(i);
-			if (i != this.data.getSize() - 1)
-				s += ",";
-		}
-
-		s += "]";
 		return s;
 	}
 
 	public String toLog() {
 		String log = this.getClass().getSimpleName() + "{" + this.data.keys.getSize() + "}\n";
+		log += "[";
+		for (int i = 0; i < this.data.getSize(); i++) {
+			log += this.getKeys().get(i) + ":" + this.getValues().get(i);
+			if (i != this.data.getSize() - 1)
+				log += ",";
+		}
 
+		log += "]";
 		return log;
+	}
+
+	@Override
+	public Iterator<K> iterator() {
+		return this.data.iterator();
 	}
 
 }
