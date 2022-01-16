@@ -4,4 +4,4 @@
 *Console Input;  
 *Super-basic Menu Navigation;  
 *DB created, but still empty;  
-*Basic DataStructs impl;
+*Basic DataStructs{ArrayList, LinkedList, Map, MultiMap};
