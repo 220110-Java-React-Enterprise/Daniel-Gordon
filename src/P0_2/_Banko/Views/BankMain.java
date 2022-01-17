@@ -7,6 +7,13 @@ import Core._Console.UI.ConsoleView;
 
 public class BankMain extends ConsoleView {
 
+	// BANK_MAIN >> BANK_LOGIN[UN,PW] -[v]
+	// {[NEW CUSTOMER, NEW ACCOUNT]} -{V}
+	// [1]-NewCst = Name, Email, Phone#
+	// [2]-NewAcct = Cst, Type, InitialDeposit
+
+	// PendingAccountRequests
+
 	public BankMain(ConsoleUI manager) {
 		super(manager);
 	}
@@ -20,5 +27,5 @@ public class BankMain extends ConsoleView {
 		Log(this.options.toString());
 		Log("");
 	}
-	
+
 }
