@@ -25,7 +25,19 @@ public class aLinkedList<T> implements iCollection<T> {
 
 	@Override
 	public void insert(T entry, int atIndex) {
-		// TODO Auto-generated method stub
+		// displaces current node down(+) 1
+		aNode newNode = new aNode(entry);
+
+		aNode current = (aNode) this.get(atIndex);
+		aNode prev = null;
+		if (current.has("PREVIOUS", this)) {
+			prev = ((aConnection) current.connections.get("PREVIOUS")).target;
+
+			((aConnection) current.connections.get("PREVIOUS")).target = newNode;
+			((aConnection) prev.connections.get("NEXT")).target = newNode;
+			newNode.connect("NEXT", current, this);
+			newNode.connect("PREVIOUS", prev, this);
+		}
 
 	}
 

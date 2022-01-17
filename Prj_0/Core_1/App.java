@@ -174,7 +174,7 @@ public class App implements iConsoleListener {
 		LL.append(32);
 		LL.append(64);
 		LL.append(666);
-
+		LL.insert(13, 3);
 		//LL.insert(42, 1);		
 		//LL.set(0, 100);
 		//LL.remove(2);
@@ -184,7 +184,7 @@ public class App implements iConsoleListener {
 		//LL.set(5, 777);
 		//logTestLinkedList();
 		//Log(LL.contains(404) + " / " + LL.contains(777));
-		LL.clear();
+		//LL.clear();
 		logTestLinkedList();
 	}
 
