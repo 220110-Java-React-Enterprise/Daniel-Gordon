@@ -76,15 +76,14 @@ public class aNode<T> implements iNode<T> {
 		C = this.connections.get(as);
 
 	}
-	
-	public void disconnect(String as)
-	{
-		if(this.has(as))
+
+	public void disconnect(String as, Object context) {
+		if (this.has(as, context))
 			this.connections.data.remove(as);
 	}
 
 	public boolean has(String connection) {
-		if(this.connections==null || this.connections.isEmpty())
+		if (this.connections == null || this.connections.isEmpty())
 			return false;
 		return this.connections.containsKey(connection.toUpperCase());
 	}

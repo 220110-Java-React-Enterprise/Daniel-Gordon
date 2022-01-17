@@ -3,8 +3,9 @@ package Core._PRIM;
 import java.util.Iterator;
 
 import Core._PRIM.A_I.iCollection;
+import Core._PRIM.A_I.iConnection;
 
-public class aConnection extends aSet<aNode> {
+public class aConnection extends aSet<aNode> implements iConnection {
 
 	public String label = "";
 	protected Object context;
@@ -60,9 +61,9 @@ public class aConnection extends aSet<aNode> {
 	}
 
 	public String getConnection() {
-		String contextStr = this.context.getClass().getSimpleName() + "@"
-				+ Integer.toHexString(this.context.hashCode());
-		return this.toString() + this.sizeString() + " : " + this.target + " : " + contextStr;
+		String contextStr = "<{[(" + this.context.getClass().getSimpleName() + "@"
+				+ Integer.toHexString(this.context.hashCode()) + ")]}>";
+		return this.toString() + this.sizeString() + " : " + this.target + " % " + contextStr;
 	}
 
 	@Override

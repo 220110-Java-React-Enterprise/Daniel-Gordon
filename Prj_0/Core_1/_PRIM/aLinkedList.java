@@ -3,26 +3,18 @@ package Core._PRIM;
 import static Core.AppUtils.*;
 
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.ListIterator;
-import java.util.NoSuchElementException;
-
 import Core._PRIM.A_I.iCollection;
 import Core._PRIM.A_I.iConnection;
 import Core._PRIM.A_I.iNodeIterator;
 
 public class aLinkedList<T> implements iCollection<T> {
 
-	public aNode<T> first;
-	public aNode<T> last;
-
-	LinkedList L;
+	private aNode<T> first;
+	private aNode<T> last;
 
 	@Override
 	public void append(T entry) {
-
 		this.linkNode(entry);
-
 	}
 
 	@Override
@@ -92,8 +84,10 @@ public class aLinkedList<T> implements iCollection<T> {
 
 	@Override
 	public void set(int at, T to) {
-		aNode N = (aNode) this.get(at);
-		N.set(to);
+		if (at < this.getSize()) {
+			aNode N = (aNode) this.get(at);
+			N.set(to);
+		}
 	}
 
 	@Override
@@ -101,7 +95,6 @@ public class aLinkedList<T> implements iCollection<T> {
 		for (T n : this) {
 			if (this.indexOf(n) == index)// inefficient
 				return n;
-
 		}
 		return null;
 	}
@@ -114,6 +107,14 @@ public class aLinkedList<T> implements iCollection<T> {
 		}
 
 		return c;
+	}
+
+	public aNode<T> getFirst() {
+		return this.first;
+	}
+
+	public aNode<T> getLast() {
+		return this.last;
 	}
 
 	@Override
@@ -138,16 +139,46 @@ public class aLinkedList<T> implements iCollection<T> {
 
 	@Override
 	public void remove(int index) {
-		for (T n : this) {
-			// if(this.indexOf(n)==index)
+		aNode N = (aNode) this.get(index); // node to remove
 
+		boolean isFirst = (N == this.first);
+		boolean isLast = (N == this.last);
+
+		aNode next = null;
+		aNode prev = null;
+
+		if (N.has("PREVIOUS", this)) {
+			prev = ((aConnection) N.connections.get("PREVIOUS")).target;
+
+			if (isLast)
+				this.last = prev;
+			N.disconnect("PREVIOUS", this);
+			if (next != null)
+				this.linkNode(prev, next, null);
+		}
+
+		if (N.has("NEXT", this)) {
+			next = ((aConnection) N.connections.get("NEXT")).target;
+			if (isFirst)
+				this.first = next;
+			N.disconnect("NEXT", this);
+			if (prev != null)
+				this.linkNode(null, prev, next);
 		}
 
 	}
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
+
+		int size = this.getSize();
+		for (int i = 0; i < size; i++) {
+
+			this.remove(0);
+
+		}
+		this.last = null;
+		this.first = null;
 
 	}
 
@@ -205,7 +236,7 @@ public class aLinkedList<T> implements iCollection<T> {
 		@Override
 		public boolean hasNext() {
 
-			if (this.current.has("NEXT", this.array)) {
+			if (this.current != null && this.current.has("NEXT", this.array)) {
 				this.next = ((aConnection) this.current.connections.get("NEXT")).target;
 				return true;
 			}

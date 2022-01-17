@@ -175,13 +175,17 @@ public class App implements iConsoleListener {
 		LL.append(64);
 		LL.append(666);
 
-		// L.clear();
+		//LL.insert(42, 1);		
+		//LL.set(0, 100);
+		//LL.remove(2);
+		
+		//logTestLinkedList();
+		//Log(">> " + LL.get(4));
+		//LL.set(5, 777);
+		//logTestLinkedList();
+		//Log(LL.contains(404) + " / " + LL.contains(777));
+		LL.clear();
 		logTestLinkedList();
-		Log(">> " + LL.get(4));
-		LL.set(4, 777);
-		Log(">> " + LL.get(4));
-		Log(LL.contains(404) + " / " + LL.contains(777));
-
 	}
 
 	public void genTestMap() {
@@ -259,7 +263,7 @@ public class App implements iConsoleListener {
 
 		// Log(" -0 "+LL.getLast());
 		Log("----");
-		Log(LL.first.toLog());
+		//Log(LL.first.toLog());
 
 		Log("________");
 	}
