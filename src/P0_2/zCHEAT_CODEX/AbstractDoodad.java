@@ -28,6 +28,7 @@ public abstract class AbstractDoodad {
 
 		}; // <this is crucial, dont forget it. still inside the pvt stc vd demo() mthd;
 			// end of @Override pbl vd init();
+		A.logTo();
 	}
 
 }
