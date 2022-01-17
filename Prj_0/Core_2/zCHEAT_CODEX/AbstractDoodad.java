@@ -1,6 +1,6 @@
 package Core.zCHEAT_CODEX;
 
-import static Core.AppUtils.*;
+//import static Core.AppUtils.*;
 
 public abstract class AbstractDoodad {
 
@@ -12,9 +12,10 @@ public abstract class AbstractDoodad {
 
 	}
 
-	//this.getClass() will return the class of the object instantiating this doodad
+	//this.getClass() will return as the class of the object instantiating this doodad
 	protected void logTo() {
-		Log("<" + this.getClass() + ">   instantiated AbstractDoodad");
+		//Log("<" + this.getClass() + ">   instantiated AbstractDoodad");
+		System.out.println("<" + this.getClass() + ">   instantiated AbstractDoodad");
 	}
 
 }
