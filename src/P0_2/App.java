@@ -2,6 +2,8 @@ package Core;
 
 import static Core.AppUtils.*;
 
+import java.util.Random;
+
 import Core._Banko.MGMT.AccountManager;
 import Core._Console.Console;
 import Core._Console.ConsoleUI;
@@ -55,6 +57,9 @@ public class App implements iConsoleListener {
 		genTestMap();
 		genTestMultiMap();
 		genTestNodes();
+
+		B_SortTest();
+
 		try {
 			this.loop();
 		} finally {
@@ -301,6 +306,73 @@ public class App implements iConsoleListener {
 		Log(N2.toLog());
 		Log(N3.toLog());
 		Log();
+	}
+
+	public aList BSort = new aList<Integer>();
+
+	///////////////
+	public void B_SortTest() {
+		Random rand = new Random();
+		for (int i = 0; i < 10; i++) {
+			BSort.append(rand.nextInt(100));
+		}
+
+		Log("--UNSORTED");
+		Log(BSort);
+		BubbleSorter BS = new BubbleSorter(BSort);
+		BS.sortAscending();
+		Log("--Ascending");
+		Log(BSort);
+
+		BS.sortDescending();
+		Log("--Descending");
+		Log(BSort);
+	}
+
+	private static class BubbleSorter {
+
+		iCollection<Integer> subject;
+
+		public int bubbleIndex = 0;
+		private int bubbleNext = 0; // (bubbleIndex+1)%subject.getSize();
+
+		private int min = Integer.MAX_VALUE;
+		private int max = 0;
+
+		public BubbleSorter(aList L) {
+			this.subject = L;
+		}
+
+		public void sortAscending() {
+
+			int tmp = 0;
+			for (int i = 0; i < subject.getSize(); i++) {
+				for (int j = 1; j < (subject.getSize() - i); j++) {
+					if (subject.get(j - 1) > subject.get(j)) {
+						tmp = subject.get(j - 1);
+						subject.set((j - 1), subject.get(j));
+						subject.set(j, tmp);
+					}
+
+				}
+			}
+		}
+
+		public void sortDescending() {
+
+			int tmp = 0;
+			for (int i = 0; i < subject.getSize(); i++) {
+				for (int j = 1; j < (subject.getSize() - i); j++) {
+					if (subject.get(j - 1) < subject.get(j)) {
+						tmp = subject.get(j - 1);
+						subject.set((j - 1), subject.get(j));
+						subject.set(j, tmp);
+					}
+
+				}
+			}
+		}
+
 	}
 
 }

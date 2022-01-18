@@ -10,8 +10,6 @@ import Core._PRIM.A_I.iNode;
 public class aNode<T> implements iNode<T> {
 
 	private T get;
-	public aNode parent;
-
 	public aMultiMap<String, aNode> connections;
 
 	protected int primaryDepth = 0;
@@ -19,10 +17,12 @@ public class aNode<T> implements iNode<T> {
 
 	public aNode() {
 		this.get = (T) this;
+		this.address = new aVector(0);
 	}
 
 	public aNode(T of) {
 		this.get = of;
+		this.address = new aVector(0);
 	}
 
 	@Override
@@ -36,19 +36,16 @@ public class aNode<T> implements iNode<T> {
 
 	}
 
-	@Override
-	public iNode getRoot() {
-
-		return this;
-	}
-
-	public iCollection getChildren() {
-		return null;
-	}
-
 	public boolean isConnected(String s, aNode n) {
 
+		boolean Has = this.has(s);
+		if (Has) {
+			aConnection C = ((aConnection) this.connections.get(s));
+			if (C.target == n)
+				return true;
+		}
 		return false;
+
 	}
 
 	public void establishConnection(String as, aNode other, int max, Object context) {

@@ -271,8 +271,7 @@ public class aLinkedList<T> implements iCollection<T> {
 
 	}
 
-	// I never understood the purpose of LinkedList.
-	// You end up overriding literally everything
-	// depending on the use-case. Maybe its just me.
+
+
 
 }

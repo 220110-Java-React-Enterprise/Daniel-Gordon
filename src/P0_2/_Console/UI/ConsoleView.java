@@ -5,6 +5,7 @@ import static Core._Console.ConsoleUI.*;
 
 import Core.App;
 import Core._Console.ConsoleUI;
+import Core._Math.aVector;
 import Core._PRIM.aMap;
 import Core._PRIM.aNode;
 import Core._PRIM.A_I.iCollection;
@@ -12,9 +13,9 @@ import Core._PRIM.A_I.iDisposable;
 
 public class ConsoleView extends aNode<ConsoleView> implements iConsoleListener, iDisposable {
 
-	protected ConsoleUI manager;
-
-	protected aMap<String, String> options;
+	protected ConsoleUI manager;	
+	protected aMap<String, String> options;//temporary
+	
 
 	public ConsoleView(ConsoleUI manager) {
 		super();

@@ -4,11 +4,6 @@ import Core._PRIM.aNode;
 
 public interface iNode<T> {
 
-	public iNode getRoot();
-	
-
-
-
 	public T get();
 
 	public void set(T to);

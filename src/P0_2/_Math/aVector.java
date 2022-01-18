@@ -97,6 +97,17 @@ public class aVector<N extends Number> extends aNumber
 	public Iterator<Number> iterator() {
 		return this.elements.iterator();
 	}
+	
+	
+	public String valueString()
+	{
+		String s = "";
+		for(int i =0; i < this.elements.getSize(); i++)
+		{
+			s+=this.elements.get(i);
+		}
+		return s;
+	}
 
 	@Override
 	public String toString() {
@@ -114,6 +125,21 @@ public class aVector<N extends Number> extends aNumber
 
 	@Override
 	public int indexOf(Object object) {
-		return 0;
+		return this.elements.indexOf(object);
+	}
+	
+	@Override
+	public int length() {
+		return this.elements.getSize();
+	}
+
+	@Override
+	public char charAt(int index) {
+		return this.valueString().charAt(index);
+	}
+
+	@Override
+	public CharSequence subSequence(int start, int end) {
+		return this.valueString().subSequence(start, end);
 	}
 }
