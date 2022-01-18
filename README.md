@@ -7,7 +7,7 @@
 *Basic DataStructs{ArrayList, LinkedList, Map, MultiMap};
 
 
-TO-DO:
--Nodify UI scenes
--Flesh out DB
--Codify Console-DB interactions
+TO-DO:  
+-Nodify UI scenes  
+-Flesh out DB  
+-Codify Console-DB interactions  
