@@ -1,4 +1,4 @@
-package com.Rev.Core._Banko;
+package com.Rev.Core._Banko.MGMT;
 
 import com.Rev.Core._PRIM.aList;
 
@@ -10,7 +10,7 @@ public class _Account {
 	protected final int AccountNumber;
 	protected final int RouttingNumber;
 
-	public float fundage = 0;
+	public float balance = 0;
 
 	public _Account(_UserProfile user, Type type) {
 		this.ValidUsers.append(user);
@@ -42,7 +42,7 @@ public class _Account {
 	}
 
 	public enum Type {
-		Checking("CH"), Savings("SA"), Credit("CR");
+		None("NAN"), Checking("CHK"), Savings("SAV"), Credit("CRD");
 
 		private String pfx;
 
@@ -52,6 +52,16 @@ public class _Account {
 
 		public String getPrefix() {
 			return this.pfx;
+		}
+
+		public static Type get(String pfx) {
+			if (pfx.equals("CH"))
+				return Checking;
+			if (pfx.equals("SAV"))
+				return Savings;
+			if (pfx.equals("CRD"))
+				return Credit;
+			return None;
 		}
 	}
 }

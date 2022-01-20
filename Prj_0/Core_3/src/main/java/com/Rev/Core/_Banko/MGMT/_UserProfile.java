@@ -1,4 +1,4 @@
-package com.Rev.Core._Banko;
+package com.Rev.Core._Banko.MGMT;
 
 import java.util.Date;
 

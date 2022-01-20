@@ -4,7 +4,7 @@ import static com.Rev.Core.AppUtils.*;
 
 import java.util.Random;
 
-import com.Rev.Core._Banko.MGMT.AccountManager;
+import com.Rev.Core._Banko.BankManager;
 import com.Rev.Core._Console.Console;
 import com.Rev.Core._Console.ConsoleUI;
 import com.Rev.Core._Console.UI.iConsoleListener;
@@ -29,7 +29,7 @@ public class App implements iConsoleListener {
 	public static Console AppConsole;
 	public static ConsoleUI UI;
 
-	public AccountManager Accounts;
+	public BankManager Accounts;
 
 	aSet<Integer> S = new aSet<Integer>();
 	aList<Integer> L = new aList<Integer>();
@@ -45,7 +45,7 @@ public class App implements iConsoleListener {
 		System.setProperty("java.awt.headless", "true");
 		App.Current = this;
 		this.running = true;
-		this.Accounts = new AccountManager();
+		this.Accounts = new BankManager();
 
 		AppConsole = new Console(Current);
 		UI = new ConsoleUI();
