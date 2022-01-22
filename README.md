@@ -3,7 +3,7 @@
 *MainLoop;  
 *Console Input;  
 *Menu Navigation;  
-*DB created, Accounts&Users tables;  
+*DB created, Accounts&Users tables (SqlLite/MariaDB);  
 *Basic DataStructs{ArrayList, LinkedList, Stack, Map, MultiMap};
 
 
