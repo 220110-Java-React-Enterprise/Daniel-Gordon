@@ -1,13 +1,14 @@
 # Daniel-Gordon
-[Core_0]  
+[Project_0]  
 *MainLoop;  
 *Console Input;  
-*Super-basic Menu Navigation;  
-*DB created, but still empty;  
-*Basic DataStructs{ArrayList, LinkedList, Map, MultiMap};
+*Menu Navigation;  
+*DB created, Accounts&Users tables (SqlLite/MariaDB);  
+*Basic DataStructs{ArrayList, LinkedList, Stack, Map, MultiMap};
 
 
 TO-DO:  
 -Nodify UI scenes  
 -Flesh out DB  
 -Codify Console-DB interactions  
+-TreeMap
