@@ -1,5 +1,5 @@
 # Daniel-Gordon
-[Core_0]  
+[Project_0]  
 *MainLoop;  
 *Console Input;  
 *Menu Navigation;  
