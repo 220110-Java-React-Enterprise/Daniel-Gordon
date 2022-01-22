@@ -6,6 +6,8 @@ import com.Rev.Core._Banko.MGMT.DB.iDataCRUD;
 
 public class AccountManager implements iDataCRUD<_Account> {
 
+	
+	
 	public AccountManager(Connection db) {
 
 	}

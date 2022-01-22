@@ -20,9 +20,9 @@ public class ChangeMarching {
 		denominations.put("Penny", 0.01f);
 
 	}
-	
+
 	public static void main(String[] args) {
-		aList<Integer> L = dispense(104.79f);
+		aList<Integer> L = dispense(104.66f);// <=enter the ammount
 		for (int i = 0; i < L.getSize(); i++) {
 			Log(denominations.getKeys().get(i) + ":" + L.get(i));
 		}
@@ -64,7 +64,5 @@ public class ChangeMarching {
 		return result;
 
 	}
-
-
 
 }

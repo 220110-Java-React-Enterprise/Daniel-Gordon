@@ -2,7 +2,7 @@ package com.Rev.Core._Console;
 
 import static com.Rev.Core.AppUtils.*;
 
-import com.Rev.Core._Banko.MGMT.UseSession;
+import com.Rev.Core._Banko.MGMT.aUseSession;
 import com.Rev.Core._Banko.Views.MainMenu;
 import com.Rev.Core._Console.UI.ConsoleView;
 import com.Rev.Core._Console.UI.iConsoleListener;
@@ -12,13 +12,13 @@ import com.Rev.Core._PRIM.A_I.iCollection;
 public class ConsoleUI implements iConsoleListener {
 
 	
-	public UseSession Session; // replaces current&previous
+	public aUseSession Session; // replaces current&previous
 
 	protected aLinkedList<ConsoleView> CustomerPath;
 	protected aLinkedList<ConsoleView> BankPath;
 
 	public ConsoleUI() {
-		this.Session = new UseSession(this,new MainMenu(this));
+		this.Session = new aUseSession(this,new MainMenu(this));
 		this.Session.setView(Session.Root);
 		
 	}

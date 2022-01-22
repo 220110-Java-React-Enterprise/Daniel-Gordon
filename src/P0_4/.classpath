@@ -23,6 +23,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/jared/Desktop/sqlite-jdbc-3.36.0.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jared/Desktop/mariadb-java-client-2.7.5.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

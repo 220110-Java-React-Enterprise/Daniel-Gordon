@@ -10,7 +10,7 @@ import com.Rev.Core._Console.UI.iConsoleListener;
 import com.Rev.Core._PRIM.aLinkedList;
 import com.Rev.Core._PRIM.A_I.iCollection;
 
-public class UseSession implements iConsoleListener {
+public class aUseSession implements iConsoleListener {
 
 	private ConsoleUI Handler;	
 
@@ -23,7 +23,7 @@ public class UseSession implements iConsoleListener {
 	
 	public String as = "null";
 
-	public UseSession(ConsoleUI handler, ConsoleView root) {
+	public aUseSession(ConsoleUI handler, ConsoleView root) {
 		this.Root = root;
 		this.Handler = handler;
 	}

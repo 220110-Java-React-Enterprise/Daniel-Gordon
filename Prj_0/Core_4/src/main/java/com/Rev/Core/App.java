@@ -4,7 +4,7 @@ import static com.Rev.Core.AppUtils.*;
 
 import java.util.Random;
 
-import com.Rev.Core._Banko.BankManager;
+import com.Rev.Core._Banko.BankDirector;
 import com.Rev.Core._Console.Console;
 import com.Rev.Core._Console.ConsoleUI;
 import com.Rev.Core._Console.UI.iConsoleListener;
@@ -29,7 +29,7 @@ public class App implements iConsoleListener {
 	public static Console AppConsole;
 	public static ConsoleUI UI;
 
-	public BankManager Accounts;
+	public BankDirector Management;
 
 	aSet<Integer> S = new aSet<Integer>();
 	aList<Integer> L = new aList<Integer>();
@@ -45,8 +45,11 @@ public class App implements iConsoleListener {
 		System.setProperty("java.awt.headless", "true");
 		App.Current = this;
 		this.running = true;
-		this.Accounts = new BankManager();
-
+		this.Management = new BankDirector();
+		Log("-<>-");
+		Log(this.Management.toLog());
+		Log(">--<");
+		
 		AppConsole = new Console(Current);
 		UI = new ConsoleUI();
 		AppConsole.getSubscribers().append(this);
@@ -57,6 +60,8 @@ public class App implements iConsoleListener {
 		genTestMap();
 		genTestMultiMap();
 		genTestNodes();
+		
+		
 
 		//B_SortTest(); //werx
 
@@ -127,8 +132,8 @@ public class App implements iConsoleListener {
 
 	public String toLog() {
 		String log = "\n";
-		log += this.Accounts + "\n";
-		log += this.Accounts.DB_Link + "\n";
+		log += this.Management + "\n";
+		log += this.Management.DB_Link + "\n";
 		log += UI.Session.Current + "\n";
 		log += "o<[" + UI.Session.Current.getClass().getSimpleName() + "]\n";
 		if (UI.Session.Previous != null)
