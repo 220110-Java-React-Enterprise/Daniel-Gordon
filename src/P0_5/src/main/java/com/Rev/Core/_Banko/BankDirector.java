@@ -46,10 +46,10 @@ public class BankDirector {
 		connection = connectMariaDB();
 
 		// fill
-		if (isEmpty(connection)) {
+		//if (isEmpty(connection)) {
 			try {
 				if (!tableExists(connection, "ACCOUNTS"))
-					_FillDebugAccounts(connection);
+					_CreateAccountsTable(connection);
 
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -57,12 +57,20 @@ public class BankDirector {
 
 			try {
 				if (!tableExists(connection, "USERS"))
-					_FillDebugUsers(connection);
+					_CreateUsersTable(connection);
 
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}
+
+			try {
+				if (!tableExists(connection, "ACCOUNTS_USERS"))
+					_CreateAccounts_CustomersUsers(connection);
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		//}
 
 		return connection;
 
@@ -131,7 +139,7 @@ public class BankDirector {
 				String name = resultSet.getString("TABLE_NAME");
 				String schema = resultSet.getString("TABLE_SCHEM");
 				log += ("[" + name.toUpperCase() + "] on schema (" + schema + ")\n");
-				log += getColumnNames(name) + "\n";
+				log += "  " + getColumnNames(name) + "\n";
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -222,8 +230,8 @@ public class BankDirector {
 		// }
 	}
 
-	private static void _FillDebugAccounts(Connection connection) {
-		Log("_FillingAccounts");
+	private static void _CreateAccountsTable(Connection connection) {
+		Log("_Filling[Accounts]");
 		try {
 			if (tableExists(connection, "ACCOUNTS")) {
 				String sql = "DROP TABLE IF EXISTS accounts;";
@@ -232,11 +240,14 @@ public class BankDirector {
 			if (!tableExists(connection, "ACCOUNTS")) {
 
 				// String sql = "CREATE TABLE accounts (type VARCHAR(255))";
-				String sql = "CREATE TABLE accounts (acount_ID INT NOT NULL AUTO_INCREMENT, PRIMARY KEY ( acount_ID ),"
-						+ "balance DECIMAL (10, 2))";
+				String sql = "CREATE TABLE accounts ("
+						+ "account_ID INT NOT NULL AUTO_INCREMENT,"
+						+ "balance DECIMAL (10, 2),"
+						+ "CONSTRAINT accounts_pk PRIMARY KEY (account_ID)"
+						+ ")";
 
 				connection.createStatement().executeUpdate(sql);
-				Log("Creating ACCOUNTS table");
+				Log(".creating ACCOUNTS Table");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -244,27 +255,73 @@ public class BankDirector {
 
 	}
 
-	private static void _FillDebugUsers(Connection connection) {
-		Log("_FillingUsers");
+	private static void _CreateUsersTable(Connection connection) {
+		Log("_Filling[Users]");
 		try {
+			if (tableExists(connection, "USERS")) {
+				String sql = "DROP TABLE IF EXISTS users;";
+				connection.createStatement().executeUpdate(sql);
+			}
 			if (!tableExists(connection, "USERS")) {
 
 				// String sql = "CREATE TABLE users (name VARCHAR(255))";
 				// String sql = "CREATE TABLE users (acount_ID INT NOT NULL AUTO_INCREMENT,
 				// PRIMARY KEY ( acount_ID ))";
 
-				String sql = "CREATE TABLE users (user_ID INT NOT NULL AUTO_INCREMENT, PRIMARY KEY ( user_ID ),"
-						+ "first_name VARCHAR(32)," + "last_name VARCHAR(32)," + "email VARCHAR(64),"
-						+ "password VARCHAR(32)," + "type INT)";
+				String sql = "CREATE TABLE users ("
+						+ "user_ID INT NOT NULL AUTO_INCREMENT,"
+						+ "first_name VARCHAR(32)," 
+						+ "last_name VARCHAR(32)," 
+						+ "email VARCHAR(64),"
+						+ "password VARCHAR(32)," 
+						+ "CONSTRAINT users_pk PRIMARY KEY (user_ID)"
+						+ ")";
 
 				connection.createStatement().executeUpdate(sql);
 
-				Log("Creating USERS table");
+				Log(".creating USERS Table");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	private static void _CreateAccounts_CustomersUsers(Connection connection) {
+		Log("_Filling[Accounts_Customers]");
+		try {
+			if (tableExists(connection, "ACCOUNTS_USERS")) {
+				String sql = "DROP TABLE IF EXISTS accounts_users;";
+				connection.createStatement().executeUpdate(sql);
+			}
+			if (!tableExists(connection, "ACCOUNTS_USERS")) {
+
+				// String sql = "CREATE TABLE accounts (type VARCHAR(255))";
+				// String sql = "CREATE TABLE accounts (acount_ID INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (account_ID))
+				// PRIMARY KEY ( acount_ID ),"
+				// + "balance DECIMAL (10, 2))";
+				String sql = "CREATE TABLE accounts_users ("
+						+ "junction_ID INT AUTO_INCREMENT,"
+						+ "account_ID 	INT NOT NULL,"
+						+ "user_ID INT NOT NULL,"
+						+ "INDEX (account_ID),"
+						+ "INDEX (user_ID),"
+						+ "CONSTRAINT accounts_users_pk PRIMARY KEY (junction_ID),"	
+						+ "CONSTRAINT accounts_fk FOREIGN KEY (account_id) REFERENCES accounts (account_id),"
+						+ "CONSTRAINT users_fk FOREIGN KEY (user_id) REFERENCES users (user_id)"
+						+ ")";
+
+				connection.createStatement().executeUpdate(sql);
+				Log(".creating ACCOUNTS_CUSTOMERS Table");
+				
+				//sql = "ALTER TABLE accounts_users ADD CONSTRAINT fk_accounts FOREIGN KEY (account_id) REFERENCES accounts (account_id)";
+
+				//connection.createStatement().executeUpdate(sql);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }
