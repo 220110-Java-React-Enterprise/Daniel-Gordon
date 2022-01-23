@@ -123,7 +123,7 @@ public class App implements iConsoleListener {
 		// Log(this.getClass().getSimpleName() + ":" + inp);
 
 		UI.input(inp);
-		Log("  App.input()                                        >>>>>>");
+		//Log("  App.input()                                        >>>>>>");
 
 		// Retrieving the list of column names
 

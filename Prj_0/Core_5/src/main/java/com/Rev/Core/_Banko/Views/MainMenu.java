@@ -22,9 +22,10 @@ public class MainMenu extends ConsoleView {
 	@Override
 	public void init() {
 		super.init();
-		this.options.put("1", "USER");
-		this.options.put("2", "MGMT");
-
+		//this.options.put("1", "USER");
+		//this.options.put("2", "MGMT");
+		this.options.put("1", "LOGIN");
+		this.options.put("2", "REGISTER");
 		this.D1 = new AbstractDoodad() {
 			@Override
 			public void init() {
@@ -64,15 +65,15 @@ public class MainMenu extends ConsoleView {
 		if (super.handle(inp))
 			return true;
 
-		// if (Integer.parseInt(inp) == 1) {
 		if (inp.equals("1")) {
 			this.manager.Session.setView(new UserLogin(this.manager));
 			return true;
 		}
 
-		// if (Integer.parseInt(inp) == 2) {
+		
 		if (inp.equals("2")) {
-			this.manager.Session.setView(new BankLogin(this.manager));
+			//this.manager.Session.setView(new BankLogin(this.manager));
+			this.manager.Session.setView(new NewUserForm(this.manager));
 			return true;
 		}
 

@@ -1,5 +1,7 @@
 package com.Rev.Core._Banko.MGMT;
 
+import java.util.Random;
+
 import com.Rev.Core._PRIM.aList;
 
 public class _Account {
@@ -20,11 +22,15 @@ public class _Account {
 	}
 
 	private int genAcctNum() {
-		return 0;
+		Random rnd = new Random();
+		int n = 100000 + rnd.nextInt(900000);
+		return n;
 	}
 
 	private int genRtnNum() {
-		return 0;
+		Random rnd = new Random();
+		int n = 100000 + rnd.nextInt(900000);
+		return n;
 	}
 
 	public void addValidUser(_UserProfile user, _Account.User as) {

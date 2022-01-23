@@ -13,9 +13,8 @@ import com.Rev.Core._PRIM.A_I.iDisposable;
 
 public class ConsoleView extends aNode<ConsoleView> implements iConsoleListener, iDisposable {
 
-	protected ConsoleUI manager;	
-	protected aMap<String, String> options;//temporary
-	
+	protected ConsoleUI manager;
+	protected aMap<String, String> options;// temporary
 
 	public ConsoleView(ConsoleUI manager) {
 		super();
@@ -32,7 +31,7 @@ public class ConsoleView extends aNode<ConsoleView> implements iConsoleListener,
 	}
 
 	public boolean input(String inp) {
-		//Log(this.getClass().getSimpleName() + ":> " + inp);
+		// Log(this.getClass().getSimpleName() + ":> " + inp);
 		if (this.handle(inp)) {
 			return true;
 		}
@@ -47,18 +46,18 @@ public class ConsoleView extends aNode<ConsoleView> implements iConsoleListener,
 	}
 
 	protected boolean handle(String inp) {
-		if (inp.toUpperCase().equals("X") || inp.toUpperCase().equals("EXIT")) {			
+		if (inp.toUpperCase().equals("X") || inp.toUpperCase().equals("EXIT")) {
 			App.AppConsole.input("SHELL:TERMINATE");
 			return true;
 		}
-		
+
 		if (inp.equals("^") || inp.toUpperCase().equals("OUT")) {
 			this.manager.Session.returnMain();
 			return true;
 		}
 
-		if (inp.equals("<") || inp.toUpperCase().equals("BACK")) {			
-			this.manager.Session.back();			
+		if (inp.equals("<") || inp.toUpperCase().equals("BACK")) {
+			this.manager.Session.back();
 			return true;
 		}
 
@@ -67,7 +66,8 @@ public class ConsoleView extends aNode<ConsoleView> implements iConsoleListener,
 
 	public void renderFrame() {
 		Page();
-		//Log("[" + this.getClass().getSimpleName() + "]");
+		// Log(this.options.toString());
+		// Log("[" + this.getClass().getSimpleName() + "]");
 	}
 
 	@Override

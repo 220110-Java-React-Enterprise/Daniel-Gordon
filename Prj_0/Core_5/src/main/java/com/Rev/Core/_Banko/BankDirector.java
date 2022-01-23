@@ -31,11 +31,6 @@ public class BankDirector {
 		// get or create
 		// this.createNewDatabase("RevDB.db");
 		DB_Link = getOrCreate();
-
-	}
-
-	public void update(float deltaTime) {
-
 	}
 
 	public static Connection getOrCreate() {
@@ -46,7 +41,8 @@ public class BankDirector {
 		connection = connectMariaDB();
 
 		// fill
-		//if (isEmpty(connection)) {
+		// get&drop all tables, then refill to clear out any
+		if (isEmpty(connection)) {
 			try {
 				if (!tableExists(connection, "ACCOUNTS"))
 					_CreateAccountsTable(connection);
@@ -70,15 +66,15 @@ public class BankDirector {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		//}
+		}
 
 		return connection;
 
 	}
 
 	private static Connection connectSqliteDB(String fileName) {
-
-		String url = "jdbc:sqlite:C:\\Users\\Public\\Rev\\" + fileName; // <storage path
+		// Local DB, copy data from Maria, werx but not implemented atm
+		String url = "jdbc:sqlite:C:\\Users\\Public\\Rev\\" + fileName; // <storage path, folder must already exist lol
 
 		try {
 			// moved from predicate of try(){}, leaving it there auto-closed connection lol
@@ -107,6 +103,7 @@ public class BankDirector {
 	}
 
 	private static Connection connectMariaDB() {
+		// Server DB
 		Connection connection = null;
 		try {
 			Properties props = new Properties();
@@ -240,10 +237,12 @@ public class BankDirector {
 			if (!tableExists(connection, "ACCOUNTS")) {
 
 				// String sql = "CREATE TABLE accounts (type VARCHAR(255))";
-				String sql = "CREATE TABLE accounts ("
-						+ "account_ID INT NOT NULL AUTO_INCREMENT,"
-						+ "balance DECIMAL (10, 2),"
-						+ "CONSTRAINT accounts_pk PRIMARY KEY (account_ID)"
+				String sql = "CREATE TABLE accounts (" 
+						+ "account_ID INT NOT NULL AUTO_INCREMENT," 
+						+ "type VARCHAR(16),"
+						+ "balance DECIMAL (10, 2)," 
+						+ "owner_ID INT NOT NULL,"
+						+ "CONSTRAINT accounts_pk PRIMARY KEY (account_ID)" 
 						+ ")";
 
 				connection.createStatement().executeUpdate(sql);
@@ -268,13 +267,13 @@ public class BankDirector {
 				// String sql = "CREATE TABLE users (acount_ID INT NOT NULL AUTO_INCREMENT,
 				// PRIMARY KEY ( acount_ID ))";
 
-				String sql = "CREATE TABLE users ("
-						+ "user_ID INT NOT NULL AUTO_INCREMENT,"
-						+ "first_name VARCHAR(32)," 
+				String sql = "CREATE TABLE users (" 
+						+ "user_ID INT NOT NULL AUTO_INCREMENT," 
+						+ "first_name VARCHAR(32),"
 						+ "last_name VARCHAR(32)," 
-						+ "email VARCHAR(64),"
-						+ "password VARCHAR(32)," 
-						+ "CONSTRAINT users_pk PRIMARY KEY (user_ID)"
+						+ "email VARCHAR(64)," 
+						+ "password VARCHAR(32),"
+						+ "CONSTRAINT users_pk PRIMARY KEY (user_ID)" 
 						+ ")";
 
 				connection.createStatement().executeUpdate(sql);
@@ -296,27 +295,24 @@ public class BankDirector {
 			}
 			if (!tableExists(connection, "ACCOUNTS_USERS")) {
 
-				// String sql = "CREATE TABLE accounts (type VARCHAR(255))";
-				// String sql = "CREATE TABLE accounts (acount_ID INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (account_ID))
-				// PRIMARY KEY ( acount_ID ),"
-				// + "balance DECIMAL (10, 2))";
-				String sql = "CREATE TABLE accounts_users ("
+				String sql = "CREATE TABLE accounts_users (" 
 						+ "junction_ID INT AUTO_INCREMENT,"
-						+ "account_ID 	INT NOT NULL,"
-						+ "user_ID INT NOT NULL,"
+						+ "account_ID 	INT NOT NULL," 
+						+ "user_ID INT NOT NULL," 
 						+ "INDEX (account_ID),"
-						+ "INDEX (user_ID),"
-						+ "CONSTRAINT accounts_users_pk PRIMARY KEY (junction_ID),"	
+						+ "INDEX (user_ID)," 
+						+ "CONSTRAINT accounts_users_pk PRIMARY KEY (junction_ID),"
 						+ "CONSTRAINT accounts_fk FOREIGN KEY (account_id) REFERENCES accounts (account_id),"
-						+ "CONSTRAINT users_fk FOREIGN KEY (user_id) REFERENCES users (user_id)"
+						+ "CONSTRAINT users_fk FOREIGN KEY (user_id) REFERENCES users (user_id)" 
 						+ ")";
 
 				connection.createStatement().executeUpdate(sql);
 				Log(".creating ACCOUNTS_CUSTOMERS Table");
-				
-				//sql = "ALTER TABLE accounts_users ADD CONSTRAINT fk_accounts FOREIGN KEY (account_id) REFERENCES accounts (account_id)";
 
-				//connection.createStatement().executeUpdate(sql);
+				// sql = "ALTER TABLE accounts_users ADD CONSTRAINT fk_accounts FOREIGN KEY
+				// (account_id) REFERENCES accounts (account_id)";
+
+				// connection.createStatement().executeUpdate(sql);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

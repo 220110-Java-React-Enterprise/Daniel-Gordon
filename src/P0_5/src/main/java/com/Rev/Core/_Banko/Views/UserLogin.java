@@ -15,7 +15,6 @@ public class UserLogin extends ConsoleView {
 
 	public UserLogin(ConsoleUI manager) {
 		super(manager);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -36,9 +35,10 @@ public class UserLogin extends ConsoleView {
 		String apOpA = "";
 		String apOpB = "";
 		if (this.dioUN)
-			apOpA += "*";
+			apOpA = "*";
 		if (this.dioPW)
-			apOpB += "*";
+			apOpB = "*";
+		// ^none of this * marking shit works right lol
 
 		Log(this.options.toString());
 		Log(apOpA + "USER: " + this.UserName);
@@ -62,6 +62,7 @@ public class UserLogin extends ConsoleView {
 
 		if (inp.equals("") || inp.equals(" ") || inp == null) {
 			Log("TRY LOGIN>");
+			this.tryLogin();
 			return true;
 		}
 		if (inp.equals("1")) {
@@ -87,6 +88,16 @@ public class UserLogin extends ConsoleView {
 		dioPW = false;
 		this.UserName = "";
 		this.Password = "";
+	}
+
+	private void tryLogin() {
+		// (1==0) pushes an yellow-annoyance lol
+		if ("1".equals("0")) {
+			// fill new _UserProfile
+			// add param to pass in _UserProfile
+			this.manager.Session.setView(new UserViewMain(this.manager));
+		} else
+			Log("USER NOT FOUND");
 	}
 
 }
