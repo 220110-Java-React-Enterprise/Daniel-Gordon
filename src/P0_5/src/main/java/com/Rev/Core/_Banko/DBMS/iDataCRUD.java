@@ -1,4 +1,4 @@
-package com.Rev.Core._Banko.MGMT.DB;
+package com.Rev.Core._Banko.DBMS;
 
 public interface iDataCRUD<T> {
 

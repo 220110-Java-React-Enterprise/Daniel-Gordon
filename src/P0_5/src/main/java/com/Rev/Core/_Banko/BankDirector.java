@@ -13,8 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-import com.Rev.Core._Banko.MGMT._Account;
-import com.Rev.Core._Banko.MGMT._UserProfile;
+
 import com.Rev.Core._PRIM.aList;
 import com.Rev.Core._PRIM.aMultiMap;
 import com.Rev.Core._PRIM.aSet;
@@ -23,8 +22,7 @@ public class BankDirector {
 
 	public static Connection DB_Link; // find/create
 
-	private aSet<_Account> AccountCache;
-	private aList<_UserProfile> UserCache;
+
 
 	public BankDirector() {
 

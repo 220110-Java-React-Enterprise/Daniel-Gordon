@@ -1,13 +1,9 @@
 package com.Rev.Core._Banko;
 
-import com.Rev.Core._Banko.MGMT._Account;
 
 public class aTransaction {
 
-	public void post(_Account a, float ammount) {
-
-	}
-
+	
 	public enum Direction {
 		Credit(1), Debit(-1);
 

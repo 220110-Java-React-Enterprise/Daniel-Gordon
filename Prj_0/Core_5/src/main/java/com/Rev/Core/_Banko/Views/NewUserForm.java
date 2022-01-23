@@ -2,8 +2,13 @@ package com.Rev.Core._Banko.Views;
 
 import static com.Rev.Core.AppUtils.Log;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.regex.Pattern;
 
+import com.Rev.Core._Banko.BankDirector;
 import com.Rev.Core._Console.ConsoleUI;
 import com.Rev.Core._Console.UI.ConsoleView;
 
@@ -17,10 +22,10 @@ public class NewUserForm extends ConsoleView {
 	private boolean dioFN = false;
 	private String LastName = "";
 	private boolean dioLN = false;
-	private String Username = "";
-	private boolean dioUN = false;
 	private String Email = "";
 	private boolean dioEM = false;
+	private String Password = "";
+	private boolean dioPW = false;
 
 	public NewUserForm(ConsoleUI manager) {
 		super(manager);
@@ -33,8 +38,8 @@ public class NewUserForm extends ConsoleView {
 
 		this.options.put("1", "FIRST_NAME");
 		this.options.put("2", "LAST_NAME");
-		this.options.put("3", "USERNAME");
-		this.options.put("4", "EMAIL");
+		this.options.put("3", "EMAIL");
+		this.options.put("4", "PASSWORD");		
 		this.options.put("C", "-CLEAR-");
 		this.options.put(".", "-SUBMIT-");
 	}
@@ -46,14 +51,14 @@ public class NewUserForm extends ConsoleView {
 
 		Log(this.options.toString());
 		Log("FIRST_NAME: " + this.FirstName);
-		Log("LAST_NAME: " + this.LastName);
-		Log("USERNAME: " + this.Username);
+		Log("LAST_NAME: " + this.LastName);		
 		Log("E-MAIL:" + this.Email);
+		Log("PASSWORD: " + this.Password);
 
 		Log("");
 		dioFN = false;
 		dioLN = false;
-		dioUN = false;
+		dioPW = false;
 		dioEM = false;
 	}
 
@@ -66,11 +71,11 @@ public class NewUserForm extends ConsoleView {
 		if (dioFN)
 			this.FirstName = inp;
 		if (dioLN)
-			this.LastName = inp;
-		if (dioUN)
-			this.Username = inp;
+			this.LastName = inp;		
 		if (dioEM && validEmail(inp))
 			this.Email = inp;
+		if (dioPW)
+			this.Password = inp;
 
 		if (inp.equals(".") || inp.equals("") || inp.equals(" ") || inp == null) {
 			Log("TRY SUBMIT>");
@@ -86,16 +91,16 @@ public class NewUserForm extends ConsoleView {
 			Log("ENTER LAST_NAME: ");
 			this.dioLN = true;
 			return dioLN;
-		}
+		}		
 		if (inp.equals("3")) {
-			Log("ENTER USERNAME: ");
-			this.dioUN = true;
-			return dioUN;
-		}
-		if (inp.equals("4")) {
 			Log("ENTER EMAIL: ");
 			this.dioEM = true;
 			return dioEM;
+		}
+		if (inp.equals("4")) {
+			Log("ENTER PASSWORD: ");
+			this.dioPW = true;
+			return dioPW;
 		}
 
 		if (inp.equals("C")) {
@@ -110,7 +115,7 @@ public class NewUserForm extends ConsoleView {
 	public void clear() {
 		this.FirstName = "";
 		this.LastName = "";
-		this.Username = "";
+		this.Password = "";
 		this.Email = "";
 	}
 
@@ -119,7 +124,7 @@ public class NewUserForm extends ConsoleView {
 		super.dispose();
 		this.FirstName = "";
 		this.LastName = "";
-		this.Username = "";
+		this.Password = "";
 		this.Email = "";
 	}
 
@@ -128,12 +133,34 @@ public class NewUserForm extends ConsoleView {
 	private void submit() {
 		// String SQL = "INSERT INTO actor(first_name,last_name) "
 		// + "VALUES(?,?)";
-		if (this.FirstName.equals("") || this.LastName.equals("") || this.Username.equals("")
+		if (this.FirstName.equals("") || this.LastName.equals("") || this.Password.equals("")
 				|| this.Email.equals("")) {
 			Log("MISSING INFO");
 			return;
 		}
-		Log("INSERT INTO users(FirstName, LastName, Username, Email) VALUES(?,?,?,?)");
+		else
+		{
+			//create new _UserProfile, have it execute the insertion
+			Log("INSERT INTO users(FirstName, LastName, Username, Email) VALUES(?,?,?,?)");
+			try {
+				Connection c = BankDirector.DB_Link;
+				String sql = "INSERT INTO users(first_name, last_name, email, password) VALUES(?,?,?,?)";
+				
+				PreparedStatement pS = c.prepareStatement(sql);
+				//Statement stm = BankDirector.DB_Link.createStatement();
+				//stm.executeUpdate(sql);
+				pS.setString(1, this.FirstName);
+				pS.setString(2, this.LastName);
+				pS.setString(3, this.Email);
+				pS.setString(4, this.Password);
+				
+				pS.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 
 	private boolean validEmail(String emailAddress) {
@@ -145,13 +172,6 @@ public class NewUserForm extends ConsoleView {
 		return Pattern.compile(regexPattern).matcher(emailAddress).matches();
 	}
 
-	public void testUsingStrictRegex() {
-		String emailAddress = "username@domain.com";
-
-		// Pattern pat = Pattern.compile(regexPattern);
-		// boolean rtn = pat.matcher(email).matches();
-
-		boolean rtn = patternMatches(emailAddress, emailRegexPattern);
-	}
+	
 
 }
