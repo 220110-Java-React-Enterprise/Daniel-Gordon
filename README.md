@@ -3,12 +3,12 @@
 *MainLoop;  
 *Console Input;  
 *Menu Navigation;  
-*DB created, Accounts&Users tables (SqlLite/MariaDB);  
+*DB created, Accounts,Users,Accounts_Users tables (Sqlite/MariaDB);  
 *Basic DataStructs{ArrayList, LinkedList, Stack, Map, MultiMap};
 
 
 TO-DO:  
 -Nodify UI scenes  
--Flesh out DB  
--Codify Console-DB interactions  
+-fill DB tables 
+-Console-DB interactions  
 -TreeMap
