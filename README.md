@@ -4,6 +4,7 @@
 *Console Input;  
 *Menu Navigation;  
 *DB created, Accounts,Users,Accounts_Users tables (Sqlite/MariaDB);  
+*-AddNewUser, (!AddNewAccount)  
 *Basic DataStructs{ArrayList, LinkedList, Stack, Map, MultiMap};
 
 
