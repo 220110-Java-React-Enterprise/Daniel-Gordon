@@ -39,7 +39,7 @@ public class NewUserForm extends ConsoleView {
 		this.options.put("1", "FIRST_NAME");
 		this.options.put("2", "LAST_NAME");
 		this.options.put("3", "EMAIL");
-		this.options.put("4", "PASSWORD");		
+		this.options.put("4", "PASSWORD");
 		this.options.put("C", "-CLEAR-");
 		this.options.put(".", "-SUBMIT-");
 	}
@@ -51,7 +51,7 @@ public class NewUserForm extends ConsoleView {
 
 		Log(this.options.toString());
 		Log("FIRST_NAME: " + this.FirstName);
-		Log("LAST_NAME: " + this.LastName);		
+		Log("LAST_NAME: " + this.LastName);
 		Log("E-MAIL:" + this.Email);
 		Log("PASSWORD: " + this.Password);
 
@@ -71,7 +71,7 @@ public class NewUserForm extends ConsoleView {
 		if (dioFN)
 			this.FirstName = inp;
 		if (dioLN)
-			this.LastName = inp;		
+			this.LastName = inp;
 		if (dioEM && validEmail(inp))
 			this.Email = inp;
 		if (dioPW)
@@ -91,7 +91,7 @@ public class NewUserForm extends ConsoleView {
 			Log("ENTER LAST_NAME: ");
 			this.dioLN = true;
 			return dioLN;
-		}		
+		}
 		if (inp.equals("3")) {
 			Log("ENTER EMAIL: ");
 			this.dioEM = true;
@@ -141,10 +141,10 @@ public class NewUserForm extends ConsoleView {
 		else
 		{
 			//create new _UserProfile, have it execute the insertion
-			Log("INSERT INTO users(FirstName, LastName, Username, Email) VALUES(?,?,?,?)");
+			//Log("INSERT INTO users(FirstName, LastName, Username, Email) VALUES(?,?,?,?)");
 			try {
 				Connection c = BankDirector.DB_Link;
-				String sql = "INSERT INTO users(first_name, last_name, email, password) VALUES(?,?,?,?)";
+				String sql = "INSERT INTO users(first_name, last_name, email, password, routing_num) VALUES(?,?,?,?,?)";
 				
 				PreparedStatement pS = c.prepareStatement(sql);
 				//Statement stm = BankDirector.DB_Link.createStatement();
@@ -153,8 +153,13 @@ public class NewUserForm extends ConsoleView {
 				pS.setString(2, this.LastName);
 				pS.setString(3, this.Email);
 				pS.setString(4, this.Password);
+				pS.setString(5, ""+this.hashCode());
 				
 				pS.executeUpdate();
+				String a = this.FirstName+","+this.LastName+","+this.Email +","+this.Password+","+this.hashCode();
+				Log("INSERT INTO users(first_name, last_name, email, password, routing_num) VALUES("+a+")");
+				this.clear();
+				this.input("^");
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -171,7 +176,5 @@ public class NewUserForm extends ConsoleView {
 	public static boolean patternMatches(String emailAddress, String regexPattern) {
 		return Pattern.compile(regexPattern).matcher(emailAddress).matches();
 	}
-
-	
 
 }

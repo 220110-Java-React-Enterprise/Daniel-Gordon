@@ -95,6 +95,9 @@ public class UserLogin extends ConsoleView {
 		if ("1".equals("0")) {
 			// fill new _UserProfile
 			// add param to pass in _UserProfile
+			
+			//SELECT * FROM users WHERE username = ? && password = ?
+			
 			this.manager.Session.setView(new UserViewMain(this.manager));
 		} else
 			Log("USER NOT FOUND");

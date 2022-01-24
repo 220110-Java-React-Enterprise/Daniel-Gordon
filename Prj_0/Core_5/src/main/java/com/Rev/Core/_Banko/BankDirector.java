@@ -13,7 +13,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-
+import com.Rev.Core._Banko.DBMS._Account;
+import com.Rev.Core._Banko.DBMS._User;
+import com.Rev.Core._Banko.DBMS.iDataCRUD;
 import com.Rev.Core._PRIM.aList;
 import com.Rev.Core._PRIM.aMultiMap;
 import com.Rev.Core._PRIM.aSet;
@@ -21,8 +23,6 @@ import com.Rev.Core._PRIM.aSet;
 public class BankDirector {
 
 	public static Connection DB_Link; // find/create
-
-
 
 	public BankDirector() {
 
@@ -59,7 +59,7 @@ public class BankDirector {
 
 			try {
 				if (!tableExists(connection, "ACCOUNTS_USERS"))
-					_CreateAccounts_CustomersUsers(connection);
+					_CreateAccounts_UsersTable(connection);
 
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -240,8 +240,8 @@ public class BankDirector {
 						+ "type VARCHAR(16),"
 						+ "balance DECIMAL (10, 2)," 
 						+ "owner_ID INT NOT NULL,"
-						+ "CONSTRAINT accounts_pk PRIMARY KEY (account_ID)" 
-						+ ")";
+						+ "account_num INT NOT NULL,"
+						+ "CONSTRAINT accounts_pk PRIMARY KEY (account_ID)" + ")";
 
 				connection.createStatement().executeUpdate(sql);
 				Log(".creating ACCOUNTS Table");
@@ -271,6 +271,7 @@ public class BankDirector {
 						+ "last_name VARCHAR(32)," 
 						+ "email VARCHAR(64)," 
 						+ "password VARCHAR(32),"
+						+ "routing_num INT NOT NULL,"
 						+ "CONSTRAINT users_pk PRIMARY KEY (user_ID)" 
 						+ ")";
 
@@ -284,7 +285,7 @@ public class BankDirector {
 		}
 	}
 
-	private static void _CreateAccounts_CustomersUsers(Connection connection) {
+	private static void _CreateAccounts_UsersTable(Connection connection) {
 		Log("_Filling[Accounts_Customers]");
 		try {
 			if (tableExists(connection, "ACCOUNTS_USERS")) {
@@ -316,6 +317,63 @@ public class BankDirector {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public static class AccountManager implements iDataCRUD<_Account>{
+
+		@Override
+		public void create(_Account entry) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public _Account read(int indx) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public void update(_Account entry) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void delete(int index) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	
+	public static class UserManager implements iDataCRUD<_User>
+	{
+
+		@Override
+		public void create(_User entry) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public _User read(int indx) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public void update(_User entry) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void delete(int index) {
+			// TODO Auto-generated method stub
+			
+		}
+		
 	}
 
 }

@@ -4,7 +4,7 @@ public interface iDataCRUD<T> {
 
 	public void create(T entry);
 
-	public void read(int indx);
+	public T read(int indx);
 
 	public void update(T entry); // CRUD
 
