@@ -137,35 +137,35 @@ public class NewUserForm extends ConsoleView {
 				|| this.Email.equals("")) {
 			Log("MISSING INFO");
 			return;
-		}
-		else
-		{
-			//create new _UserProfile, have it execute the insertion
-			//Log("INSERT INTO users(FirstName, LastName, Username, Email) VALUES(?,?,?,?)");
+		} else {
+			// create new _User, pass it to BankDirector.UserManager
+			// Log("INSERT INTO users(FirstName, LastName, Username, Email)
+			// VALUES(?,?,?,?)");
 			try {
 				Connection c = BankDirector.DB_Link;
 				String sql = "INSERT INTO users(first_name, last_name, email, password, routing_num) VALUES(?,?,?,?,?)";
-				
+
 				PreparedStatement pS = c.prepareStatement(sql);
-				//Statement stm = BankDirector.DB_Link.createStatement();
-				//stm.executeUpdate(sql);
+				// Statement stm = BankDirector.DB_Link.createStatement();
+				// stm.executeUpdate(sql);
 				pS.setString(1, this.FirstName);
 				pS.setString(2, this.LastName);
 				pS.setString(3, this.Email);
 				pS.setString(4, this.Password);
-				pS.setString(5, ""+this.hashCode());
-				
+				pS.setString(5, "" + this.hashCode());
+
 				pS.executeUpdate();
-				String a = this.FirstName+","+this.LastName+","+this.Email +","+this.Password+","+this.hashCode();
-				Log("INSERT INTO users(first_name, last_name, email, password, routing_num) VALUES("+a+")");
+				String a = this.FirstName + "," + this.LastName + "," + this.Email + "," + this.Password + ","
+						+ this.hashCode();
+				Log("INSERT INTO users(first_name, last_name, email, password, routing_num) VALUES(" + a + ")");
 				this.clear();
 				this.input("^");
-				
+
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		
+
 	}
 
 	private boolean validEmail(String emailAddress) {
