@@ -4,8 +4,9 @@ import java.io.IOException;
 
 public class AppUtils {
 
-	static String ANSI_CLS = "\033[H\033[2J";
 
+	
+	
 	public static void Log() {
 		System.out.println("");
 	}

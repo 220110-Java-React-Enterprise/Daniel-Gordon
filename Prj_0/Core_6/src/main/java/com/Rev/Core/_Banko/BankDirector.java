@@ -91,7 +91,7 @@ public class BankDirector {
 				DatabaseMetaData meta = conn.getMetaData();
 				Log("The driver name is " + meta.getDriverName());
 				Log("A new database has been created.");
-				// build schema
+				// build schema if there were one lolol
 				return conn;
 			} else {
 				DB_Link = conn;
@@ -243,7 +243,6 @@ public class BankDirector {
 			}
 			if (!tableExists(connection, "ACCOUNTS")) {
 
-				// String sql = "CREATE TABLE accounts (type VARCHAR(255))";
 				String sql = "CREATE TABLE accounts (" //
 						+ "account_ID INT NOT NULL AUTO_INCREMENT," //
 						+ "type VARCHAR(16),"//
@@ -271,10 +270,6 @@ public class BankDirector {
 			}
 			if (!tableExists(connection, "USERS")) {
 
-				// String sql = "CREATE TABLE users (name VARCHAR(255))";
-				// String sql = "CREATE TABLE users (acount_ID INT NOT NULL AUTO_INCREMENT,
-				// PRIMARY KEY ( acount_ID ))";
-
 				String sql = "CREATE TABLE users (" + "user_ID INT NOT NULL AUTO_INCREMENT," //
 						+ "first_name VARCHAR(32),"//
 						+ "last_name VARCHAR(32)," //
@@ -290,7 +285,6 @@ public class BankDirector {
 				Log(".creating USERS Table");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -317,11 +311,6 @@ public class BankDirector {
 
 				connection.createStatement().executeUpdate(sql);
 				Log(".creating ACCOUNTS_CUSTOMERS Table");
-
-				// sql = "ALTER TABLE accounts_users ADD CONSTRAINT fk_accounts FOREIGN KEY
-				// (account_id) REFERENCES accounts (account_id)";
-
-				// connection.createStatement().executeUpdate(sql);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
