@@ -123,11 +123,9 @@ public class NewUserForm extends aConsoleView {
 
 	@Override
 	public void dispose() {
+		this.clear();
 		super.dispose();
-		this.FirstName = "";
-		this.LastName = "";
-		this.Password = "";
-		this.Email = "";
+		
 	}
 
 	/////////////////////////////////
