@@ -7,13 +7,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import com.Rev.Core._PRIM.aSet;
-import com.Rev.Core._PRIM.Data.aDataField;
+import com.Rev.Core.Primitive.aSet;
+import com.Rev.Core.Primitive.Data.aDataField;
 
 public class Main {
 
 	public static App Main;
-
+	
+	//entreport
 	public static void main(String[] args) {
 		Log("---");
 		//

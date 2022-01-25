@@ -3,14 +3,14 @@ package com.Rev.Core._Banko.Views;
 import static com.Rev.Core.AppUtils.*;
 import java.awt.*;
 
-import com.Rev.Core._Console.ConsoleUI;
-import com.Rev.Core._Console.UI.ConsoleView;
-import com.Rev.Core._Console.UI.iConsoleListener;
+import com.Rev.Core.Console.ConsoleUI;
+import com.Rev.Core.Console.UI.aConsoleView;
+import com.Rev.Core.Console.UI.iConsoleListener;
+import com.Rev.Core.Primitive.aMap;
 import com.Rev.Core._Math.Maths;
-import com.Rev.Core._PRIM.aMap;
 import com.Rev.Core.zCHEAT_CODEX.AbstractDoodad;
 
-public class MainMenu extends ConsoleView {
+public class MainMenu extends aConsoleView {
 
 	public AbstractDoodad D1;
 

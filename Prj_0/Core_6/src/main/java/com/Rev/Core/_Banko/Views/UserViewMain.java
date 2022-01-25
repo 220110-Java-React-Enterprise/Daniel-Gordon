@@ -2,14 +2,14 @@ package com.Rev.Core._Banko.Views;
 
 import static com.Rev.Core.AppUtils.Log;
 
+import com.Rev.Core.Console.ConsoleUI;
+import com.Rev.Core.Console.UI.aConsoleView;
+import com.Rev.Core.Primitive.aMultiMap;
+import com.Rev.Core.Primitive.aSet;
+import com.Rev.Core.Primitive.Data.aDataField;
 import com.Rev.Core._Banko.DBMS._Account;
-import com.Rev.Core._Console.ConsoleUI;
-import com.Rev.Core._Console.UI.ConsoleView;
-import com.Rev.Core._PRIM.aMultiMap;
-import com.Rev.Core._PRIM.aSet;
-import com.Rev.Core._PRIM.Data.aDataField;
 
-public class UserViewMain extends ConsoleView {
+public class UserViewMain extends aConsoleView {
 
 	// private aMultiMap<Integer, aDataField> accountCache = new aMultiMap<Integer,
 	// aDataField>();

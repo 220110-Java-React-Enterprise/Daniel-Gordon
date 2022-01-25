@@ -4,16 +4,16 @@ import static com.Rev.Core.AppUtils.Log;
 
 import java.util.Random;
 
-import com.Rev.Core._PRIM.BubbleSorter;
-import com.Rev.Core._PRIM.aLink;
-import com.Rev.Core._PRIM.aLinkedList;
-import com.Rev.Core._PRIM.aList;
-import com.Rev.Core._PRIM.aMap;
-import com.Rev.Core._PRIM.aMultiMap;
-import com.Rev.Core._PRIM.aNode;
-import com.Rev.Core._PRIM.aSet;
-import com.Rev.Core._PRIM.A_I.iCollection;
-import com.Rev.Core._PRIM.Data.aDataField;
+import com.Rev.Core.Primitive.BubbleSorter;
+import com.Rev.Core.Primitive.aLink;
+import com.Rev.Core.Primitive.aLinkedList;
+import com.Rev.Core.Primitive.aList;
+import com.Rev.Core.Primitive.aMap;
+import com.Rev.Core.Primitive.aMultiMap;
+import com.Rev.Core.Primitive.aNode;
+import com.Rev.Core.Primitive.aSet;
+import com.Rev.Core.Primitive.A_I.iCollection;
+import com.Rev.Core.Primitive.Data.aDataField;
 
 public class VariousTests {
 	aSet<Integer> S = new aSet<Integer>();

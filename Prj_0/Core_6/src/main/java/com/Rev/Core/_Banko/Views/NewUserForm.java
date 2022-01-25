@@ -8,12 +8,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.regex.Pattern;
 
+import com.Rev.Core.Console.ConsoleUI;
+import com.Rev.Core.Console.UI.aConsoleView;
 import com.Rev.Core._Banko.BankDirector;
 import com.Rev.Core._Banko.DBMS._User;
-import com.Rev.Core._Console.ConsoleUI;
-import com.Rev.Core._Console.UI.ConsoleView;
 
-public class NewUserForm extends ConsoleView {
+public class NewUserForm extends aConsoleView {
 
 	// regex is voodoo sorcery lol
 	private final String emailRegexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"

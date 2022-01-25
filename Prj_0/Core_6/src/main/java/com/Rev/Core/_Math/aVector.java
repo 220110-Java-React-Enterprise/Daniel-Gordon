@@ -4,9 +4,9 @@ import java.util.Iterator;
 
 import static com.Rev.Core._Math.A_I.N_Resolver.*;
 
+import com.Rev.Core.Primitive.aList;
+import com.Rev.Core.Primitive.A_I.iCollection;
 import com.Rev.Core._Math.A_I.N_Resolver;
-import com.Rev.Core._PRIM.aList;
-import com.Rev.Core._PRIM.A_I.iCollection;
 
 public class aVector<N extends Number> extends aNumber
 		implements Iterable<Number>, Comparable<Number>, iCollection<Number> {

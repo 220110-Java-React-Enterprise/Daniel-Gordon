@@ -1,13 +1,9 @@
 package com.Rev.Core._Banko.DBMS;
 
-import static com.Rev.Core._PRIM.Data.aDataField.*;
+import static com.Rev.Core.Primitive.Data.aDataField.*;
 
-import com.Rev.Core._Banko.BankDirector;
-import com.Rev.Core._Banko.BankDirector.AccountManager;
+import com.Rev.Core.Primitive.Data.aDataEntry;
 import com.Rev.Core._Banko.Util.StringUtils;
-import com.Rev.Core._Math.Maths;
-import com.Rev.Core._PRIM.Data.aDataEntry;
-import com.Rev.Core._PRIM.Data.aDataField;
 
 public class _Account extends aDataEntry {
 

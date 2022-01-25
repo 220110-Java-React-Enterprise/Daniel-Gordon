@@ -8,13 +8,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.Rev.Core.Primitive.aList;
+import com.Rev.Core.Primitive.Data.aDataEntry;
 import com.Rev.Core._Banko.BankDirector;
 import com.Rev.Core._Banko.BankDirector.UserManager;
 import com.Rev.Core._Banko.Util.StringUtils;
-import com.Rev.Core._PRIM.aList;
-import com.Rev.Core._PRIM.Data.aDataEntry;
-import com.Rev.Core._PRIM.Data.aDataField;
-import com.Rev.Core._PRIM.Data.aDataField.aDataType;
 
 public class _User extends aDataEntry {
 

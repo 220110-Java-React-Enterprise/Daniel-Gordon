@@ -8,13 +8,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.Rev.Core.Console.ConsoleUI;
+import com.Rev.Core.Console.UI.aConsoleView;
 import com.Rev.Core._Banko.BankDirector;
 import com.Rev.Core._Banko.DBMS._User;
 import com.Rev.Core._Banko.Util.StringUtils;
-import com.Rev.Core._Console.ConsoleUI;
-import com.Rev.Core._Console.UI.ConsoleView;
 
-public class UserLogin extends ConsoleView {
+public class UserLogin extends aConsoleView {
 
 	private String Email = "";
 	private String Password = "";

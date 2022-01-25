@@ -2,10 +2,10 @@ package com.Rev.Core.zCHEAT_CODEX;
 
 import static com.Rev.Core.AppUtils.*;
 
+import com.Rev.Core.Primitive.aList;
+import com.Rev.Core.Primitive.aMap;
+import com.Rev.Core.Primitive.aMultiMap;
 import com.Rev.Core._Math.Maths;
-import com.Rev.Core._PRIM.aList;
-import com.Rev.Core._PRIM.aMap;
-import com.Rev.Core._PRIM.aMultiMap;
 
 public class ChangeMarching {
 
