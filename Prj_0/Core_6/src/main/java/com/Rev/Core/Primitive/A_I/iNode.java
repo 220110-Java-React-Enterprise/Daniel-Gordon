@@ -1,6 +1,5 @@
 package com.Rev.Core.Primitive.A_I;
 
-import com.Rev.Core.Primitive.aNode;
 
 public interface iNode<T> {
 

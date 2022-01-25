@@ -4,7 +4,7 @@ import com.Rev.Core.Primitive.aMultiMap;
 
 public class aDataTable extends aMultiMap<String, aDataField<?>> {
 
-	// map of columns
+	// map of data fields
 	
 
 

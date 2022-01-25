@@ -12,6 +12,8 @@ import com.Rev.Core.Primitive.A_I.iDisposable;
 
 public class aConsoleView extends aNode<aConsoleView> implements iConsoleListener, iDisposable {
 
+	//a UI frame, some default navigation options built-in
+	
 	protected ConsoleUI manager;
 	protected aMap<String, String> options;// temporary
 
@@ -22,6 +24,7 @@ public class aConsoleView extends aNode<aConsoleView> implements iConsoleListene
 
 	}
 
+	//fill widgets
 	public void init() {
 		if (manager.Session.Previous != null)
 			this.options.put("<", "BACK");
@@ -31,12 +34,15 @@ public class aConsoleView extends aNode<aConsoleView> implements iConsoleListene
 		this.options.put("X", "EXIT");
 	}
 
+	// console input
+	// checks own handle() before bubbling input further
+	@Override
 	public boolean input(String inp) {
 		// Log(this.getClass().getSimpleName() + ":> " + inp);
 		if (this.handle(inp)) {
 			return true;
 		}
-		this.renderFrame();
+		this.render();
 		if (this.getSubscribers() != null)
 			for (iConsoleListener s : this.getSubscribers()) {
 				if (s.input(inp))
@@ -46,6 +52,7 @@ public class aConsoleView extends aNode<aConsoleView> implements iConsoleListene
 		return false;
 	}
 
+	//used in conjunction with input. Override this to actually perform the logic intended from an input event
 	protected boolean handle(String inp) {
 		if (inp.toUpperCase().equals("X") || inp.toUpperCase().equals("EXIT")) {
 			App.AppConsole.input("SHELL:TERMINATE");
@@ -65,12 +72,14 @@ public class aConsoleView extends aNode<aConsoleView> implements iConsoleListene
 		return false;
 	}
 
-	public void renderFrame() {
+	// print to IDE console. 
+	public void render() {
 		Page();
 		// Log(this.options.toString());
 		// Log("[" + this.getClass().getSimpleName() + "]");
 	}
 
+	//sub-subscribers. could be useful if this were a proper scene-graph
 	@Override
 	public iCollection<iConsoleListener> getSubscribers() {
 		// bubbles through members
@@ -78,10 +87,12 @@ public class aConsoleView extends aNode<aConsoleView> implements iConsoleListene
 		return null;
 	}
 
+	// init + bump to hide any debug logs init might throw out
+	// force of habit; if this were a GUI, i'd use this to initialize graphics
 	public void show() {
 		this.init();
 		Page();
-		this.renderFrame();
+		this.render();
 	}
 
 	public void dispose() {

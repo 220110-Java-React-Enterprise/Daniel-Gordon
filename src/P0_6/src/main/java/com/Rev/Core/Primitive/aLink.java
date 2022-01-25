@@ -4,6 +4,8 @@ package com.Rev.Core.Primitive;
 
 public class aLink extends aSet<aNode>{
 
+	//defines a connection TO aNode, under what context
+	
 	public String label = "";
 	protected Object context;
 	public aNode target;
@@ -21,17 +23,20 @@ public class aLink extends aSet<aNode>{
 
 	}
 
+	//establish a link to aNode with specified max connections, no context constraints
 	public aLink(String label, aNode to, int max) {
 		this(label, to);
 		this.max = max;
 	}
 
+	//establish a link to aNode with context constraints, no max limit
 	public aLink(String label, aNode to, Object context) {
 		this(label, to);
 		this.context = context;
 
 	}
 
+	//establish a link to aNode with specified max connectionsand context constraints
 	public aLink(String label, aNode to, int max, Object context) {
 		this(label, to, max);
 		this.context = context;
@@ -50,6 +55,7 @@ public class aLink extends aSet<aNode>{
 		return this.inSymbol + this.label + this.outSymbol;
 	}
 
+	//how many connections of this type exist
 	private String sizeString() {
 		if (this.max > 1)
 			return "[" + this.getSize() + "/" + this.max + "]";
@@ -57,7 +63,7 @@ public class aLink extends aSet<aNode>{
 			return "[" + this.getSize() + "]";
 	}
 
-	public String getConnection() {
+	public String getLink() {
 		String contextStr = "<{[(" + this.context.getClass().getSimpleName() + "@"
 				+ Integer.toHexString(this.context.hashCode()) + ")]}>";
 		return this.toString() + this.sizeString() + " : " + this.target + " % " + contextStr;

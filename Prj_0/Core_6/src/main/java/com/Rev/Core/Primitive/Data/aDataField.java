@@ -11,12 +11,7 @@ public class aDataField<Y> extends aNode<Y> {
 	public String label;
 	public aDataType T;
 
-	/*public aDataField(String label, String type) {
-		super();
-		this.label = label;
-		this.T = parseType(type);
-		this.init(this.T);
-	}*/
+
 
 	public aDataField(String label, aDataType type) {
 		super();
@@ -28,9 +23,14 @@ public class aDataField<Y> extends aNode<Y> {
 	public aDataField(String label, Y data) {
 		super();
 		this.label = label;
+		if(data instanceof CharSequence)
+			this.T = parseType(""+data);
+		else
 		this.T = parseType(data.getClass().getSimpleName());
 		this.get = data;
 	}
+	
+	
 
 	private aDataType parseType(String type) {
 		if (aDataType.NAN.is(type)) {
@@ -61,11 +61,12 @@ public class aDataField<Y> extends aNode<Y> {
 		if (T.is("FLT")) {
 			this.set((Y) new Float(0f));
 		}
-		if (T.is("OBJ") || this.T.is("NAN")) {
-			this.get = null;
+		if (T.is("OBJ") || this.T.is("NAN")) {			
+			//this.get = null;
+			this.set(null);
 		}
 
-		Log("__  " + T + "    " + this.T + " -> " + this.get);
+		//Log(" aDataField}>=-  " + T + "    " + this.T + " -> " + this.get());
 	}
 
 	@Override

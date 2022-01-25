@@ -8,22 +8,17 @@ import com.Rev.Core._Math.aVector;
 
 public class aNode<T> implements iNode<T> {
 
-	//poolable?
+	//poolable? maybe later lolol
 	
-	protected T get;
-	public aMultiMap<String, aNode> connections;
-
-	protected int primaryDepth = 0;
-	protected aVector address = new aVector();
+	protected T get; // the data/object that this is aNode of
+	public aMultiMap<String, aNode> links; //linkages, the V in aMultiMap<K,V> refers to iCollection<V> and aLink::aSet<aNode>
 
 	public aNode() {
 		this.get = (T) this;
-		this.address = new aVector(0);
 	}
 
 	public aNode(T of) {
 		this.get = of;
-		this.address = new aVector(0);
 	}
 
 	@Override
@@ -41,7 +36,7 @@ public class aNode<T> implements iNode<T> {
 
 		boolean Has = this.has(s);
 		if (Has) {
-			aLink C = ((aLink) this.connections.get(s));
+			aLink C = ((aLink) this.links.get(s));
 			if (C.target == n)
 				return true;
 		}
@@ -49,45 +44,45 @@ public class aNode<T> implements iNode<T> {
 
 	}
 
-	public void establishConnection(String as, aNode other, int max, Object context) {
-		this.connections.put(as, new aLink(as, other, max, context));
+	public void link(String as, aNode other, Object context, int max) {
+		this.links.put(as, new aLink(as, other, max, context));
 	}
 
-	public void connect(String as, aNode other) {
-		this.connect(as, other, null);
+	public void link(String as, aNode other) {
+		this.link(as, other, null);
 	}
 
-	public void connect(String as, aNode other, Object context) {
+	public void link(String as, aNode other, Object context) {
 
-		if (this.connections == null)
-			this.connections = new aMultiMap<String, aNode>();
-		if (!this.connections.containsKey(as))
-			this.establishConnection(as, other, 1, context);
+		if (this.links == null)
+			this.links = new aMultiMap<String, aNode>();
+		if (!this.links.containsKey(as))
+			this.link(as, other, context, 1);
 
-		iCollection<aNode> C = this.connections.get(as);
+		iCollection<aNode> C = this.links.get(as);
 
 		if (C == null)
 			C = new aLink(as, other, context);
 
 		if (C.getSize() < ((aLink) C).max)
-			this.connections.put(as, C);
-		C = this.connections.get(as);
+			this.links.put(as, C);
+		C = this.links.get(as);
 
 	}
 
 	public void disconnect(String as, Object context) {
 		if (this.has(as, context))
-			this.connections.data.remove(as);
+			this.links.data.remove(as);
 	}
 
 	public boolean has(String connection) {
-		if (this.connections == null || this.connections.isEmpty())
+		if (this.links == null || this.links.isEmpty())
 			return false;
-		return this.connections.containsKey(connection.toUpperCase());
+		return this.links.containsKey(connection.toUpperCase());
 	}
 
 	public boolean has(aLink connection) {
-		return this.connections.containsValue(connection);
+		return this.links.containsValue(connection);
 	}
 
 	public boolean has(String connection, Object context) {
@@ -95,22 +90,19 @@ public class aNode<T> implements iNode<T> {
 		if (!has)
 			return false;
 		else {
-			// aConnection P = (aConnection) this.connections.pull(connection).get(0);
-			aLink P = (aLink) this.connections.get(connection);
+			aLink P = (aLink) this.links.get(connection);
 			return (P.context == context);
 		}
-
-		// return false;
 	}
 
 	public boolean isEmpty() {
 
-		return this.connections.isEmpty();
+		return this.links.isEmpty();
 	}
 
 	public void clear() {
 
-		this.connections.clear();
+		this.links.clear();
 	}
 
 	@Override
@@ -129,14 +121,14 @@ public class aNode<T> implements iNode<T> {
 	public String toLog() {
 		String log = this.toString() + "\n";
 
-		log += "Connections >[" + this.connections.getSize() + "]\n";
+		log += "Connections >[" + this.links.getSize() + "]\n";
 		// log += this.connections.toString()+"\n";
 		log += "[\n";
 		// log+=this.connections.toLog();
-		for (int i = 0; i < this.connections.getSize(); i++) {
-			String K = this.connections.get(i);
-			aLink C = (aLink) this.connections.get(K);
-			log += C.getConnection() + "\n";
+		for (int i = 0; i < this.links.getSize(); i++) {
+			String K = this.links.get(i);
+			aLink C = (aLink) this.links.get(K);
+			log += C.getLink() + "\n";
 
 		}
 

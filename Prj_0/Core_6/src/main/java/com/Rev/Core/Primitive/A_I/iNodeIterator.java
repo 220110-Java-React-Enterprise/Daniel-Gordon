@@ -6,7 +6,7 @@ import com.Rev.Core.Primitive.aNode;
 
 public interface iNodeIterator<E> extends Iterator<aNode<E>>{
 
-	
+	//asserts that the E is really aNode of <E>
 	
 	
 	

@@ -13,6 +13,7 @@ import com.Rev.Core.Console.UI.aConsoleView;
 import com.Rev.Core._Banko.BankDirector;
 import com.Rev.Core._Banko.DBMS._User;
 import com.Rev.Core._Banko.Util.StringUtils;
+import com.Rev.Core.zCHEAT_CODEX.VariousTests;
 
 public class UserLogin extends aConsoleView {
 
@@ -35,11 +36,11 @@ public class UserLogin extends aConsoleView {
 	}
 
 	@Override
-	public void renderFrame() {
+	public void render() {
 
 		// data
 		// input options
-		super.renderFrame();
+		super.render();
 		Log("" + dioPW + "  " + dioEM);
 		String apOpA = "";
 		String apOpB = "";
@@ -85,7 +86,7 @@ public class UserLogin extends aConsoleView {
 			return dioPW;
 		}
 
-		this.renderFrame();
+		this.render();
 
 		return false;
 	}
@@ -104,6 +105,7 @@ public class UserLogin extends aConsoleView {
 		String query = "SELECT * FROM users WHERE email=? AND password=?";
 
 		Connection connection = BankDirector.DB_Link;
+		int i = -1;
 		try {
 
 			PreparedStatement pst = connection.prepareStatement(query);
@@ -111,24 +113,51 @@ public class UserLogin extends aConsoleView {
 			pst.setString(2, Password);
 
 			ResultSet rs = pst.executeQuery();
-			Log(rs.getFetchSize());
+			// Log(rs.getFetchSize());
+			Log();
 
-			int i = -1;
+			int u_id = -1;
+			String fn = "";
+			String ln = "";
+			String em = "";
+			String pw = "";
+			
+			
+			
 			while (rs.next()) {
 				i++;
 				Log("--[" + rs.getInt(1) + "]" + rs.getString("email"));
+				u_id = (rs.getInt("user_ID"));
+				fn = (rs.getString("first_name"));
+				ln = (rs.getString("last_name"));
+				em = (rs.getString("email"));
+				pw = (rs.getString("password"));
 			}
-			if (i == -1) {
-				Log("USER NOT FOUND");
-				// Log(_User.getUserIndex().toString());
-				// Log("------------------");
-				// Log(StringUtils.toMoney(8675309.21f));
+			
+			if(u_id != -1)
+			{
+				this.manager.Session.loggedAs = new _User(u_id, fn, ln, em, pw);
 			}
+			
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		//redundant
+
+		if (i == -1) {
+			Log("USER NOT FOUND");
+			return;
+		}
+
+		// VariousTests.Testo.logTestLinkedList();
+		// Log(_User.getUserIndex().toString());
+		// Log("------------------");
+		// Log(StringUtils.toMoney(8675309.21f));
 
 	}
+	
+	
 
 }

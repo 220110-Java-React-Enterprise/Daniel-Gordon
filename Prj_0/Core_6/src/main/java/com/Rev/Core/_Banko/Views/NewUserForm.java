@@ -46,9 +46,9 @@ public class NewUserForm extends aConsoleView {
 	}
 
 	@Override
-	public void renderFrame() {
+	public void render() {
 
-		super.renderFrame();
+		super.render();
 
 		Log(this.options.toString());
 		Log("FIRST_NAME: " + this.FirstName);
@@ -109,7 +109,7 @@ public class NewUserForm extends aConsoleView {
 			this.clear();
 		}
 
-		this.renderFrame();
+		this.render();
 
 		return false;
 	}
@@ -141,6 +141,7 @@ public class NewUserForm extends aConsoleView {
 			_User newUser = new _User(this.FirstName, this.LastName, this.Email, this.Password);
 			BankDirector.Users.create(newUser);
 			this.clear();
+			newUser.clear();
 			this.input("^");
 		}
 	}

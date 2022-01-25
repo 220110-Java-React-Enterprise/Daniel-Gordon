@@ -8,11 +8,12 @@ public class aDataEntry extends aDataField<aMap<String, aDataField>> {
 	// table row
 	public aDataEntry(String label, aDataField.aDataType... fields) {
 		super(label, aDataType.OBJ);
+		this.set(new aMap<String, aDataField>());
 	}
 
 	public aDataEntry(String label, aDataType type) {
 		super(label, type);
-		this.get = new aMap<String, aDataField>();
+		this.set(new aMap<String, aDataField>());
 	}
 
 	public boolean hasField(String label) {

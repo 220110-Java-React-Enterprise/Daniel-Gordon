@@ -25,10 +25,13 @@ public class aSet<T> implements iCollection<T> {
 		}
 	}
 
+	//sets size of backing array toCap
 	private void growTo(int toCap) {
 		data = Arrays.copyOf(data, toCap);
 	}
 
+	//add at end
+	@Override
 	public void append(T object) {
 
 		if (!this.contains(object)) {
@@ -38,12 +41,14 @@ public class aSet<T> implements iCollection<T> {
 		}
 	}
 
+	//add all to end, sequentially
 	public void append(T... objects) {
 		for (int i = 0; i < objects.length; i++) {
 			this.append(objects[i]);
 		}
 	}
 
+	//add at index, shift others down
 	@Override
 	public void insert(T entry, int atIndex) {
 		aSet<T> tmpAll = new aSet<T>();
@@ -53,6 +58,7 @@ public class aSet<T> implements iCollection<T> {
 		}
 	}
 
+	//remove at index
 	public void remove(int i) {
 		final int newSize;
 		if ((newSize = data.length - 1) > i)
@@ -61,6 +67,7 @@ public class aSet<T> implements iCollection<T> {
 		this.growTo(data.length - 1);
 	}
 
+	//get at index
 	public T get(int index) {
 
 		if (index < data.length) {
@@ -69,15 +76,18 @@ public class aSet<T> implements iCollection<T> {
 			return null;
 	}
 
+	//set at index
 	public void set(int atIndex, T entry) {
 		if (atIndex <= this.getSize())
 			this.data[atIndex] = entry;
 	}
 
+	//size of backing array
 	public int getSize() {
 		return this.data.length;
 	}
 
+	//index of object in backing array
 	public int indexOf(Object object) {
 
 		for (int i = 0; i < this.data.length; i++) {
@@ -87,6 +97,7 @@ public class aSet<T> implements iCollection<T> {
 		return -1;
 	}
 
+	//does has?
 	public boolean contains(Object obj) {
 		String log = "aList{" + this.getSize() + "}\n";
 		for (int i = 0; i <= this.data.length - 1; i++) {
@@ -96,6 +107,7 @@ public class aSet<T> implements iCollection<T> {
 		return false;
 	}
 
+	//$#!%
 	public boolean isEmpty() {
 		if (this.data.length <= 0)
 			return true;
@@ -103,12 +115,14 @@ public class aSet<T> implements iCollection<T> {
 			return false;
 	}
 
+	//removes all items
 	public void clear() {
 		for (int i = 0; i < this.data.length; i++) {
 			this.remove(i);
 		}
 	}
 	
+	//transcombombulates into aList
 	public aList<T> toList()
 	{
 		aList<T> result = new aList<T>();
@@ -145,6 +159,8 @@ public class aSet<T> implements iCollection<T> {
 		return log;
 	}
 
+	
+	//innervates the ForEach ':' operator
 	@Override
 	public Iterator<T> iterator() {
 		return new aListIterator(this);

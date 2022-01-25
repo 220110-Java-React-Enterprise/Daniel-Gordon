@@ -70,6 +70,7 @@ public class App implements iConsoleListener {
 
 	public void dispose() {
 		AppConsole.IO.dispose();
+		
 		Log("D-------------------------------------------------------G");
 
 	}

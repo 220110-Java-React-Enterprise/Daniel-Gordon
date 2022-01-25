@@ -7,12 +7,11 @@ import com.Rev.Core.Console.ConsoleUI;
 import com.Rev.Core.Console.UI.aConsoleView;
 import com.Rev.Core.Console.UI.iConsoleListener;
 import com.Rev.Core.Primitive.aMap;
-import com.Rev.Core._Math.Maths;
 import com.Rev.Core.zCHEAT_CODEX.AbstractDoodad;
 
 public class MainMenu extends aConsoleView {
 
-	public AbstractDoodad D1;
+	
 
 	public MainMenu(ConsoleUI manager) {
 		super(manager);
@@ -24,17 +23,12 @@ public class MainMenu extends aConsoleView {
 		super.init();
 		this.options.put("1", "LOGIN");
 		this.options.put("2", "REGISTER");
-		this.D1 = new AbstractDoodad() {
-			@Override
-			public void init() {
-				logTo();
-			}
-		};
+		
 	}
 
 	@Override
-	public void renderFrame() {
-		super.renderFrame();
+	public void render() {
+		super.render();
 		// data
 		// input options
 
@@ -48,7 +42,7 @@ public class MainMenu extends aConsoleView {
 		if (this.handle(inp)) {
 			return true;
 		}
-		this.renderFrame();
+		this.render();
 		if (this.getSubscribers() != null)
 			for (iConsoleListener s : this.getSubscribers()) {
 				if (s.input(inp))
@@ -75,7 +69,7 @@ public class MainMenu extends aConsoleView {
 			return true;
 		}
 
-		this.renderFrame();
+		this.render();
 		return false;
 	}
 

@@ -14,6 +14,7 @@ public class ConsoleLogger {
 
 	App owner;
 
+	//Logs console input to IDE console
 	public ConsoleLogger(App owner) {
 		DefaultLogger = this;
 		this.owner = owner;

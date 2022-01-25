@@ -23,6 +23,8 @@ import com.Rev.Core._Banko.DBMS.iDataCRUD;
 
 public class BankDirector {
 
+	// The Cental Bureaucracy
+
 	public static Connection DB_Link; // find/create
 	public static AccountManager Accounts;
 	public static UserManager Users;
@@ -30,7 +32,6 @@ public class BankDirector {
 	static {
 		Accounts = new AccountManager();
 		Users = new UserManager();
-
 	}
 
 	public BankDirector() {
@@ -153,7 +154,8 @@ public class BankDirector {
 	}
 
 	private void __DATA_MGMT___() {
-
+		//this is a section note lolol
+		//they can be useful for organizing complicated stoof
 	}
 
 	private static boolean isEmpty(Connection connection) {

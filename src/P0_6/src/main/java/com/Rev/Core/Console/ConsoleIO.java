@@ -10,6 +10,9 @@ import com.Rev.Core.App;
 
 public class ConsoleIO {
 
+	
+	//Console Buffer Read/Write.
+	
 	protected BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 	protected BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
 

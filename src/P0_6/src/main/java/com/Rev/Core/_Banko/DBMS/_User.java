@@ -58,7 +58,8 @@ public class _User extends aDataEntry {
 
 	@Override
 	public String toString() {
-		String s = "[" + index + "](" + StringUtils.toName(fn) + "," + StringUtils.toName(ln) + "," + em + "," + pw + ")";
+		String s = "[" + index + "](" + StringUtils.toName(fn) + "," + StringUtils.toName(ln) + "," + em + "," + pw
+				+ ")";
 
 		return s;
 	}

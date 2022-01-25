@@ -12,6 +12,9 @@ public class aVector<N extends Number> extends aNumber
 		implements Iterable<Number>, Comparable<Number>, iCollection<Number> {
 	public aList<Number> elements;
 
+	
+	//i figured i'd try and redo my universal number vector with my list impl
+	
 	public aVector() {
 		this(0f);
 	}
@@ -97,14 +100,11 @@ public class aVector<N extends Number> extends aNumber
 	public Iterator<Number> iterator() {
 		return this.elements.iterator();
 	}
-	
-	
-	public String valueString()
-	{
+
+	public String valueString() {
 		String s = "";
-		for(int i =0; i < this.elements.getSize(); i++)
-		{
-			s+=this.elements.get(i);
+		for (int i = 0; i < this.elements.getSize(); i++) {
+			s += this.elements.get(i);
 		}
 		return s;
 	}
@@ -127,24 +127,19 @@ public class aVector<N extends Number> extends aNumber
 	public int indexOf(Object object) {
 		return this.elements.indexOf(object);
 	}
-	
-
-
 
 	//////
-	private void ___OPERATORS______()
-	{
-		
+	private void ___OPERATORS______() {
+
 	}
-	public aVector add(aVector other)
-	{
-		//base on longer vector
+
+	public aVector add(aVector other) {
+		// base on longer vector
 		int l = this.getSize();
-		for(int i =0; i < l; i++)
-		{
-			
+		for (int i = 0; i < l; i++) {
+
 		}
-		
+
 		return this;
 	}
 }

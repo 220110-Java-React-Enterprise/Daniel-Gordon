@@ -21,19 +21,19 @@ public class VariousTests {
 	aLinkedList<Integer> LL = new aLinkedList<Integer>();
 	aMap<String, String> M = new aMap<String, String>();
 	aMultiMap<String, String> MM = new aMultiMap<String, String>();
+	AbstractDoodad D1;
 
 	aNode N1;
 	aNode N2;
 	aNode N3;
-	
+
 	public static VariousTests Testo;
-	
+
 	static {
 		Testo = new VariousTests();
 	}
-	
-	private VariousTests()
-	{
+
+	private VariousTests() {
 		genTestSet();
 		genTestList();
 		genTestLinkedList();
@@ -41,12 +41,9 @@ public class VariousTests {
 		genTestMultiMap();
 		genTestNodes();
 	}
-	
-	public void LogThis()
-	{
-		
-		
-		
+
+	public void LogThis() {
+
 		// logTestSet();
 		// logTestList();
 		// logTestLinkedList();
@@ -65,7 +62,7 @@ public class VariousTests {
 		// Log(V);
 		// Log("" + Maths.round(5.55f, 2));
 	}
-	
+
 	public void genTestSet() {
 		S = new aSet<Integer>();
 		S.append(1, 1);
@@ -155,6 +152,15 @@ public class VariousTests {
 		Log(">>>>>>>>>>>>>>");
 	}
 
+	public void genAbstractDoodad() {
+		this.D1 = new AbstractDoodad() {
+			@Override
+			public void init() {
+				logTo();
+			}
+		};
+	}
+
 	public void logTestSet() {
 		Log("aSet>>");
 		Log("for{");
@@ -190,8 +196,8 @@ public class VariousTests {
 			aNode n = (aNode) o;
 			Log("*[" + LL.indexOf(n) + "]" + o);
 			if (n.has("NEXT")) {
-				aNode next = ((aLink) n.connections.get("NEXT")).target;
-				Log("    <NEXT>=> [" + LL.indexOf(next) + "]" + next);
+				aNode next = ((aLink) n.links.get("NEXT")).target;
+				Log("    <NEXT> => [" + LL.indexOf(next) + "]" + next);
 			}
 
 		}
@@ -259,6 +265,5 @@ public class VariousTests {
 		Log("--Descending");
 		Log(BSort);
 	}
-
 
 }

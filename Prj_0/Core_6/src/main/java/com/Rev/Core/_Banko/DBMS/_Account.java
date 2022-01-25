@@ -7,7 +7,6 @@ import com.Rev.Core._Banko.Util.StringUtils;
 
 public class _Account extends aDataEntry {
 
-	// private AccountManager manager;
 	protected int ownerIndex;
 	protected AccountType type;
 

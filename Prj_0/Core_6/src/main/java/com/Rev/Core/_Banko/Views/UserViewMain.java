@@ -21,8 +21,8 @@ public class UserViewMain extends aConsoleView {
 	}
 
 	@Override
-	public void renderFrame() {
-		super.renderFrame();
+	public void render() {
+		super.render();
 		// data
 		// input options
 

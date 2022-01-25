@@ -9,7 +9,8 @@ public class aNumber extends Number {
 	public String Label;
 	public Number Value;
 
-	
+	// a while back, i got tired of having to BS with different types of numbers while working with vecgtor gfx
+	// for some reason, math people use the word 'fundamental' when they should use 'nominal' lolol
 
 	@Override
 	public int intValue() {

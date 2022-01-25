@@ -17,7 +17,7 @@ public class BubbleSorter {
 	}
 
 	public void sortAscending() {
-
+		
 		int tmp = 0;
 		for (int i = 0; i < subject.getSize(); i++) {
 			for (int j = 1; j < (subject.getSize() - i); j++) {

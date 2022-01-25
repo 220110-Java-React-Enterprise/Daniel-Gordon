@@ -2,6 +2,8 @@ package com.Rev.Core.Primitive;
 
 public class aStack<T> extends aList<T>{
 
+	//meh?
+	
 	public void push(T entry)
 	{
 		this.insert(entry, 0);

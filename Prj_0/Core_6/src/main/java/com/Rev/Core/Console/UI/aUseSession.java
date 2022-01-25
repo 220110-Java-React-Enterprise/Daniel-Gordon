@@ -10,6 +10,8 @@ import com.Rev.Core._Banko.DBMS._User;
 
 public class aUseSession implements iConsoleListener {
 
+	// ViewManager, also tracks currently logged-in _User
+
 	public aConsoleView Root;
 
 	public aConsoleView Current;
@@ -17,7 +19,7 @@ public class aUseSession implements iConsoleListener {
 
 	aLinkedList<aConsoleView> NaigationPath;// <-ToDo
 
-	private _User loggedAs;
+	public _User loggedAs;
 
 	public String as = "null";
 
@@ -26,6 +28,7 @@ public class aUseSession implements iConsoleListener {
 
 	}
 
+	// console input
 	@Override
 	public boolean input(String inp) {
 		// Log(this.getClass().getSimpleName() + ":> " + inp);
@@ -36,21 +39,26 @@ public class aUseSession implements iConsoleListener {
 		return false;
 	}
 
+	// previous screen
 	public void back() {
 		if (this.Previous != null) {
 			this.setView(this.Previous);
 		}
 	}
 
+	// return to MainMenu
 	public void returnMain() {
 		this.Previous = null;
 		this.setView(this.Root);
 	}
 
+	// you're here forever
 	public void exit() {
+		this.loggedAs.clear();
 		App.AppConsole.input("SHELL:TERMINATE");
 	}
-
+	
+	//sets the view context to be rendered with render()
 	public void setView(aConsoleView view) {
 		if (this.Current != null) {
 			this.Previous = this.Current;
@@ -62,10 +70,6 @@ public class aUseSession implements iConsoleListener {
 
 	}
 
-	@Override
-	public iCollection<iConsoleListener> getSubscribers() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }

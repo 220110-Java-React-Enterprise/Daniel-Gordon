@@ -1,6 +1,5 @@
 package com.Rev.Core.Primitive.A_I;
 
-import com.Rev.Core.Primitive.aMap.Entry;
 
 public interface iMap<K, V> extends Iterable<K>{
 

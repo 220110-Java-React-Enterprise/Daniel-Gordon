@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 public class Maths {
 
+	//Math utils ripped from a previous project
+	
 	// EXP4j Expressions
 	// fill array with permutations of inputs
 

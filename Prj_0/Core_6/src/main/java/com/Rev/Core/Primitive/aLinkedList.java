@@ -31,12 +31,12 @@ public class aLinkedList<T> implements iCollection<T> {
 		aNode current = (aNode) this.get(atIndex);
 		aNode prev = null;
 		if (current.has("PREVIOUS", this)) {
-			prev = ((aLink) current.connections.get("PREVIOUS")).target;
+			prev = ((aLink) current.links.get("PREVIOUS")).target;
 
-			((aLink) current.connections.get("PREVIOUS")).target = newNode;
-			((aLink) prev.connections.get("NEXT")).target = newNode;
-			newNode.connect("NEXT", current, this);
-			newNode.connect("PREVIOUS", prev, this);
+			((aLink) current.links.get("PREVIOUS")).target = newNode;
+			((aLink) prev.links.get("NEXT")).target = newNode;
+			newNode.link("NEXT", current, this);
+			newNode.link("PREVIOUS", prev, this);
 		}
 
 	}
@@ -71,25 +71,25 @@ public class aLinkedList<T> implements iCollection<T> {
 		if (E && P) {
 
 			if (previous.has("NEXT", this))
-				((aLink) previous.connections.get("NEXT")).target = entry;
+				((aLink) previous.links.get("NEXT")).target = entry;
 			else
-				previous.connect("NEXT", entry, this);
+				previous.link("NEXT", entry, this);
 
 			if (entry.has("PREVIOUS", this))
-				((aLink) previous.connections.get("PREVIOUS")).target = entry;
+				((aLink) previous.links.get("PREVIOUS")).target = entry;
 			else
-				entry.connect("PREVIOUS", previous, this);
+				entry.link("PREVIOUS", previous, this);
 		}
 		if (E && N) {
 			if (entry.has("NEXT", this))
-				((aLink) entry.connections.get("NEXT")).target = next;
+				((aLink) entry.links.get("NEXT")).target = next;
 			else
-				entry.connect("NEXT", next, this);
+				entry.link("NEXT", next, this);
 
 			if (next.has("PREVIOUS", this))
-				((aLink) next.connections.get("PREVIOUS")).target = entry;
+				((aLink) next.links.get("PREVIOUS")).target = entry;
 			else
-				next.connect("PREVIOUS", entry, this);
+				next.link("PREVIOUS", entry, this);
 		}
 
 	}
@@ -160,7 +160,7 @@ public class aLinkedList<T> implements iCollection<T> {
 		aNode prev = null;
 
 		if (N.has("PREVIOUS", this)) {
-			prev = ((aLink) N.connections.get("PREVIOUS")).target;
+			prev = ((aLink) N.links.get("PREVIOUS")).target;
 
 			if (isLast)
 				this.last = prev;
@@ -170,7 +170,7 @@ public class aLinkedList<T> implements iCollection<T> {
 		}
 
 		if (N.has("NEXT", this)) {
-			next = ((aLink) N.connections.get("NEXT")).target;
+			next = ((aLink) N.links.get("NEXT")).target;
 			if (isFirst)
 				this.first = next;
 			N.disconnect("NEXT", this);
@@ -221,7 +221,7 @@ public class aLinkedList<T> implements iCollection<T> {
 	@Override
 	public String toString() {
 		String s = "";
-		s += this.first + "=>" + this.last;
+		s += this.first + " => " + this.last;
 
 		return s;
 	}
@@ -249,7 +249,7 @@ public class aLinkedList<T> implements iCollection<T> {
 		public boolean hasNext() {
 
 			if (this.current != null && this.current.has("NEXT", this.array)) {
-				this.next = ((aLink) this.current.connections.get("NEXT")).target;
+				this.next = ((aLink) this.current.links.get("NEXT")).target;
 				return true;
 			}
 
