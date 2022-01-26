@@ -11,9 +11,9 @@ import java.util.regex.Pattern;
 import com.Rev.Core.AppUtils;
 import com.Rev.Core.Console.ConsoleUI;
 import com.Rev.Core.Console.UI.aConsoleView;
+import com.Rev.Core.Util.StringUtils;
 import com.Rev.Core._Banko.BankDirector;
 import com.Rev.Core._Banko.Data._User;
-import com.Rev.Core._Banko.Util.StringUtils;
 
 public class NewUserForm extends aConsoleView {
 
@@ -76,9 +76,11 @@ public class NewUserForm extends aConsoleView {
 			return true;
 
 		if (dioFN)
-			this.FirstName = inp;
+			this.FirstName = inp.replaceAll("[^a-zA-Z]", " ");
+		// this.FirstName = inp.replaceAll("\\d", ""); //no numbers allowed lol
 		if (dioLN)
-			this.LastName = inp;
+			this.FirstName = inp.replaceAll("[^a-zA-Z]", " ");
+		// this.LastName = inp.replaceAll("\\d", "");
 		if (dioEM) {
 			if (StringUtils.validEmail(inp))
 				this.Email = inp;

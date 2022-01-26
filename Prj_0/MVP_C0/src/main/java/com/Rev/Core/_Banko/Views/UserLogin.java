@@ -10,9 +10,9 @@ import java.sql.Statement;
 
 import com.Rev.Core.Console.ConsoleUI;
 import com.Rev.Core.Console.UI.aConsoleView;
+import com.Rev.Core.Util.StringUtils;
 import com.Rev.Core._Banko.BankDirector;
 import com.Rev.Core._Banko.Data._User;
-import com.Rev.Core._Banko.Util.StringUtils;
 import com.Rev.Core.zCHEAT_CODEX.VariousTests;
 
 public class UserLogin extends aConsoleView {

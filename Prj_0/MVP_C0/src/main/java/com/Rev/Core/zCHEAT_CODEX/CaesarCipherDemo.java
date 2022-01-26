@@ -2,7 +2,7 @@ package com.Rev.Core.zCHEAT_CODEX;
 
 import static com.Rev.Core.AppUtils.*;
 
-import com.Rev.Core._Banko.Util.DefaultResources;
+import com.Rev.Core.Util.DefaultResources;
 
 public class CaesarCipherDemo {
 

@@ -1,4 +1,4 @@
-package com.Rev.Core._Banko.Util;
+package com.Rev.Core.Util;
 
 import static com.Rev.Core.AppUtils.*;
 
@@ -36,6 +36,8 @@ public class StringUtils {
 	public static boolean validEmail(String emailAddress) {
 		return patternMatches(emailAddress, emailRegexPattern);
 	}
+	
+	
 
 	public static boolean patternMatches(String emailAddress, String regexPattern) {
 		return Pattern.compile(regexPattern).matcher(emailAddress).matches();

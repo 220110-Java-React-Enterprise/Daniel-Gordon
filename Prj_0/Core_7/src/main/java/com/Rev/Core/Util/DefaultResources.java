@@ -1,4 +1,4 @@
-package com.Rev.Core._Banko.Util;
+package com.Rev.Core.Util;
 
 public class DefaultResources {
 

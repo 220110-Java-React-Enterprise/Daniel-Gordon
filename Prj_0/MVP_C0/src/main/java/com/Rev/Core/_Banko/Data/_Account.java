@@ -3,7 +3,7 @@ package com.Rev.Core._Banko.Data;
 import static com.Rev.Core.Primitive.Data.aDataField.*;
 
 import com.Rev.Core.Primitive.Data.aDataEntry;
-import com.Rev.Core._Banko.Util.StringUtils;
+import com.Rev.Core.Util.StringUtils;
 
 public class _Account extends aDataEntry {
 

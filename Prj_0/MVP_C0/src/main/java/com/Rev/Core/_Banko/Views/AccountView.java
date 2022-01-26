@@ -9,9 +9,9 @@ import java.sql.PreparedStatement;
 import com.Rev.Core.Console.ConsoleUI;
 import com.Rev.Core.Console.UI.aConsoleView;
 import com.Rev.Core.Primitive.aMap;
+import com.Rev.Core.Util.StringUtils;
 import com.Rev.Core._Banko.BankDirector;
 import com.Rev.Core._Banko.Data._Account;
-import com.Rev.Core._Banko.Util.StringUtils;
 
 public class AccountView extends aConsoleView {
 
@@ -81,7 +81,7 @@ public class AccountView extends aConsoleView {
 				this.deposit(f);
 			} else {
 				this.inputInvalid = true;
-				ThrowFancyException(" >>INVALID AMOUNT<<"); // exceptions are for nerds lol
+				ThrowFancyException(" >>INVALID AMOUNT<<"); 
 				return false;
 			}
 
@@ -95,7 +95,7 @@ public class AccountView extends aConsoleView {
 				this.withdraw(f);
 			} else {
 				this.inputInvalid = true;
-				ThrowFancyException(" >>INVALID AMOUNT<<"); // exceptions are for nerds lol
+				ThrowFancyException(" >>INVALID AMOUNT<<");
 				return false;
 			}
 
@@ -132,9 +132,6 @@ public class AccountView extends aConsoleView {
 
 		this.deltaBal += amt;
 		float current = as.Balance(this.deltaBal);
-
-		//String query = "SELECT * FROM users WHERE email=? AND password=?";
-		//Connection connection = BankDirector.DB_Link;
 
 		BankDirector.Accounts.update(as.Index(), as);
 	}

@@ -13,10 +13,10 @@ import com.Rev.Core.Primitive.aMap;
 import com.Rev.Core.Primitive.aMultiMap;
 import com.Rev.Core.Primitive.aSet;
 import com.Rev.Core.Primitive.Data.aDataField;
+import com.Rev.Core.Util.StringUtils;
 import com.Rev.Core._Banko.BankDirector;
 import com.Rev.Core._Banko.Data._Account;
 import com.Rev.Core._Banko.Data._User;
-import com.Rev.Core._Banko.Util.StringUtils;
 
 public class UserView extends aConsoleView {
 
