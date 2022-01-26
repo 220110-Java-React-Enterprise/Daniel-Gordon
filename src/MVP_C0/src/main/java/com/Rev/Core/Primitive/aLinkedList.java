@@ -12,17 +12,20 @@ public class aLinkedList<T> implements iCollection<T> {
 	private aNode<T> first;
 	private aNode<T> last;
 
+	// add
 	@Override
 	public void append(T entry) {
 		this.linkNode(entry);
 	}
 
+	// addAll
 	@Override
 	public void append(T... entries) {
 		for (int i = 0; i < entries.length; i++)
 			this.append(entries[i]);
 	}
 
+	// insert aNode of <T> @index
 	@Override
 	public void insert(T entry, int atIndex) {
 		// displaces current node down(+) 1
@@ -41,6 +44,7 @@ public class aLinkedList<T> implements iCollection<T> {
 
 	}
 
+	// handles linking for append()
 	private void linkNode(T entry) {
 		aNode newNode = new aNode(entry);
 		boolean F = (this.first != null);
@@ -56,13 +60,8 @@ public class aLinkedList<T> implements iCollection<T> {
 
 	}
 
+	// handles linking for insert
 	private void linkNode(aNode previous, aNode entry, aNode next) {
-		// (0,1,0) = initial node or default last
-		// (1,1,0) = append
-		// (1,1,1) = insert
-		// int P = (previous != null) ? 1 : 0;
-		// int E = (entry != null) ? 1 : 0;
-		// int N = (next != null) ? 1 : 0;
 
 		boolean P = (previous != null);
 		boolean E = ((entry != null) && (entry != previous) && (entry != next));
@@ -94,6 +93,7 @@ public class aLinkedList<T> implements iCollection<T> {
 
 	}
 
+	// overwrites data in the node @index -> to
 	@Override
 	public void set(int at, T to) {
 		if (at < this.getSize()) {
@@ -102,15 +102,27 @@ public class aLinkedList<T> implements iCollection<T> {
 		}
 	}
 
+	// returns the node @index. chaining getClass() on this returned value breaks,
+	// use getNode/getData for external access
 	@Override
 	public T get(int index) {
 		for (T n : this) {
-			if (this.indexOf(n) == index)// inefficient
+			if (this.indexOf(n) == index)
 				return n;
 		}
 		return null;
 	}
 
+	// returns the node at index
+	public aNode<T> getNode(int index) {
+		return (aNode) this.get(index);
+	}
+
+	public T getData(int index) {
+		return ((aNode<T>) this.get(index)).get();
+	}
+
+	// how many nodes?
 	@Override
 	public int getSize() {
 		int c = 0;

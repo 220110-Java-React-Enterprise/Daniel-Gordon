@@ -15,15 +15,15 @@ public class App implements iConsoleListener {
 	private long prevTime = System.nanoTime();
 	private float deltaTime = 0f;
 
-	public static Console AppConsole;
-	public static ConsoleUI UI;
+	public static Console AppConsole; //console input
+	public static ConsoleUI UI; // view-manager
 
-	public BankDirector Management;
+	public BankDirector Management; //data-manager
 
 
 
 	public App() {
-		System.setProperty("java.awt.headless", "true");
+		//System.setProperty("java.awt.headless", "true"); // was thinking of exploring headless awt options for easier input-handling.
 		App.Current = this;
 		this.running = true;
 		this.Management = new BankDirector();
@@ -34,10 +34,8 @@ public class App implements iConsoleListener {
 		AppConsole = new Console(Current);
 		UI = new ConsoleUI();
 		AppConsole.getSubscribers().append(this);
-
-
-
-		// B_SortTest(); //werx
+		
+		
 
 		try {
 			this.loop();
@@ -46,10 +44,12 @@ public class App implements iConsoleListener {
 		}
 	}
 
+	//not used here, but I like having it lol
 	public float getDeltaTime() {
 		return this.deltaTime;
 	}
 
+	//main App loop
 	public void loop() {
 		while (this.running) {
 			long time = System.nanoTime();
@@ -62,12 +62,14 @@ public class App implements iConsoleListener {
 
 	}
 
+	//stops running, murders the console, burns down its house
 	public void terminate() {
 		this.running = false;
 		this.dispose();
 		System.exit(0);
 	}
 
+	//kills the console thread, ensures everything is properly GC'd. 
 	public void dispose() {
 		AppConsole.IO.dispose();
 		
@@ -75,6 +77,7 @@ public class App implements iConsoleListener {
 
 	}
 
+	//call from input-sender
 	@Override
 	public boolean input(String inp) {
 		// Log(this.getClass().getSimpleName() + ":" + inp);
@@ -87,6 +90,7 @@ public class App implements iConsoleListener {
 		return false;
 	}
 
+	
 	@Override
 	public iCollection<iConsoleListener> getSubscribers() {
 

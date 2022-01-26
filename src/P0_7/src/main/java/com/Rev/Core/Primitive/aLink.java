@@ -42,6 +42,7 @@ public class aLink extends aSet<aNode>{
 		this.context = context;
 	}
 
+	//returns what this is a Node of
 	public Object get() {
 
 		if (this.max == 1)

@@ -69,5 +69,8 @@ public class DefaultResources {
 			+ "\"!`?'.,;:()[]{}<>|/@\\^$-%+=#_&~*\u0000\u007F";
 
 	public static final String VECTOR_LABELS = "xyzwabcdefghijklmnopqrstuv";
+	
+	public static final String emailRegexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+			+ "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
 
 }

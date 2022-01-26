@@ -42,11 +42,16 @@ public class VariousTests {
 		genTestNodes();
 	}
 
+	public static void main(String...args)
+	{
+		Testo.LogThis();
+	}
+	
 	public void LogThis() {
 
 		// logTestSet();
 		// logTestList();
-		// logTestLinkedList();
+		logTestLinkedList();
 		// logTestMap();
 		// logTestMultiMap();
 		// Log(this.toLog());
@@ -205,6 +210,13 @@ public class VariousTests {
 		// Log(" -0 "+LL.getLast());
 		Log("----");
 		// Log(LL.first.toLog());
+		
+		Object o = LL.get(2);
+		aNode n = (aNode)o;
+		Log(LL.get(2) + "   " + LL.get(2) + "  " + o.getClass() + " " + LL.get(2)+ " " + n.get());
+		Log(LL.getNode(2) + "   " + LL.getNode(2)+ "  " + LL.getNode(2).getClass());
+		Log(LL.getData(2) + "   " + LL.getData(2)+ "  " + LL.getData(2).getClass());
+		
 
 		Log("________");
 	}

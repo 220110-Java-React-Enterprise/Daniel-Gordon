@@ -79,7 +79,7 @@ public class NewUserForm extends aConsoleView {
 			this.FirstName = inp.replaceAll("[^a-zA-Z]", " ");
 		// this.FirstName = inp.replaceAll("\\d", ""); //no numbers allowed lol
 		if (dioLN)
-			this.FirstName = inp.replaceAll("[^a-zA-Z]", " ");
+			this.LastName = inp.replaceAll("[^a-zA-Z]", " ");
 		// this.LastName = inp.replaceAll("\\d", "");
 		if (dioEM) {
 			if (StringUtils.validEmail(inp))

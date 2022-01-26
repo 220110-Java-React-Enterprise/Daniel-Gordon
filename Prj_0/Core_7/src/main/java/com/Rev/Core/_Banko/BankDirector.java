@@ -115,6 +115,7 @@ public class BankDirector {
 		Connection connection = null;
 		try {
 			Properties props = new Properties();
+			//FileReader fr = new FileReader("src/main/resources/jdbcLOCAL.properties");
 			FileReader fr = new FileReader("src/main/resources/jdbc.properties");
 			props.load(fr);
 			Log(props);
