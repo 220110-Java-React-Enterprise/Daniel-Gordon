@@ -13,8 +13,8 @@ public class _Account extends aDataEntry {
 	protected float balance = 0f;
 	protected int AcctNum;
 
-	private boolean debug = true;
-	protected int dbIndex; // index of this account in DB_Table
+	private static boolean debug = true;
+	protected int dbIndex = -1; // index of this account in DB_Table
 
 	public _Account(int ownerID, int type) {
 		super("Account", aDataType.OBJ);
@@ -31,6 +31,15 @@ public class _Account extends aDataEntry {
 		this.AcctNum = acctnum;
 	}
 
+	public _Account(int ownerID, int type, float balance, int acctnum, int dbIndex) {
+		super("Account", aDataType.OBJ);
+		this.ownerIndex = ownerID;
+		this.type = type;
+		this.balance = balance;
+		this.AcctNum = acctnum;
+		this.dbIndex = dbIndex;
+	}
+
 	public int Owner() {
 		return this.ownerIndex;
 	}
@@ -43,6 +52,16 @@ public class _Account extends aDataEntry {
 		return this.balance;
 	}
 
+	public float Balance(float f) {
+		this.balance = f;
+		return this.balance;
+	}
+	
+	public int Index()
+	{
+		return this.dbIndex;
+	}
+
 	@Override
 	public String toString() {
 
@@ -52,7 +71,11 @@ public class _Account extends aDataEntry {
 		else
 			typeName += "Savings";
 
-		String s = "[" + typeName + " #" + this.AcctNum + " | " + StringUtils.toMoney(balance) + "]";
+		String post = "";
+		if (debug)
+			post += "->" + this.dbIndex;
+
+		String s = "[" + typeName + " @" + this.AcctNum + " | " + StringUtils.toMoney(balance) + "]" + post;
 		return s;
 	}
 

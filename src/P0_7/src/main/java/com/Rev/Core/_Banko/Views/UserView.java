@@ -133,7 +133,9 @@ public class UserView extends aConsoleView {
 				int type = rs.getInt("type");
 				float bal = rs.getFloat("balance");
 				int actnum = rs.getInt("account_num");
-				_Account acct = new _Account(u_id, type, bal, actnum);
+				int db = rs.getInt("account_ID");
+				_Account acct = new _Account(u_id, type, bal, actnum, db);
+				
 				this.accountCache.append(acct);
 				// Log("--------" + acct);
 			}
