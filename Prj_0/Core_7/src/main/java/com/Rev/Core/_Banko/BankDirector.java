@@ -374,9 +374,11 @@ public class BankDirector {
 		@Override
 		public void update(int at, _Account entry) {
 			try {
-				String sql = "UPDATE accounts SET users = ? WHERE account_id = ?";
+				String sql = "UPDATE accounts SET balance = ? WHERE account_id = ?";
+				
 				PreparedStatement preparedStatement = DB_Link.prepareStatement(sql);
-				preparedStatement.setInt(1, at);
+				preparedStatement.setObject(1, entry.Balance());;
+				preparedStatement.setInt(2, at);
 
 				preparedStatement.executeUpdate();
 			} catch (SQLException e) {
@@ -388,7 +390,7 @@ public class BankDirector {
 		@Override
 		public void delete(int index) {
 			try {
-				String sql = "DELETE FROM users WHERE account_id = ?";
+				String sql = "DELETE FROM accounts WHERE account_id = ?";
 				PreparedStatement preparedStatement = DB_Link.prepareStatement(sql);
 				preparedStatement.setInt(1, index);
 				preparedStatement.executeUpdate();

@@ -1,6 +1,7 @@
 package com.Rev.Core._Banko.Views;
 
 import static com.Rev.Core.AppUtils.Log;
+import static com.Rev.Core.AppUtils.ThrowFancyException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +11,7 @@ import com.Rev.Core.Console.UI.aConsoleView;
 import com.Rev.Core.Primitive.aMap;
 import com.Rev.Core._Banko.BankDirector;
 import com.Rev.Core._Banko.Data._Account;
+import com.Rev.Core._Banko.Util.StringUtils;
 
 public class AccountView extends aConsoleView {
 
@@ -22,6 +24,8 @@ public class AccountView extends aConsoleView {
 
 	private boolean dioD = false;
 	private boolean dioW = false;
+
+	private boolean inputInvalid = false;
 
 	public AccountView(ConsoleUI manager, _Account as) {
 		super(manager);
@@ -53,9 +57,16 @@ public class AccountView extends aConsoleView {
 	public void render() {
 		super.render();
 
+		Log(this.as.toString());
 		Log("___________");
 		Log(this.options.toString());
 		Log("");
+		if (inputInvalid)
+			Log("*INVALID INPUT <<<");
+
+		this.inputInvalid = false;
+		this.dioD = false;
+		this.dioW = false;
 	}
 
 	@Override
@@ -63,6 +74,46 @@ public class AccountView extends aConsoleView {
 
 		if (super.handle(inp))
 			return true;
+
+		if (dioD) {
+			if (StringUtils.validAmount(inp)) {
+				float f = Float.parseFloat(inp);
+				this.deposit(f);
+			} else {
+				this.inputInvalid = true;
+				ThrowFancyException(" >>INVALID AMOUNT<<"); // exceptions are for nerds lol
+				return false;
+			}
+
+		}
+
+		if (dioW) {
+
+			//
+			if (StringUtils.validAmount(inp)) {
+				float f = Float.parseFloat(inp);
+				this.withdraw(f);
+			} else {
+				this.inputInvalid = true;
+				ThrowFancyException(" >>INVALID AMOUNT<<"); // exceptions are for nerds lol
+				return false;
+			}
+
+		}
+
+		if (inp.equals("1")) {
+			Log("*DEPOSIT");
+			Log("ENTER AMOUNT: ");
+			this.dioD = true;
+			return dioD;
+		}
+
+		if (inp.equals("2")) {
+			Log("*WITHDRAW");
+			Log("ENTER AMOUNT: ");
+			this.dioW = true;
+			return dioW;
+		}
 
 		return false;
 	}
@@ -80,13 +131,10 @@ public class AccountView extends aConsoleView {
 		// refresh & comit
 
 		this.deltaBal += amt;
-		float current = as.Balance();
-		
-		
-		String query = "SELECT * FROM users WHERE email=? AND password=?";		
-		Connection connection = BankDirector.DB_Link;
-		
+		float current = as.Balance(this.deltaBal);
 
+		//String query = "SELECT * FROM users WHERE email=? AND password=?";
+		//Connection connection = BankDirector.DB_Link;
 
 		BankDirector.Accounts.update(as.Index(), as);
 	}

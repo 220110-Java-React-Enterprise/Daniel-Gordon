@@ -56,9 +56,8 @@ public class _Account extends aDataEntry {
 		this.balance = f;
 		return this.balance;
 	}
-	
-	public int Index()
-	{
+
+	public int Index() {
 		return this.dbIndex;
 	}
 
