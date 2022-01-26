@@ -31,9 +31,18 @@ public class AppUtils {
 	}
 
 	public static void ThrowFancyException(String messOut) {
+		ThrowFancyException(messOut, false);
+	}
+
+	public static void ThrowFancyException(String messOut, boolean breakIt) {
 		for (StackTraceElement ste : Thread.currentThread().getStackTrace()) {
 			Log(ste);
 		}
 		Log(messOut);
+
+		if (breakIt) {
+			System.exit(0);
+			int f = 1 / 0; // just in case lol
+		}
 	}
 }

@@ -329,7 +329,7 @@ public class BankDirector {
 			try {
 				String sql = "INSERT INTO accounts(type, balance, owner_ID, account_num) VALUES(?,?,?,?)";
 				PreparedStatement preparedStatement = DB_Link.prepareStatement(sql);
-				preparedStatement.setInt(1, entry.Type().getIndex());
+				preparedStatement.setInt(1, entry.Type());
 				preparedStatement.setFloat(2, 0f);
 				preparedStatement.setInt(3, entry.Owner());
 				preparedStatement.setInt(4, entry.hashCode());

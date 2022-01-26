@@ -15,16 +15,20 @@ import com.Rev.Core.Primitive.aSet;
 import com.Rev.Core.Primitive.Data.aDataField;
 import com.Rev.Core._Banko.BankDirector;
 import com.Rev.Core._Banko.Data._Account;
+import com.Rev.Core._Banko.Data._User;
+import com.Rev.Core._Banko.Util.StringUtils;
 
 public class UserView extends aConsoleView {
 
 	// private aMultiMap<Integer, aDataField> accountCache = new aMultiMap<Integer,
 	// aDataField>();
+	private _User logged;
 	private aSet<_Account> accountCache = new aSet<_Account>();
-	private aSet<_Account> accountPage = new aSet<_Account>();
-	private int page = 0;
-	
-	
+	// private aSet<_Account> accountPage = new aSet<_Account>();
+	// private int page = 0;
+
+	private boolean dioPicAct = false;
+
 	public UserView(ConsoleUI manager) {
 		super(manager);
 
@@ -46,8 +50,10 @@ public class UserView extends aConsoleView {
 		}
 
 		this.options.put("1", "VIEW ACCT");
-		this.options.put("1", "OPEN ACCT");
-		
+		this.options.put("2", "OPEN NEW ACCT");
+
+		this.logged = this.manager.Session.loggedAs;
+
 	}
 
 	@Override
@@ -55,15 +61,21 @@ public class UserView extends aConsoleView {
 		super.render();
 		// data
 		// input options
-		//int startInd = page*4;
-		//int pg = Math.min(4, accountPage.getSize()-startInd);
+		// int startInd = page*4;
+		// int pg = Math.min(4, accountPage.getSize()-startInd);
+
+		String nametag = "";
+		nametag += StringUtils.toName(logged.FirstName()) + " " + StringUtils.toName(logged.LastName());
+		Log("Welcome " + nametag + "!");
 		Log("Accounts: ");
 		for (int i = 0; i < accountCache.getSize(); i++) {
-			Log(accountCache.get(i));
+			Log("[" + i + "]" + accountCache.get(i));
 		}
 		Log("___________");
 		Log(this.options.toString());
 		Log("");
+
+		dioPicAct = false;
 	}
 
 	@Override
@@ -72,12 +84,30 @@ public class UserView extends aConsoleView {
 		if (super.handle(inp))
 			return true;
 
-		if(inp.equals("<"))
+		if (dioPicAct) {
+			// Log("placeholder ACCT CHOSEN: " + inp);
+			// submit
+			int i = Integer.parseInt(inp);
+			// Log(">>"+i);
+			this.pickAccount(i);
+			return true;
+		}
+
+		if (inp.equals("<"))
 			Log("[<]placeholder");
-		if(inp.equals(">"))
+		if (inp.equals(">"))
 			Log("[>]placeholder");
-		
 		if (inp.equals("1")) {
+			this.dioPicAct = true;
+		}
+
+		if (inp.equals("1")) {
+			Log("[#]CHOOSE ACCOUNT: ");
+			dioPicAct = true;
+			return dioPicAct;
+		}
+
+		if (inp.equals("2")) {
 			this.manager.Session.setView(new NewAccountForm(this.manager));
 			return true;
 		}
@@ -89,6 +119,7 @@ public class UserView extends aConsoleView {
 		// get all accounts belonging to this user via junction table
 		// get account_ids belonging to this user_id
 		// get accounts by those ids
+		this.accountCache = new aSet<_Account>();
 		Connection connection = BankDirector.DB_Link;
 		String query = "SELECT * FROM accounts WHERE owner_ID=?";
 		try {
@@ -97,14 +128,14 @@ public class UserView extends aConsoleView {
 			ResultSet rs = pst.executeQuery();
 
 			while (rs.next()) {
-				//Log("--------"); // so account gets properly, now append them all
+				// Log("--------"); // so account gets properly, now append them all
 				int u_id = rs.getInt("owner_id");
 				int type = rs.getInt("type");
 				float bal = rs.getFloat("balance");
 				int actnum = rs.getInt("account_num");
-				_Account acct = new _Account(u_id,type,bal,actnum);
+				_Account acct = new _Account(u_id, type, bal, actnum);
 				this.accountCache.append(acct);
-				//Log("--------" + acct);
+				// Log("--------" + acct);
 			}
 
 		} catch (SQLException e) {
@@ -112,11 +143,14 @@ public class UserView extends aConsoleView {
 		}
 	}
 
-	public void alterFunds(float amount) {
-		// CRUD update
-		// if field not null && not " ";
+	private void pickAccount(int index) {
+		this.manager.Session.setView(new AccountView(this.manager, this.accountCache.get(index)));
 	}
 
-
+	@Override
+	public void clear() {
+		super.clear();
+		this.accountCache.clear();
+	}
 
 }

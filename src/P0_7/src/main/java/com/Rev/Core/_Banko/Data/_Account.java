@@ -8,32 +8,25 @@ import com.Rev.Core._Banko.Util.StringUtils;
 public class _Account extends aDataEntry {
 
 	protected int ownerIndex;
-	protected AccountType type;
+	protected int type;
 
 	protected float balance = 0f;
 	protected int AcctNum;
 
+	private boolean debug = true;
 	protected int dbIndex; // index of this account in DB_Table
 
 	public _Account(int ownerID, int type) {
 		super("Account", aDataType.OBJ);
 		this.ownerIndex = ownerID;
-		int t = type % 1;
-		if (t == 0)
-			this.type = AccountType.C;
-		else
-			this.type = AccountType.S;
+		this.type = type;
 		this.balance = 0f;
 	}
 
 	public _Account(int ownerID, int type, float balance, int acctnum) {
 		super("Account", aDataType.OBJ);
 		this.ownerIndex = ownerID;
-		int t = type % 1;
-		if (t == 0)
-			this.type = AccountType.C;
-		else
-			this.type = AccountType.S;
+		this.type = type;
 		this.balance = balance;
 		this.AcctNum = acctnum;
 	}
@@ -42,7 +35,7 @@ public class _Account extends aDataEntry {
 		return this.ownerIndex;
 	}
 
-	public AccountType Type() {
+	public int Type() {
 		return this.type;
 	}
 
@@ -53,7 +46,13 @@ public class _Account extends aDataEntry {
 	@Override
 	public String toString() {
 
-		String s = "[" + this.type.getName() + " #" + this.AcctNum + " | " + StringUtils.toMoney(balance) + "]";
+		String typeName = "";
+		if (type == 0)
+			typeName += "Checking";
+		else
+			typeName += "Savings";
+
+		String s = "[" + typeName + " #" + this.AcctNum + " | " + StringUtils.toMoney(balance) + "]";
 		return s;
 	}
 
@@ -68,29 +67,6 @@ public class _Account extends aDataEntry {
 
 	protected void crebit(float amt) {
 		this.balance += amt;
-	}
-
-	public static enum AccountType {
-		C(0, "Checking"), S(1, "Savings");
-
-		private final int index;
-		private final String name;
-
-		private AccountType(int typeIndex, String typeName) {
-			this.index = typeIndex;
-			this.name = typeName;
-
-		}
-
-		public int getIndex() {
-			return this.index;
-		}
-
-		public String getName() {
-			return this.name;
-		}
-
-		/////
 	}
 
 }

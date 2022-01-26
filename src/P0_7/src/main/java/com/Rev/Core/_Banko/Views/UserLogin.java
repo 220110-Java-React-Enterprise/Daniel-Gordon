@@ -113,7 +113,6 @@ public class UserLogin extends aConsoleView {
 			pst.setString(2, Password);
 
 			ResultSet rs = pst.executeQuery();
-			// Log(rs.getFetchSize());
 			Log();
 
 			int u_id = -1;
@@ -124,7 +123,7 @@ public class UserLogin extends aConsoleView {
 
 			while (rs.next()) {
 				i++;
-				Log("--[" + rs.getInt(1) + "]" + rs.getString("email")); // accout got
+				Log("--[" + rs.getInt(1) + "]" + rs.getString("email") + " " + rs.getString("password")); // accout got
 				u_id = (rs.getInt("user_ID"));
 				fn = (rs.getString("first_name"));
 				ln = (rs.getString("last_name"));

@@ -52,6 +52,7 @@ public class NewAccountForm extends aConsoleView {
 		if (inp.equals("1"))
 			selectedType = !selectedType;
 		
+		setActTp();
 		if (inp.equals(".") || inp.equals("") || inp.equals(" ") || inp.equals("SUBMIT") || inp == null) {
 			Log("TRY SUBMIT>");
 			this.submit();			
@@ -60,6 +61,14 @@ public class NewAccountForm extends aConsoleView {
 		
 
 		return false;
+	}
+	
+	private void setActTp()
+	{
+		if(this.selectedType)
+			type =0;
+		else
+			type =1;
 	}
 	
 	private void submit()

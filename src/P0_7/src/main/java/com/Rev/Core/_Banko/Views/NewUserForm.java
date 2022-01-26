@@ -84,7 +84,7 @@ public class NewUserForm extends aConsoleView {
 				this.Email = inp;
 			else {
 				this.inputInvalid = true;
-				// ThrowFancyException("INVALID EMAIL"); // exceptions are for nerds lol
+				ThrowFancyException(" >>INVALID EMAIL<<"); // exceptions are for nerds lol
 				return false;
 			}
 		}
