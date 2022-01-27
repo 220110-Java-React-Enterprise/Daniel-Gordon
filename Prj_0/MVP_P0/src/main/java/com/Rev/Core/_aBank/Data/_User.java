@@ -1,4 +1,4 @@
-package com.Rev.Core._Banko.Data;
+package com.Rev.Core._aBank.Data;
 
 import static com.Rev.Core.AppUtils.*;
 
@@ -11,8 +11,8 @@ import java.sql.SQLException;
 import com.Rev.Core.Primitive.aList;
 import com.Rev.Core.Primitive.Data.aDataEntry;
 import com.Rev.Core.Util.StringUtils;
-import com.Rev.Core._Banko.BankDirector;
-import com.Rev.Core._Banko.BankDirector.UserManager;
+import com.Rev.Core._aBank.BankDirector;
+import com.Rev.Core._aBank.BankDirector.UserManager;
 
 public class _User extends aDataEntry {
 

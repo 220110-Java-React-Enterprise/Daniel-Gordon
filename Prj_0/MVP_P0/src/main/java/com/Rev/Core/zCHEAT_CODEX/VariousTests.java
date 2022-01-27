@@ -88,7 +88,7 @@ public class VariousTests {
 
 		L.insert(42, 1);
 		L.remove(0);
-		L.set(0, 100);
+		L.setAt(0, 100);
 
 		// L.clear();
 	}
@@ -102,7 +102,7 @@ public class VariousTests {
 		LL.append(666);
 		LL.remove(2);
 		LL.insert(13, 3);
-		LL.set(0, 100);
+		LL.setAt(0, 100);
 
 		// logTestLinkedList();
 		// Log(">> " + LL.get(4));

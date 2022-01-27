@@ -95,7 +95,7 @@ public class aLinkedList<T> implements iCollection<T> {
 
 	// overwrites data in the node @index -> to
 	@Override
-	public void set(int at, T to) {
+	public void setAt(int at, T to) {
 		if (at < this.getSize()) {
 			aNode N = (aNode) this.get(at);
 			N.set(to);

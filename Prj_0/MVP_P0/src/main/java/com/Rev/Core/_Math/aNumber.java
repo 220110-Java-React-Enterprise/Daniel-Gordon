@@ -11,6 +11,7 @@ public class aNumber extends Number {
 
 	// a while back, i got tired of having to BS with different types of numbers while working with vecgtor gfx
 	// for some reason, math people use the word 'fundamental' when they should use 'nominal' lolol
+	// pay this no mind, its just here in case I were to have need of it later;
 
 	@Override
 	public int intValue() {

@@ -1,20 +1,22 @@
 package com.Rev.Core._Math;
 
+import static com.Rev.Core.AppUtils.*;
+
 import java.util.Iterator;
 
 import static com.Rev.Core._Math.A_I.N_Resolver.*;
 
 import com.Rev.Core.Primitive.aList;
 import com.Rev.Core.Primitive.A_I.iCollection;
+import com.Rev.Core._Math.A_I.N_Operator;
 import com.Rev.Core._Math.A_I.N_Resolver;
 
 public class aVector<N extends Number> extends aNumber
 		implements Iterable<Number>, Comparable<Number>, iCollection<Number> {
 	public aList<Number> elements;
 
-	
-	//i figured i'd try and redo my universal number vector with my list impl
-	
+	// i figured i'd try and redo my N-Vector with my list impl
+
 	public aVector() {
 		this(0f);
 	}
@@ -59,9 +61,30 @@ public class aVector<N extends Number> extends aNumber
 	}
 
 	@Override
-	public void set(int at, Number to) {
-		this.elements.set(at, to);
+	public void setAt(int at, Number to) {
 
+		if (at >= this.getSize())
+			this.append(to);
+		else
+			this.elements.setAt(at, to);
+	}
+
+	public aVector set(Number... values) {
+		this.clear();
+		for (int i = 0; i < values.length; i++) {
+			this.append(values);
+		}
+		return this;
+	}
+
+	public aVector set(aVector to) {
+		this.clear();
+		for (Object n : to.elements)
+			for (int i = 0; i < to.getSize(); i++) {
+				// this.append(to.get(i));
+				this.setAt(i, to.get(i));
+			}
+		return this;
 	}
 
 	@Override
@@ -77,7 +100,10 @@ public class aVector<N extends Number> extends aNumber
 
 	@Override
 	public void clear() {
-		this.elements.clear();
+		if (this.elements == null)
+			this.elements = new aList<Number>();
+		else
+			this.elements.clear();
 		this.append(0);
 	}
 
@@ -133,13 +159,55 @@ public class aVector<N extends Number> extends aNumber
 
 	}
 
-	public aVector add(aVector other) {
-		// base on longer vector
-		int l = this.getSize();
-		for (int i = 0; i < l; i++) {
+	public static void main(String... args) {
+		aVector a = new aVector(1, 2, 3, 4, 5);
+		aVector b = new aVector(6, 7, 8);
 
+		Log("a= " + a);
+		Log("b= " + b);
+		Log();
+		Log("(a+b)=" + a.cpy().add(b.cpy()));
+		Log("(b+a)=" + b.cpy().add(a.cpy()));
+	}
+
+	public aVector cpy() {
+		return new aVector().set(this);
+	}
+
+	public aVector add(aVector other) {
+		if (this.isEmpty())
+			return this.set(other);
+
+		Number type = this.get(0);
+
+		for (int i = 0; i < this.getSize(); i++) {
+			Number nxt = 0;
+			Number to = 0;
+			if (i > other.getSize() - 1)
+				nxt = resolveTo(type, 0);
+			else
+				nxt = resolveTo(type, other.get(i));
+			to = N_Operator.add(this.get(i), nxt);
+			this.setAt(i, to);
 		}
 
 		return this;
+
+		// OPTION A, retain size & add congruent values
+		// (1,2,3,4,5) <- this
+		// +
+		// (6,7,8) <-other, fills missing elements with 0 >: (6,7,8)0,0)
+		// ___________
+		// (7,9,11,4,5)
+		/////////////////
+		// (6,7,8) <-this
+		// +
+		// (1,2,3,4,5) <-other
+		// ___________
+		// (7,9,11)
+		//
+		// OPTION B, append 0s to missing dimensions
+		// so ((7,8,9)4,5)
+
 	}
 }

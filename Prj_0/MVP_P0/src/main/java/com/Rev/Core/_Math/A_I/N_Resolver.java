@@ -8,6 +8,9 @@ public class N_Resolver {
 
 	public static Number resolveTo(Number n, Number Z) {
 		// basically converts Z to type n, float to int rounds
+		if(n==null || Z == null)
+			return Float.NaN;
+		
 		return N_Operator.add(N_Operator.mul(N_Resolver.resolve(n), 0), Z);
 	}
 

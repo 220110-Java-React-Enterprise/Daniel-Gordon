@@ -1,4 +1,4 @@
-package com.Rev.Core._Banko.Views;
+package com.Rev.Core._aBank.Views;
 
 import static com.Rev.Core.AppUtils.Log;
 import static com.Rev.Core.AppUtils.ThrowFancyException;
@@ -10,9 +10,9 @@ import com.Rev.Core.Console.ConsoleUI;
 import com.Rev.Core.Console.UI.aConsoleView;
 import com.Rev.Core.Primitive.aMap;
 import com.Rev.Core.Util.StringUtils;
-import com.Rev.Core._Banko.BankDirector;
-import com.Rev.Core._Banko.Data._Account;
 import com.Rev.Core._Math.Maths;
+import com.Rev.Core._aBank.BankDirector;
+import com.Rev.Core._aBank.Data._Account;
 
 public class AccountView extends aConsoleView {
 

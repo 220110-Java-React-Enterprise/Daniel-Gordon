@@ -1,4 +1,4 @@
-package com.Rev.Core._Banko.Views;
+package com.Rev.Core._aBank.Views;
 
 import static com.Rev.Core.AppUtils.*;
 
@@ -12,8 +12,8 @@ import com.Rev.Core.AppUtils;
 import com.Rev.Core.Console.ConsoleUI;
 import com.Rev.Core.Console.UI.aConsoleView;
 import com.Rev.Core.Util.StringUtils;
-import com.Rev.Core._Banko.BankDirector;
-import com.Rev.Core._Banko.Data._User;
+import com.Rev.Core._aBank.BankDirector;
+import com.Rev.Core._aBank.Data._User;
 
 public class NewUserForm extends aConsoleView {
 

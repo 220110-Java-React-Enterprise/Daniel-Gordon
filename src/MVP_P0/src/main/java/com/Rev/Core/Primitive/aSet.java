@@ -77,7 +77,7 @@ public class aSet<T> implements iCollection<T> {
 	}
 
 	//set at index
-	public void set(int atIndex, T entry) {
+	public void setAt(int atIndex, T entry) {
 		if (atIndex <= this.getSize())
 			this.data[atIndex] = entry;
 	}

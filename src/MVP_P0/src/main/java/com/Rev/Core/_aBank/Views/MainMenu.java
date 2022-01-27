@@ -1,4 +1,4 @@
-package com.Rev.Core._Banko.Views;
+package com.Rev.Core._aBank.Views;
 
 import static com.Rev.Core.AppUtils.*;
 import java.awt.*;

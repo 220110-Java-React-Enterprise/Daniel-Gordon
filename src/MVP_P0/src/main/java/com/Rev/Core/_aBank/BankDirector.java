@@ -1,4 +1,4 @@
-package com.Rev.Core._Banko;
+package com.Rev.Core._aBank;
 
 import static com.Rev.Core.AppUtils.*;
 
@@ -17,9 +17,9 @@ import java.util.Properties;
 import com.Rev.Core.Primitive.aList;
 import com.Rev.Core.Primitive.aMultiMap;
 import com.Rev.Core.Primitive.aSet;
-import com.Rev.Core._Banko.Data._Account;
-import com.Rev.Core._Banko.Data._User;
-import com.Rev.Core._Banko.Data.iDataCRUD;
+import com.Rev.Core._aBank.Data._Account;
+import com.Rev.Core._aBank.Data._User;
+import com.Rev.Core._aBank.Data.iDataCRUD;
 
 public class BankDirector {
 
@@ -41,6 +41,12 @@ public class BankDirector {
 		DB_Link = getOrCreate();
 	}
 
+	// if (DB exists on this connection)-> getIt;~ else -> createIt;
+	// if creatIt -> fillDataTables;
+	// //need to add in check by table instead of just isEmpty;
+	// :~:that means: if(!isEmpty)-> getTableNames,
+	// determine which one(s) am missing, run its associated fill method
+	// //need to flesh out aDataTable; change it to _DataTable...?
 	public static Connection getOrCreate() {
 		Connection connection = null;
 		// get

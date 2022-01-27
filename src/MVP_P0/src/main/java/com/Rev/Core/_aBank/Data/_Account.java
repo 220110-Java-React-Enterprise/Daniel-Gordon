@@ -1,4 +1,4 @@
-package com.Rev.Core._Banko.Data;
+package com.Rev.Core._aBank.Data;
 
 import static com.Rev.Core.Primitive.Data.aDataField.*;
 

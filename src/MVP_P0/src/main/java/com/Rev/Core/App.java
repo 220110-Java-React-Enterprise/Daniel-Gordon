@@ -6,7 +6,7 @@ import com.Rev.Core.Console.Console;
 import com.Rev.Core.Console.ConsoleUI;
 import com.Rev.Core.Console.UI.iConsoleListener;
 import com.Rev.Core.Primitive.A_I.iCollection;
-import com.Rev.Core._Banko.BankDirector;
+import com.Rev.Core._aBank.BankDirector;
 
 public class App implements iConsoleListener {
 

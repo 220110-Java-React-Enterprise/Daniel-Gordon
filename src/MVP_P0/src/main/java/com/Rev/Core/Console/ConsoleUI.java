@@ -8,7 +8,7 @@ import com.Rev.Core.Console.UI.iConsoleListener;
 import com.Rev.Core.Primitive.aLinkedList;
 import com.Rev.Core.Primitive.aSet;
 import com.Rev.Core.Primitive.A_I.iCollection;
-import com.Rev.Core._Banko.Views.MainMenu;
+import com.Rev.Core._aBank.Views.MainMenu;
 
 public class ConsoleUI implements iConsoleListener {
 

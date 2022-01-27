@@ -10,7 +10,7 @@ public interface iCollection<E> extends Iterable<E> {
 
 	public void insert(E entry, int atIndex);// insert entry @index, shifts others down
 
-	public void set(int at, E to); // replace item @index with E to
+	public void setAt(int at, E to); // replace item @index with E to
 
 	public E get(int index); // returns item @index
 

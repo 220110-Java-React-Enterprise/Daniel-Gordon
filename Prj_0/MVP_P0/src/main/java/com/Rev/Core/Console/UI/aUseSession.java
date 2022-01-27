@@ -6,7 +6,7 @@ import com.Rev.Core.App;
 import com.Rev.Core.Console.ConsoleUI;
 import com.Rev.Core.Primitive.aLinkedList;
 import com.Rev.Core.Primitive.A_I.iCollection;
-import com.Rev.Core._Banko.Data._User;
+import com.Rev.Core._aBank.Data._User;
 
 public class aUseSession implements iConsoleListener {
 

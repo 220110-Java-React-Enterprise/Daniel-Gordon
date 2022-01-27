@@ -40,23 +40,23 @@ public class ChangeMarching {
 			if (Maths.round(amtLeft, 2) >= Maths.round(denominations.get("Dollar"), 2)) {
 				amtLeft -= Maths.round(denominations.get("Dollar"), 2);
 				int i = result.get(0).intValue() + 1;
-				result.set(0, i);
+				result.setAt(0, i);
 			} else if (Maths.round(amtLeft, 2) >= Maths.round(denominations.get("Quarter"), 2)) {
 				amtLeft -= Maths.round(denominations.get("Quarter"), 2);
 				int i = result.get(1).intValue() + 1;
-				result.set(1, i);
+				result.setAt(1, i);
 			} else if (Maths.round(amtLeft, 2) >= Maths.round(denominations.get("Dime"), 2)) {
 				amtLeft -= Maths.round(denominations.get("Dime"), 2);
 				int i = result.get(2).intValue() + 1;
-				result.set(2, i);
+				result.setAt(2, i);
 			} else if (Maths.round(amtLeft, 2) >= Maths.round(denominations.get("Nickle"), 2)) {
 				amtLeft -= Maths.round(denominations.get("Nickle"), 2);
 				int i = result.get(3).intValue() + 1;
-				result.set(3, i);
+				result.setAt(3, i);
 			} else if (Maths.round(amtLeft, 2) >= Maths.round(denominations.get("Penny"), 2)) {
 				amtLeft -= Maths.round(denominations.get("Penny"), 2);
 				int i = result.get(4).intValue() + 1;
-				result.set(4, i);
+				result.setAt(4, i);
 			}
 
 		}

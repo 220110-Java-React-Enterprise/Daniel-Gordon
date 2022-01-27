@@ -23,8 +23,8 @@ public class BubbleSorter {
 			for (int j = 1; j < (subject.getSize() - i); j++) {
 				if (subject.get(j - 1) > subject.get(j)) {
 					tmp = subject.get(j - 1);
-					subject.set((j - 1), subject.get(j));
-					subject.set(j, tmp);
+					subject.setAt((j - 1), subject.get(j));
+					subject.setAt(j, tmp);
 				}
 
 			}
@@ -38,8 +38,8 @@ public class BubbleSorter {
 			for (int j = 1; j < (subject.getSize() - i); j++) {
 				if (subject.get(j - 1) < subject.get(j)) {
 					tmp = subject.get(j - 1);
-					subject.set((j - 1), subject.get(j));
-					subject.set(j, tmp);
+					subject.setAt((j - 1), subject.get(j));
+					subject.setAt(j, tmp);
 				}
 
 			}

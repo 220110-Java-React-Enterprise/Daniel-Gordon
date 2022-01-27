@@ -76,7 +76,7 @@ public class aList<T> implements iCollection<T> {
 
 	}
 
-	public void set(int atIndex, T entry) {
+	public void setAt(int atIndex, T entry) {
 		if (atIndex <= this.getSize())
 			this.data[atIndex] = entry;
 	}
