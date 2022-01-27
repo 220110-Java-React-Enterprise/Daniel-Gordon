@@ -1,15 +1,16 @@
 # Daniel-Gordon
 [Project_0]  
-*MainLoop;  
-*Console Input;  
-*Menu Navigation;  
-*DB created, Accounts,Users,Accounts_Users tables (Sqlite/MariaDB);  
-*-AddNewUser, (!AddNewAccount)  
-*Basic DataStructs{ArrayList, LinkedList, Stack, Map, MultiMap};
+* MainLoop;  
+* Console Input;  
+* Menu Navigation;  
+* DB created, Acounts & Users tables (Sqlite || MariaDB & AWS);
+* Basic User & Account interacton;
+* Basic DataStructs {ArrayList, LinkedList, Map, MultiMap, Node};
 
 
-TO-DO:  
--Nodify UI scenes  
--fill DB tables  
--Console-DB interactions  
--TreeMap
+
+TODO 
+- Account-Account & User-User interaction;
+- Case-sensitivity;
+- Proper navigation pathing;
+- More robust missing table checking
