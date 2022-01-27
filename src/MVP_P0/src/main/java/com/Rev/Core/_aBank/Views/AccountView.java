@@ -140,7 +140,7 @@ public class AccountView extends aConsoleView {
 
 		this.deltaBal += amt;
 		float current = as.Balance(as.Balance() + deltaBal);
-
+		this.deltaBal = 0;
 		BankDirector.Accounts.update(as.Index(), as);
 	}
 

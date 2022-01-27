@@ -25,10 +25,12 @@ public class aList<T> implements iCollection<T> {
 		}
 	}
 
+	//grows array by
 	protected void grow(int by) {
 		data = Arrays.copyOf(data, data.length + by);
 	}
 
+	//set backing array to size toCap
 	protected void sizeTo(int toCap) {
 		data = Arrays.copyOf(data, toCap);
 	}
