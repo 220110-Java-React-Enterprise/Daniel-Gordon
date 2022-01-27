@@ -12,4 +12,4 @@
 TODO 
 - Account-Account & User-User interaction;
 - Case-sensitivity;
-- Impl proper navigation pathing;
+- Proper navigation pathing;
