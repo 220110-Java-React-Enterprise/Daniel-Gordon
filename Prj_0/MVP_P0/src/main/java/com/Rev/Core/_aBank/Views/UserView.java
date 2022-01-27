@@ -89,7 +89,6 @@ public class UserView extends aConsoleView {
 			return true;
 
 		if (dioPicAct) {
-
 			if (!StringUtils.validAmount(inp))
 				return false;
 
@@ -97,6 +96,9 @@ public class UserView extends aConsoleView {
 			// int i = Integer.parseInt(inp);
 			// Log(">>"+i);
 			float f = Float.parseFloat(inp);
+			if ((int) f > this.accountCache.getSize() || (int) f < 0)
+				return false;
+
 			this.pickAccount((int) f);
 			return true;
 		}

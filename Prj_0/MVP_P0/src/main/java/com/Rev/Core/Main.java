@@ -13,8 +13,8 @@ import com.Rev.Core.Primitive.Data.aDataField;
 public class Main {
 
 	public static App Main;
-	
-	//entreport
+
+	// entreport
 	public static void main(String[] args) {
 		Log("---");
 		//

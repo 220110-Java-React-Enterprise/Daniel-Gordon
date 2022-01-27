@@ -131,7 +131,7 @@ public class AccountView extends aConsoleView {
 	}
 
 	public void withdraw(float amt) {
-		this.crebit(-Math.abs(amt));
+		this.crebit(-(Math.abs(amt)));
 	}
 
 	private void crebit(float amt) {
@@ -139,7 +139,7 @@ public class AccountView extends aConsoleView {
 		// refresh & comit
 
 		this.deltaBal += amt;
-		float current = as.Balance(this.deltaBal);
+		float current = as.Balance(as.Balance() + deltaBal);
 
 		BankDirector.Accounts.update(as.Index(), as);
 	}

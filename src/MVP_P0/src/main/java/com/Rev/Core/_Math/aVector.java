@@ -156,10 +156,25 @@ public class aVector<N extends Number> extends aNumber
 
 	//////
 	private void ___OPERATORS______() {
-
+		// OPTION A, retain size & add congruent values
+		// (1,2,3,4,5) <- this
+		// +
+		// (6,7,8) <-other, fills missing elements with 0 >: (6,7,8)0,0)
+		// ___________
+		// (7,9,11,4,5)
+		/////////////////
+		// (6,7,8) <-this
+		// +
+		// (1,2,3,4,5) <-other
+		// ___________
+		// (7,9,11)
+		//
+		// OPTION B, append 0s to missing dimensions
+		// so ((7,8,9)4,5)
 	}
 
-	public static void main(String... args) {
+	// remove _ to run as main
+	public static void main_(String... args) {
 		aVector a = new aVector(1, 2, 3, 4, 5);
 		aVector b = new aVector(6, 7, 8);
 
@@ -190,24 +205,122 @@ public class aVector<N extends Number> extends aNumber
 			to = N_Operator.add(this.get(i), nxt);
 			this.setAt(i, to);
 		}
+		return this;
+	}
+
+	public aVector add(Number other) {
+		if (this.isEmpty())
+			return this.set(other);
+
+		Number type = this.get(0);
+
+		for (int i = 0; i < this.getSize(); i++) {
+			Number n = this.get(i);
+			Number to = N_Operator.add(n, resolveTo(type, other));
+			this.setAt(i, to);
+		}
+		return this;
+	}
+
+	public aVector sub(aVector other) {
+		if (this.isEmpty())
+			return this.set(other);
+
+		Number type = this.get(0);
+
+		for (int i = 0; i < this.getSize(); i++) {
+			Number nxt = 0;
+			Number to = 0;
+			if (i > other.getSize() - 1)
+				nxt = resolveTo(type, 0);
+			else
+				nxt = resolveTo(type, other.get(i));
+			to = N_Operator.sub(this.get(i), nxt);
+			this.setAt(i, to);
+		}
 
 		return this;
+	}
 
-		// OPTION A, retain size & add congruent values
-		// (1,2,3,4,5) <- this
-		// +
-		// (6,7,8) <-other, fills missing elements with 0 >: (6,7,8)0,0)
-		// ___________
-		// (7,9,11,4,5)
-		/////////////////
-		// (6,7,8) <-this
-		// +
-		// (1,2,3,4,5) <-other
-		// ___________
-		// (7,9,11)
-		//
-		// OPTION B, append 0s to missing dimensions
-		// so ((7,8,9)4,5)
+	public aVector sub(Number other) {
+		if (this.isEmpty())
+			return this.set(other);
 
+		Number type = this.get(0);
+
+		for (int i = 0; i < this.getSize(); i++) {
+			Number n = this.get(i);
+			Number to = N_Operator.sub(n, resolveTo(type, other));
+			this.setAt(i, to);
+		}
+		return this;
+	}
+
+	public aVector mul(aVector other) {
+		if (this.isEmpty())
+			return this.set(other);
+
+		Number type = this.get(0);
+
+		for (int i = 0; i < this.getSize(); i++) {
+			Number nxt = 0;
+			Number to = 0;
+			if (i > other.getSize() - 1)
+				nxt = resolveTo(type, 0);
+			else
+				nxt = resolveTo(type, other.get(i));
+			to = N_Operator.mul(this.get(i), nxt);
+			this.setAt(i, to);
+		}
+
+		return this;
+	}
+
+	public aVector mul(Number other) {
+		if (this.isEmpty())
+			return this.set(other);
+
+		Number type = this.get(0);
+
+		for (int i = 0; i < this.getSize(); i++) {
+			Number n = this.get(i);
+			Number to = N_Operator.mul(n, resolveTo(type, other));
+			this.setAt(i, to);
+		}
+		return this;
+	}
+
+	public aVector div(aVector other) {
+		if (this.isEmpty())
+			return this.set(other);
+
+		Number type = this.get(0);
+
+		for (int i = 0; i < this.getSize(); i++) {
+			Number nxt = 0;
+			Number to = 0;
+			if (i > other.getSize() - 1)
+				nxt = resolveTo(type, 0);
+			else
+				nxt = resolveTo(type, other.get(i));
+			to = N_Operator.div(this.get(i), nxt);
+			this.setAt(i, to);
+		}
+
+		return this;
+	}
+
+	public aVector div(Number other) {
+		if (this.isEmpty())
+			return this.set(other);
+
+		Number type = this.get(0);
+
+		for (int i = 0; i < this.getSize(); i++) {
+			Number n = this.get(i);
+			Number to = N_Operator.div(n, resolveTo(type, other));
+			this.setAt(i, to);
+		}
+		return this;
 	}
 }
