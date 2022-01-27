@@ -4,12 +4,12 @@
 * Console Input;  
 * Menu Navigation;  
 * DB created, Acounts & Users tables (Sqlite || MariaDB & AWS);
-* Basic User & Account interacton
-* Basic DataStructs{ArrayList, LinkedList, Map, MultiMap, Node};
+* Basic User & Account interacton;
+* Basic DataStructs {ArrayList, LinkedList, Map, MultiMap, Node};
 
 
 
 TODO 
-- Account-Account & User-User interaction
-- Case-sensitivity
-- Impl proper navigation pathing
+- Account-Account & User-User interaction;
+- Case-sensitivity;
+- Impl proper navigation pathing;
