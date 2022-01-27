@@ -49,7 +49,7 @@ public class UserLogin extends aConsoleView {
 			apOpA = "*";
 		if (this.dioPW)
 			apOpB = "*";
-		// ^none of this * marking shit works right lol
+		// ^none of this * marking $#!% works right lol
 
 		Log(this.options.toString());
 		Log(apOpA + "EMAIL: " + this.Email);
@@ -64,8 +64,9 @@ public class UserLogin extends aConsoleView {
 	@Override
 	public boolean handle(String inp) {
 
-		if (super.handle(inp))
-			return true;
+		if (!dioEM && !dioPW)
+			if (super.handle(inp))
+				return true;
 
 		if (dioEM)
 			this.Email = inp;

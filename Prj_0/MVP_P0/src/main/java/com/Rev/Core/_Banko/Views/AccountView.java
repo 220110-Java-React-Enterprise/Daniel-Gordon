@@ -12,6 +12,7 @@ import com.Rev.Core.Primitive.aMap;
 import com.Rev.Core.Util.StringUtils;
 import com.Rev.Core._Banko.BankDirector;
 import com.Rev.Core._Banko.Data._Account;
+import com.Rev.Core._Math.Maths;
 
 public class AccountView extends aConsoleView {
 
@@ -43,11 +44,12 @@ public class AccountView extends aConsoleView {
 		// super.init();
 		this.options = new aMap<String, String>();
 		this.options.put("^", "OUT");
+		this.options.put("<", "BACK");
 		this.options.put("X", "EXIT");
 
 		this.options.put("1", "DEPOSIT");
 		this.options.put("2", "WITHDRAW");
-		// this.options.put("2", "CLOSE ACCT"); //call customer service for that lol
+		// this.options.put("2", "CLOSE ACCT"); //call customer service for that
 
 	}
 
@@ -74,13 +76,14 @@ public class AccountView extends aConsoleView {
 	@Override
 	public boolean handle(String inp) {
 
-		if (super.handle(inp))
-			return true;
+		if (!dioD && !dioW)
+			if (super.handle(inp))
+				return true;
 
 		if (dioD) {
 			if (StringUtils.validAmount(inp)) {
 				float f = Float.parseFloat(inp);
-				this.deposit(f);
+				this.deposit(Maths.round(f, 2));
 			} else {
 				this.inputInvalid = true;
 				ThrowFancyException(" >>INVALID AMOUNT<<");

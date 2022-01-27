@@ -115,7 +115,7 @@ public class BankDirector {
 		Connection connection = null;
 		try {
 			Properties props = new Properties();
-			//FileReader fr = new FileReader("src/main/resources/jdbcLOCAL.properties");
+			// FileReader fr = new FileReader("src/main/resources/jdbcLOCAL.properties");
 			FileReader fr = new FileReader("src/main/resources/jdbc.properties");
 			props.load(fr);
 			Log(props);
@@ -226,17 +226,14 @@ public class BankDirector {
 	}
 
 	////////
-	private void _DEBUG_TEST_() {
-		// add table names to jdbc.properties? cache as TableManifest?
+	private void _DB_SETUPSTUFF() {
+		// currently, only creates tables if whole DB empty
+		// to reset, delete all tables and run from scratch
+		// quick n dirty
 
-		// while (rs.next()) {
-		// int id = rs.getInt("users_id");
-		// String name = rs.getString("first_name") + " " + rs.getString("last_name");
-
-		// Log(id + " " + name);
-		// }
 	}
 
+	//
 	private static void _CreateAccountsTable(Connection connection) {
 		Log("_Filling[Accounts]");
 		try {
@@ -292,6 +289,7 @@ public class BankDirector {
 		}
 	}
 
+	// unused atm
 	private static void _CreateAccounts_UsersTable(Connection connection) {
 		Log("_Filling[Accounts_Customers]");
 		try {
@@ -322,6 +320,7 @@ public class BankDirector {
 
 	}
 
+	// thing what does CRUD ops on/for/to _Accounts
 	public static class AccountManager implements iDataCRUD<_Account> {
 
 		@Override
@@ -376,9 +375,10 @@ public class BankDirector {
 		public void update(int at, _Account entry) {
 			try {
 				String sql = "UPDATE accounts SET balance = ? WHERE account_id = ?";
-				
+
 				PreparedStatement preparedStatement = DB_Link.prepareStatement(sql);
-				preparedStatement.setObject(1, entry.Balance());;
+				preparedStatement.setObject(1, entry.Balance());
+				;
 				preparedStatement.setInt(2, at);
 
 				preparedStatement.executeUpdate();
@@ -403,6 +403,7 @@ public class BankDirector {
 
 	}
 
+	// thing what does CRUD ops on/for/to _Users
 	public static class UserManager implements iDataCRUD<_User> {
 
 		@Override

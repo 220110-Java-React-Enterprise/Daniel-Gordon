@@ -12,8 +12,8 @@ import com.Rev.Core.Primitive.A_I.iDisposable;
 
 public abstract class aConsoleView extends aNode<aConsoleView> implements iConsoleListener, iDisposable {
 
-	//a UI frame, some default navigation options built-in
-	
+	// a UI frame, some default navigation options built-in
+
 	protected ConsoleUI manager;
 	protected aMap<String, String> options;// temporary
 
@@ -24,11 +24,11 @@ public abstract class aConsoleView extends aNode<aConsoleView> implements iConso
 
 	}
 
-	//fill widgets
+	// fill widgets
 	public void init() {
 		if (manager.Session.Previous != null)
 			this.options.put("<", "BACK");
-		
+
 		this.options = new aMap<String, String>();
 		this.options.put("^", "OUT");
 		this.options.put("X", "EXIT");
@@ -52,7 +52,8 @@ public abstract class aConsoleView extends aNode<aConsoleView> implements iConso
 		return false;
 	}
 
-	//used in conjunction with input. Override this to actually perform the logic intended from an input event
+	// used in conjunction with input. Override this to actually perform the logic
+	// intended from an input event
 	protected boolean handle(String inp) {
 		if (inp.toUpperCase().equals("X") || inp.toUpperCase().equals("EXIT")) {
 			App.AppConsole.input("SHELL:TERMINATE");
@@ -72,14 +73,15 @@ public abstract class aConsoleView extends aNode<aConsoleView> implements iConso
 		return false;
 	}
 
-	// print to IDE console. 
+	// iRenderer:Runnable lol
+	// print to IDE console.
 	public void render() {
 		Page();
 		// Log(this.options.toString());
 		// Log("[" + this.getClass().getSimpleName() + "]");
 	}
 
-	//sub-subscribers. could be useful if this were a proper scene-graph
+	// sub-subscribers. could be useful if this were a proper scene-graph
 	@Override
 	public iCollection<iConsoleListener> getSubscribers() {
 		// bubbles through members
@@ -95,6 +97,9 @@ public abstract class aConsoleView extends aNode<aConsoleView> implements iConso
 		this.render();
 	}
 
+	// quit complaining and just write it. 
+	// its worth waiting 0.001 more seconds 
+	// for your $#!% to properly terminate
 	public void dispose() {
 		this.options.clear();
 	}

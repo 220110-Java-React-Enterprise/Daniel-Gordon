@@ -94,9 +94,10 @@ public class UserView extends aConsoleView {
 				return false;
 
 			// submit
-			int i = Integer.parseInt(inp);
+			// int i = Integer.parseInt(inp);
 			// Log(">>"+i);
-			this.pickAccount(i);
+			float f = Float.parseFloat(inp);
+			this.pickAccount((int) f);
 			return true;
 		}
 

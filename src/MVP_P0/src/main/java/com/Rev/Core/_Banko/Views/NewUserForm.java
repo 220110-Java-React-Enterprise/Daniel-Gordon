@@ -29,6 +29,7 @@ public class NewUserForm extends aConsoleView {
 	private boolean dioPW = false;
 
 	private boolean inputInvalid = false;
+	private String specificMessageLol = "*INVALID INPUT <<<";
 
 	public NewUserForm(ConsoleUI manager) {
 		super(manager);
@@ -43,7 +44,7 @@ public class NewUserForm extends aConsoleView {
 		this.options.put("2", "LAST_NAME");
 		this.options.put("3", "EMAIL");
 		this.options.put("4", "PASSWORD");
-		this.options.put("C", "-CLEAR-");
+		this.options.put("*", "-CLEAR-");
 		this.options.put(".", "-SUBMIT-");
 	}
 
@@ -61,21 +62,24 @@ public class NewUserForm extends aConsoleView {
 
 		Log("");
 		if (inputInvalid)
-			Log("*INVALID INPUT <<<");
+			Log(specificMessageLol);
+		// Log("*INVALID INPUT <<<");
 
 		this.inputInvalid = false;
 		dioFN = false;
 		dioLN = false;
 		dioPW = false;
 		dioEM = false;
+		specificMessageLol = "*INVALID INPUT <<<";
 	}
 
 	// handle incoming console input
 	@Override
 	public boolean handle(String inp) {
 
-		if (super.handle(inp))
-			return true;
+		if (!dioFN && !dioLN && !dioEM && !dioPW) // no diologueues open
+			if (super.handle(inp))
+				return true;
 
 		if (dioFN)
 			this.FirstName = inp.replaceAll("[^a-zA-Z]", " ");
@@ -88,7 +92,8 @@ public class NewUserForm extends aConsoleView {
 				this.Email = inp;
 			else {
 				this.inputInvalid = true;
-				ThrowFancyException(" >>INVALID EMAIL<<"); // exceptions are for nerds lol
+				this.specificMessageLol = "*INVALID EMAIL <<<";
+				ThrowFancyException(specificMessageLol); // exceptions are for nerds lol
 				return false;
 			}
 		}
@@ -122,7 +127,7 @@ public class NewUserForm extends aConsoleView {
 			return dioPW;
 		}
 
-		if (inp.equals("C")) {
+		if (inp.equals("*")) {
 			this.clear();
 		}
 
@@ -142,7 +147,6 @@ public class NewUserForm extends aConsoleView {
 	public void dispose() {
 		this.clear();
 		super.dispose();
-
 	}
 
 	//////
@@ -159,10 +163,11 @@ public class NewUserForm extends aConsoleView {
 				BankDirector.Users.create(newUser);
 				newUser.clear();
 				this.clear();
-				this.input("^");
+				this.input("^"); //casts the 'OUT' spell from the options list
 			} else // exceptions are for nerds lol
 			{
-				ThrowFancyException("INVALID EMAIL");
+				this.specificMessageLol = "*INVALID EMAIL <<<";
+				ThrowFancyException(specificMessageLol);
 				return;
 			}
 

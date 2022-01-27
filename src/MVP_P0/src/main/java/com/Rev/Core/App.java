@@ -15,15 +15,14 @@ public class App implements iConsoleListener {
 	private long prevTime = System.nanoTime();
 	private float deltaTime = 0f;
 
-	public static Console AppConsole; //console input
+	public static Console AppConsole; // console input
 	public static ConsoleUI UI; // view-manager
 
-	public BankDirector Management; //data-manager
-
-
+	public BankDirector Management; // data-manager
 
 	public App() {
-		//System.setProperty("java.awt.headless", "true"); // was thinking of exploring headless awt options for easier input-handling.
+		// System.setProperty("java.awt.headless", "true"); // was thinking of exploring
+		// headless awt options for easier input-handling.
 		App.Current = this;
 		this.running = true;
 		this.Management = new BankDirector();
@@ -34,8 +33,6 @@ public class App implements iConsoleListener {
 		AppConsole = new Console(Current);
 		UI = new ConsoleUI();
 		AppConsole.getSubscribers().append(this);
-		
-		
 
 		try {
 			this.loop();
@@ -44,12 +41,12 @@ public class App implements iConsoleListener {
 		}
 	}
 
-	//not used here, but I like having it lol
+	// not used here, but I like having it lol
 	public float getDeltaTime() {
 		return this.deltaTime;
 	}
 
-	//main App loop
+	// main App loop
 	public void loop() {
 		while (this.running) {
 			long time = System.nanoTime();
@@ -62,39 +59,35 @@ public class App implements iConsoleListener {
 
 	}
 
-	//stops running, murders the console, burns down its house
+	// stops running, murders the console, burns down its house
 	public void terminate() {
 		this.running = false;
 		this.dispose();
 		System.exit(0);
 	}
 
-	//kills the console thread, ensures everything is properly GC'd. 
+	// kills the console thread, ensures everything is properly GC'd.
 	public void dispose() {
-		
-		AppConsole.IO.dispose();		
+
+		AppConsole.IO.dispose();
 		UI.dispose();
 		Log("D-------------------------------------------------------G");
 
 	}
 
-	//call from input-sender
+	// call from input-sender
 	@Override
 	public boolean input(String inp) {
 		// Log(this.getClass().getSimpleName() + ":" + inp);
 
 		UI.input(inp);
-		//Log("  App.input()                                        >>>>>>");
-
-		// Retrieving the list of column names
-
+		// Log(" App.input() >>>>>>");
 		return false;
 	}
 
-	
+	//new phone, who this?
 	@Override
 	public iCollection<iConsoleListener> getSubscribers() {
-
 		return UI.getSubscribers();
 	}
 
@@ -110,9 +103,5 @@ public class App implements iConsoleListener {
 	}
 
 	////////////////
-
-
-
-
 
 }

@@ -42,7 +42,7 @@ public class _User extends aDataEntry {
 
 	//////
 	//
-	
+
 	public String FirstName() {
 		return this.fn;
 	}
@@ -58,12 +58,11 @@ public class _User extends aDataEntry {
 	public String Password() {
 		return this.pw;
 	}
-	
-	public int Index()
-	{
+
+	public int Index() {
 		return this.index;
 	}
-	
+
 	//
 	//////
 
@@ -77,6 +76,9 @@ public class _User extends aDataEntry {
 
 	//////
 	// debug stoof
+
+	
+	// lists all _Users from the appropriately named table
 	public static aList<_User> getUsers() {
 		String query = "SELECT * FROM users";
 		aList<_User> list = new aList<_User>();
@@ -85,7 +87,6 @@ public class _User extends aDataEntry {
 		try {
 			Statement statement = connection.createStatement();
 			ResultSet rs = statement.executeQuery(query);
-			Log(">>" + rs.getFetchSize());
 			// rs.next();
 			while (rs.next()) {
 				_User user = new _User(rs.getInt(1), rs.getString("first_name"), rs.getString("last_name"),
@@ -99,6 +100,7 @@ public class _User extends aDataEntry {
 		return list;
 	}
 
+	// same as the one above, but slightly different.
 	public static aList<_User> getUserIndex() {
 		String query = "SELECT * FROM users";
 		aList<_User> list = new aList<_User>();
@@ -107,7 +109,6 @@ public class _User extends aDataEntry {
 		try {
 			PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			ResultSet rs = statement.executeQuery(query);
-			Log(">>" + rs.getFetchSize());
 			rs.next();// initiate lol
 			Log("_-" + rs.getInt(1));
 			while (rs.next()) {

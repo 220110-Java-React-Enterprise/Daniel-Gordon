@@ -18,18 +18,22 @@ public class MainMenu extends aConsoleView {
 
 	@Override
 	public void init() {
-		super.init();
+		// super.init();
+
+		this.options = new aMap<String, String>();
+		this.options.put("X", "EXIT");
 		this.options.put("1", "LOGIN");
 		this.options.put("2", "REGISTER");
 
 	}
 
+	
 	@Override
 	public void render() {
 		super.render();
 		// data
 		// input options
-
+		Log("Welcome to aBank!");
 		Log(this.options.toString());
 
 	}
@@ -41,7 +45,7 @@ public class MainMenu extends aConsoleView {
 		if (this.handle(inp)) {
 			return true;
 		}
-		this.render();
+		this.render(); //print after input returns false. didnt look work without it
 		if (this.getSubscribers() != null)
 			for (iConsoleListener s : this.getSubscribers()) {
 				if (s.input(inp))
@@ -54,6 +58,12 @@ public class MainMenu extends aConsoleView {
 	// handle incoming console input
 	@Override
 	public boolean handle(String inp) {
+
+		// overrides the 'back' command
+		// prevents backing into the AccountView or whatever
+		if (inp.equals("<"))
+			return false;
+
 		if (super.handle(inp))
 			return true;
 
@@ -63,7 +73,6 @@ public class MainMenu extends aConsoleView {
 		}
 
 		if (inp.equals("2")) {
-			// this.manager.Session.setView(new BankLogin(this.manager));
 			this.manager.Session.setView(new NewUserForm(this.manager));
 			return true;
 		}

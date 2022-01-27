@@ -24,7 +24,7 @@ public class NewAccountForm extends aConsoleView {
 	public void init() {
 		super.init();
 
-		this.options.put("1", "ACCT TYPE");
+		this.options.put("*", "ACCT TYPE");
 		this.options.put(".", "-SUBMIT-");
 	}
 
@@ -48,13 +48,14 @@ public class NewAccountForm extends aConsoleView {
 	@Override
 	public boolean handle(String inp) {
 
-		if (super.handle(inp))
-			return true;
+		if (!dioT) // no dialogs open?
+			if (super.handle(inp))
+				return true;
 
-		if (inp.equals("1"))
+		if (inp.equals("*"))
 			selectedType = !selectedType;
 
-		setActTp();
+		setAcctType();
 		if (inp.equals(".") || inp.equals("") || inp.equals(" ") || inp.equals("SUBMIT") || inp == null) {
 			Log("TRY SUBMIT>");
 			this.submit();
@@ -66,7 +67,7 @@ public class NewAccountForm extends aConsoleView {
 
 	//////
 	//
-	private void setActTp() {
+	private void setAcctType() {
 		if (this.selectedType)
 			type = 0;
 		else
@@ -82,7 +83,7 @@ public class NewAccountForm extends aConsoleView {
 		BankDirector.Accounts.create(account);
 		this.clear();
 		account.clear();
-		// this.input("^");
+		// this.input("^"); // casts the 'OUT' spell
 		this.manager.Session.setView(new UserView(this.manager));
 	}
 
