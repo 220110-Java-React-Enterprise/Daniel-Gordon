@@ -13,3 +13,4 @@ TODO
 - Account-Account & User-User interaction;
 - Case-sensitivity;
 - Proper navigation pathing;
+- More robust missing table checking
