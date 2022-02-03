@@ -14,3 +14,11 @@ TODO
 - Case-sensitivity & password obfuscation;
 - Proper navigation pathing;
 - More robust missing table checking
+
+[Project_1]
+*P_0
+*Tomcat server pokeable by Postman
+
+TODO
+- JSON Servlet
+- SQL->JSON
