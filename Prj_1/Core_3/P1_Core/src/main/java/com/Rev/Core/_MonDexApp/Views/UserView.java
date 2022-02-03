@@ -1,6 +1,6 @@
 package com.Rev.Core._MonDexApp.Views;
 
-import static com.Rev.Core.AppUtils.Log;
+import static com.Rev.Core.AppUtils.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,8 +14,8 @@ import com.Rev.Core.Primitive.aMultiMap;
 import com.Rev.Core.Primitive.aSet;
 import com.Rev.Core.Primitive.Data.aDataField;
 import com.Rev.Core.Util.StringUtils;
-import com.Rev.Core._aBankApp.BankDirector;
-import com.Rev.Core._aBankApp.Data._Account;
+import com.Rev.Core._MonDexApp.MonDirector;
+import com.Rev.Core._MonDexApp.Data._Creature;
 import com.Rev.Core._aBankApp.Data._User;
 
 public class UserView extends aConsoleView {
@@ -25,7 +25,7 @@ public class UserView extends aConsoleView {
 	// private aMultiMap<Integer, aDataField> accountCache = new aMultiMap<Integer,
 	// aDataField>();
 	private _User logged;
-	private aSet<_Account> accountCache = new aSet<_Account>();
+	private aSet<_Creature> accountCache = new aSet<_Creature>();
 	// private aSet<_Account> accountPage = new aSet<_Account>();
 	// private int page = 0;
 	// show 4 accounts per page?
@@ -130,8 +130,8 @@ public class UserView extends aConsoleView {
 		// get all accounts belonging to this user via junction table
 		// get account_ids belonging to this user_id
 		// get accounts by those ids
-		this.accountCache = new aSet<_Account>();
-		Connection connection = BankDirector.DB_Link;
+		this.accountCache = new aSet<_Creature>();
+		Connection connection = MonDirector.DB_Link;
 		String query = "SELECT * FROM accounts WHERE owner_ID=?";
 		try {
 			PreparedStatement pst = connection.prepareStatement(query);
@@ -145,7 +145,7 @@ public class UserView extends aConsoleView {
 				float bal = rs.getFloat("balance");
 				int actnum = rs.getInt("account_num");
 				int db = rs.getInt("account_ID");
-				_Account acct = new _Account(u_id, type, bal, actnum, db);
+				_Creature acct = new _Creature(u_id, type, bal, actnum, db);
 
 				this.accountCache.append(acct);
 				// Log("--------" + acct);

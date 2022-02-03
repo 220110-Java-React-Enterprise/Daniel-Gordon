@@ -1,11 +1,11 @@
 package com.Rev.Core._MonDexApp.Views;
 
-import static com.Rev.Core.AppUtils.Log;
+import static com.Rev.Core.AppUtils.*;
 
 import com.Rev.Core.Console.ConsoleUI;
 import com.Rev.Core.Console.UI.aConsoleView;
-import com.Rev.Core._aBankApp.BankDirector;
-import com.Rev.Core._aBankApp.Data._Account;
+import com.Rev.Core._MonDexApp.MonDirector;
+import com.Rev.Core._MonDexApp.Data._Creature;
 
 public class NewCreatureForm extends aConsoleView {
 
@@ -78,9 +78,9 @@ public class NewCreatureForm extends aConsoleView {
 		int userID = this.manager.Session.loggedAs.dbIndex();
 		int type = this.type;
 
-		_Account account = new _Account(userID, type);
+		_Creature account = new _Creature(userID, type);
 
-		BankDirector.Accounts.create(account);
+		MonDirector.Creatures.create(account);
 		this.clear();
 		account.clear();
 		// this.input("^"); // casts the 'OUT' spell

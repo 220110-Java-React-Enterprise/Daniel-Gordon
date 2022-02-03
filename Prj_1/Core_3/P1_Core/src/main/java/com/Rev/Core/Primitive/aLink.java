@@ -51,10 +51,7 @@ public class aLink extends aSet<aNode>{
 		return this;
 	}
 
-	@Override
-	public String toString() {
-		return this.inSymbol + this.label + this.outSymbol;
-	}
+
 
 	//how many connections of this type exist
 	private String sizeString() {
@@ -68,6 +65,11 @@ public class aLink extends aSet<aNode>{
 		String contextStr = "<{[(" + this.context.getClass().getSimpleName() + "@"
 				+ Integer.toHexString(this.context.hashCode()) + ")]}>";
 		return this.toString() + this.sizeString() + " : " + this.target + " % " + contextStr;
+	}
+	
+	@Override
+	public String toString() {
+		return this.inSymbol + this.label + this.outSymbol;
 	}
 
 	@Override

@@ -10,8 +10,6 @@ import com.Rev.Core.Primitive.aSet;
 import com.Rev.Core.Primitive.A_I.iCollection;
 import com.Rev.Core.Primitive.A_I.iMap;
 
-
-
 public class aType extends aNode<aType> implements iType {
 
 	protected aSet<aType> inherits;
@@ -30,8 +28,7 @@ public class aType extends aNode<aType> implements iType {
 	 * aSet<aType>(); defineIn.put(this,this.of); }
 	 */
 
-	public aType(String as, Object of)
-	{
+	public aType(String as, Object of) {
 		this.label = as;
 		this.aliases = new aSet<String>();
 		this.variants = new aMap<String, iType>();
@@ -40,17 +37,14 @@ public class aType extends aNode<aType> implements iType {
 
 		if (of == null)
 			this.of = this;
-		if (of instanceof aType) {
+		if (of instanceof aType && !of.equals(this)) {
 			this.of = (aType) of;
 			((aType) of).extend(this);
 		}
 
-		this.get = this;		
+		this.get = this;
 	}
-	
 
-
-	
 	public aType(iCollection defineIn, String as, Object of) {
 		this.label = as;
 		this.aliases = new aSet<String>();
@@ -71,6 +65,8 @@ public class aType extends aNode<aType> implements iType {
 	}
 
 	public aType(iMap defineIn, String as, Object of) {
+		//true = RHS
+		//false = LHS
 		this(true, defineIn, as, of);
 	}
 
@@ -124,15 +120,13 @@ public class aType extends aNode<aType> implements iType {
 		}
 
 	}
-	
+
 	public aType(boolean KV, iMap<aType, String> defineIn, String as, aType of, Object defaultValue,
 			String... aliases) {
 		this(KV, defineIn, as, of, defaultValue);
 		this.aliases.append(aliases);
 	}
 
-	
-	
 	public aType inherit(aType parentType) {
 
 		if (!parentType.extensions.containsValue(parentType))
@@ -160,6 +154,10 @@ public class aType extends aNode<aType> implements iType {
 			subType.of = this;
 		this.extensions.put(subType.label, subType);
 		subType.inherits.append(this);
+		
+		this.link("Covers", subType, this.context);
+		subType.link("Inherits", this, this.context);
+		
 		return subType;
 
 	}
@@ -178,6 +176,10 @@ public class aType extends aNode<aType> implements iType {
 	public boolean is(Object of) {
 		if (of instanceof Class)
 			return this.is(((Class) of).getSimpleName());
+
+		if (of instanceof aType)
+			return (this == (((aType) of)) || this.isOf(((aType) of)));
+
 		if (of instanceof _N)
 			return this.is(((_N) of).Label());
 
@@ -341,16 +343,16 @@ public class aType extends aNode<aType> implements iType {
 		log += " :{" + this.inherits + "}\n";
 		log += " >{" + this.variants + "}\n";
 		log += " _{" + this.extensions + "}\n";
+		log += " O{" + this.links + "}\n";
 		return log;
 	}
 
 	@Override
 	public boolean equals(Object other) {
-		if(other instanceof String)
-		{
+		if (other instanceof String) {
 			return this.label.equals(other);
 		}
-		
+
 		return this.is(other) || this.isOf(other);
 	}
 

@@ -1,7 +1,6 @@
 package com.Rev.Core._MonDexApp.Views;
 
-import static com.Rev.Core.AppUtils.Log;
-import static com.Rev.Core.AppUtils.ThrowFancyException;
+import static com.Rev.Core.AppUtils.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,15 +10,16 @@ import com.Rev.Core.Console.UI.aConsoleView;
 import com.Rev.Core.Primitive.aMap;
 import com.Rev.Core.Util.StringUtils;
 import com.Rev.Core._Math.Maths;
+import com.Rev.Core._MonDexApp.MonDirector;
+import com.Rev.Core._MonDexApp.Data._Creature;
 import com.Rev.Core._aBankApp.BankDirector;
-import com.Rev.Core._aBankApp.Data._Account;
 
 public class CreatureView extends aConsoleView {
 
 	// Account Interactor
 	// deposit, withdraw
 
-	private _Account as;
+	private _Creature as;
 
 	private float deltaBal = 0f;
 
@@ -28,7 +28,7 @@ public class CreatureView extends aConsoleView {
 
 	private boolean inputInvalid = false;
 
-	public CreatureView(ConsoleUI manager, _Account as) {
+	public CreatureView(ConsoleUI manager, _Creature as) {
 		super(manager);
 		this.as = as;
 	}
@@ -141,7 +141,7 @@ public class CreatureView extends aConsoleView {
 		this.deltaBal += amt;
 		float current = as.Balance(as.Balance() + deltaBal);
 		this.deltaBal = 0;
-		BankDirector.Accounts.update(as.dbIndex(), as);
+		MonDirector.Creatures.update(as.dbIndex(), as);
 	}
 
 }

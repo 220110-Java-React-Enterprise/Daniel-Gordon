@@ -12,7 +12,7 @@ import com.Rev.Core.AppUtils;
 import com.Rev.Core.Console.ConsoleUI;
 import com.Rev.Core.Console.UI.aConsoleView;
 import com.Rev.Core.Util.StringUtils;
-import com.Rev.Core._aBankApp.BankDirector;
+import com.Rev.Core._MonDexApp.MonDirector;
 import com.Rev.Core._aBankApp.Data._User;
 
 public class NewUserForm extends aConsoleView {
@@ -160,7 +160,7 @@ public class NewUserForm extends aConsoleView {
 		} else {
 			if (StringUtils.validEmail(Email)) {
 				_User newUser = new _User(this.FirstName, this.LastName, this.Email, this.Password);
-				BankDirector.Users.create(newUser);
+				MonDirector.Users.create(newUser);
 				newUser.clear();
 				this.clear();
 				this.input("^"); //casts the 'OUT' spell from the options list

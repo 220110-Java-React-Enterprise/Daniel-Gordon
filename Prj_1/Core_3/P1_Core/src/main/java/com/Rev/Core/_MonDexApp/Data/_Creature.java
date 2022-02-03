@@ -3,6 +3,7 @@ package com.Rev.Core._MonDexApp.Data;
 import static com.Rev.Core.Primitive.Data.aDataField.*;
 
 import com.Rev.Core.Primitive.Data.aDataEntry;
+import com.Rev.Core.Primitive.Data.aType;
 import com.Rev.Core.Util.StringUtils;
 
 public class _Creature extends aDataEntry {
@@ -10,8 +11,13 @@ public class _Creature extends aDataEntry {
 	protected int ownerIndex;
 	protected String type = "";
 
+	//features :: CSV->int[]
+	
 	protected float balance = 0f;
 	protected int AcctNum;
+	
+	//////
+	public static aType Creature = new aType("Creature", Object.class);
 
 	private static boolean debug = true;
 	protected int dbIndex = -1; // index of this account in DB_Table
@@ -20,6 +26,7 @@ public class _Creature extends aDataEntry {
 		super("Creature", aDataType.OBJ);
 		this.ownerIndex = ownerID;
 		this.balance = 0f;
+		
 	}
 
 	public _Creature(int ownerID, int type, float balance, int acctnum) {

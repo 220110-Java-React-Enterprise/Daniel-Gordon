@@ -21,8 +21,8 @@ public class Main {
 		Log("---");
 		//
 		Log("ASSMASTER");
-		//Main = new App();
-		//Main = new _BankApp();
+		// Main = new App();
+		// Main = new _BankApp();
 		Main = new MonDexApp();
 		Log("___");
 
@@ -36,4 +36,3 @@ public class Main {
 	// newID = rs.getInt(1);
 	// }
 }
-     
