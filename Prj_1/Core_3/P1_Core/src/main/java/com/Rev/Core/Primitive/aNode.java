@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import com.Rev.Core.Primitive.A_I.iCollection;
 import com.Rev.Core.Primitive.A_I.iNode;
+import com.Rev.Core.Primitive.Data.aType;
+import com.Rev.Core.Primitive.aMap.Entry;
 
 public class aNode<T> implements iNode<T>, _N<Object> {
 
@@ -65,9 +67,8 @@ public class aNode<T> implements iNode<T>, _N<Object> {
 		if (C == null)
 			C = new aLink(as, other, context);
 
-		if (C.getSize() < ((aLink) C).max)
-			this.links.put(as, C);
-		C = this.links.get(as);
+		
+		C.append(other);
 
 	}
 
@@ -105,6 +106,45 @@ public class aNode<T> implements iNode<T>, _N<Object> {
 
 		if (this.links != null)
 			this.links.clear();
+	}
+	
+	public String logLinks()
+	{
+		String lnx = "";
+		String indent = "";
+		
+		for(Entry<String, iCollection<aNode>> l : this.links)
+		{
+			//Log(l);
+			
+			for(Object o : l.getValue())
+			{
+				//Log("["+l.getValue().indexOf(o) + "]:"+o + "  " + o.getClass());
+				aLink L = (aLink)o;
+				lnx+=("["+l.getValue().indexOf(o) + "]:"+L.toLog() );
+			}
+			//Log(">>>>>>>");
+		}
+		
+		return lnx;
+	}
+	
+	public String logLinksLong()
+	{
+		String lnx = "";
+		String indent = "";
+		
+		for(Entry<String, iCollection<aNode>> l : this.links)
+		{
+			
+			for(Object o : l.getValue())
+			{
+				aLink L = (aLink)o;
+				lnx+=indent+("["+l.getValue().indexOf(o) + "]:"+L.toLog() )+"\n";
+			}
+		}
+		
+		return lnx;
 	}
 
 	@Override

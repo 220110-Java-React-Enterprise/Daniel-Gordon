@@ -25,4 +25,6 @@ public interface iCollection<E> extends Iterable<E>, iGroup {
 
 	public boolean contains(E entry); // does has?!
 
+	
+	public E[] toArray();
 }

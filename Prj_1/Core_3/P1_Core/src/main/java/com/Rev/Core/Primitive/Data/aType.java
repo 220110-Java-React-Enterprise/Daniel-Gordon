@@ -155,8 +155,8 @@ public class aType extends aNode<aType> implements iType {
 		this.extensions.put(subType.label, subType);
 		subType.inherits.append(this);
 		
-		this.link("Covers", subType, this.context);
-		subType.link("Inherits", this, this.context);
+		this.link("Covers", subType, this);
+		subType.link("Inherits", this, this);
 		
 		return subType;
 
@@ -343,7 +343,9 @@ public class aType extends aNode<aType> implements iType {
 		log += " :{" + this.inherits + "}\n";
 		log += " >{" + this.variants + "}\n";
 		log += " _{" + this.extensions + "}\n";
-		log += " O{" + this.links + "}\n";
+		//log += " O{" + this.links + "}\n";
+		log+="(-)CONNECTIONS\n";
+		log += this.logLinksLong();
 		return log;
 	}
 

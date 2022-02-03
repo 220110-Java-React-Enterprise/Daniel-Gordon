@@ -33,10 +33,24 @@ public class aMap<K, V> implements iMap<K, V> {
 		}
 	}
 
-	// public Entry get
-	// public aList<
 	public K get(int index) {
 		return this.keys.get(index);
+	}
+
+	public V getOrDefault(int index, V defaultOut) {
+		V v = this.values.get(index);
+		if (v != null)
+			return v;
+		else
+			return defaultOut;
+	}
+
+	public V getOrDefault(K key, V defaultOut) {
+		for (Entry<K, V> E : this) {
+			if (E.getKey().equals(key) || E.getKey() == key)
+				return E.getValue();
+		}
+		return defaultOut;
 	}
 
 	public aList<V> pull(K key) {

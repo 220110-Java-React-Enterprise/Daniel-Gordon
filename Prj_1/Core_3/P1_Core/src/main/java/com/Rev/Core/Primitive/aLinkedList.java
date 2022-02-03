@@ -235,6 +235,17 @@ public class aLinkedList<T> implements iCollection<T> {
 	public Iterator<T> iterator() {
 		return new LinkIterator(this, this.first);
 	}
+	
+	@Override
+	public T[] toArray() {
+		
+		T[] T = (T[]) new Object[this.getSize()];
+		for(int i =0; i < this.getSize(); i++)
+		{
+			T[i] = this.get(i);
+		}
+		return T;
+	}
 
 	@Override
 	public String toString() {

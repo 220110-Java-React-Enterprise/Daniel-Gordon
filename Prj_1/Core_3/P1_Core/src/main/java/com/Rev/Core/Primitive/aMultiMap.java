@@ -1,5 +1,8 @@
 package com.Rev.Core.Primitive;
 
+import static com.Rev.Core.AppUtils.*;
+
+
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -19,12 +22,15 @@ public class aMultiMap<K, V> implements iMap<K, iCollection<V>> {
 
 	@Override
 	public void put(K key, Object val) {
-		if (!this.data.containsKey(key)) {
+		if (!this.containsKey(key)) {
 			this.data.put(key, new aSet<V>());
 			this.pull(key).append(val);
 		} else {
 			this.pull(key).append(val);
 		}
+		
+		
+		
 
 	}
 

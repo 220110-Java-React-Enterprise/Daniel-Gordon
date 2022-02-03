@@ -9,7 +9,7 @@ import com.Rev.Core.Primitive.aMap;
 import com.Rev.Core.Primitive.aMap.Entry;
 import com.Rev.Core.Primitive.aNode;
 import com.Rev.Core.Primitive.A_I.iCollection;
-import com.Rev.Core.Primitive.Data.DATA_CHEATZ;
+//import com.Rev.Core.Primitive.Data.DATA_CHEATZ;
 import com.Rev.Core.Primitive.Data.aType;
 import com.Rev.Core._Math.aVector;
 import com.Rev.Core._MonDexApp.Data._Creature;
@@ -34,7 +34,7 @@ public class MonDexApp extends App {
 		//Log(this.getClass().getSimpleName());
 		Log(">--<");
 		Log(_Creature.Creature);		
-		Log(DATA_CHEATZ.buildArgsString(5));
+		//Log(DATA_CHEATZ.buildArgsString(5));
 		lT1();
 		logDex();
 
@@ -87,7 +87,8 @@ public class MonDexApp extends App {
 		Log(RegisteredTypes);
 		Log("0______________");
 		Log(T.toLog());
-		for(Entry<String, iCollection<aNode>> l : T.links)
+		
+		/*for(Entry<String, iCollection<aNode>> l : T.links)
 		{
 			Log(l);
 			
@@ -98,7 +99,7 @@ public class MonDexApp extends App {
 				Log("["+l.getValue().indexOf(o) + "]:"+L.toLog() );
 			}
 			Log(">>>>>>>");
-		}
+		}*/
 		Log("1______________");
 		Log(T1.toLog());
 		Log("2______________");
@@ -120,17 +121,31 @@ public class MonDexApp extends App {
 		newMon = new aType(false,Dex, "SQR", Mon);
 
 		Log(Mon.toLog());
-		for (Entry<String, aType> E : Dex) {
-			if (E.getValue() != null) {
-				Log(E);
-			}
-		}
+		//for (Entry<String, aType> E : Dex) {
+			//if (E.getValue() != null) {
+				//Log(E);
+			//}
+		//}
+		
 
 		Log(Dex.get("BLB"));
 		Log(Dex.keyOf(Dex.get("BLB")));
 		Log(Dex.get("BLB").is(Dex.get("BLB")));
 		Log(Dex.get("BLB").is(Mon));
 		Log(Dex.get("BLB").is(Dex.get("CHR")));
+		
+		/*for(Entry<String, iCollection<aNode>> l : Mon.links)
+		{
+			Log(l);
+			
+			for(Object o : l.getValue())
+			{
+				//Log("["+l.getValue().indexOf(o) + "]:"+o + "  " + o.getClass());
+				aLink L = (aLink)o;
+				Log("["+l.getValue().indexOf(o) + "]:"+L.toLog() );
+			}
+			Log(">>>>>>>");
+		}*/
 	}
 
 }

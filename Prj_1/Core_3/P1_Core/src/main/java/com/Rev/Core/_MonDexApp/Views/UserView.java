@@ -132,7 +132,7 @@ public class UserView extends aConsoleView {
 		// get accounts by those ids
 		this.accountCache = new aSet<_Creature>();
 		Connection connection = MonDirector.DB_Link;
-		String query = "SELECT * FROM accounts WHERE owner_ID=?";
+		String query = "SELECT * FROM creatures WHERE owner_ID=?";
 		try {
 			PreparedStatement pst = connection.prepareStatement(query);
 			pst.setInt(1, this.manager.Session.loggedAs.dbIndex());
@@ -143,8 +143,8 @@ public class UserView extends aConsoleView {
 				int u_id = rs.getInt("owner_id");
 				int type = rs.getInt("type");
 				float bal = rs.getFloat("balance");
-				int actnum = rs.getInt("account_num");
-				int db = rs.getInt("account_ID");
+				int actnum = rs.getInt("creature_num");
+				int db = rs.getInt("creature_ID");
 				_Creature acct = new _Creature(u_id, type, bal, actnum, db);
 
 				this.accountCache.append(acct);

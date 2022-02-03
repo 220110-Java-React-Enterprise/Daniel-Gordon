@@ -74,11 +74,12 @@ public class aLink extends aSet<aNode>{
 
 	@Override
 	public String toLog() {
-		String log = this.toString() + "[" + this.getSize() + "]";
+		String log = this.toString() + "[" + this.getSize() + "]{";
 		for (int i = 0; i < this.getSize(); i++) {
-			log += "*_ ";
-			log += this.data[i].toString();
+			log += "["+i+"|o>";
+			log += this.data[i].toString()+"|";
 		}
+		log+="}";
 		return log;
 	}
 }

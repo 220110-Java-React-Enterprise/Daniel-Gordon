@@ -153,6 +153,11 @@ public class aVector<N extends Number> extends aNumber
 	public int indexOf(Object object) {
 		return this.elements.indexOf(object);
 	}
+	
+	@Override
+	public Number[] toArray() {
+		return this.elements.toArray();
+	}
 
 	//////
 	private void ___OPERATORS______() {
@@ -323,4 +328,6 @@ public class aVector<N extends Number> extends aNumber
 		}
 		return this;
 	}
+
+
 }

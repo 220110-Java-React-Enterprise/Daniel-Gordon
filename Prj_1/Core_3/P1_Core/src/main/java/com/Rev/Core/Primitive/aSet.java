@@ -135,6 +135,17 @@ public class aSet<T> implements iCollection<T> {
 		
 		return result;
 	}
+	
+	@Override
+	public T[] toArray() {
+		
+		T[] T = (T[]) new Object[this.getSize()];
+		for(int i =0; i < this.getSize(); i++)
+		{
+			T[i] = this.get(i);
+		}
+		return T;
+	}
 
 	@Override
 	public String toString() {
@@ -200,5 +211,7 @@ public class aSet<T> implements iCollection<T> {
 		}
 
 	}
+
+
 
 }
