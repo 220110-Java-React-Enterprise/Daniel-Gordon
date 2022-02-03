@@ -15,9 +15,9 @@ TODO
 - Proper navigation pathing;
 - More robust missing table checking
 
-[Project_1]
-*P_0
-*Tomcat server pokeable by Postman
+[Project_1]  
+*P_0  
+*Tomcat server pokeable by Postman  
 
 TODO
 - JSON Servlet
