@@ -1,5 +1,5 @@
 # Daniel-Gordon
-[Project_0]  
+[Project_0]  SimpleApp & SQL  
 * MainLoop;  
 * Console Input;  
 * Menu Navigation;  
@@ -15,7 +15,7 @@ TODO
 - Proper navigation pathing;
 - More robust missing table checking
 
-[Project_1]  
+[Project_1]  Web-App interaction  
 *P_0  
 *Tomcat server pokeable by Postman  
 
