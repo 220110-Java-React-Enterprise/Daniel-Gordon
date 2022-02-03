@@ -9,7 +9,7 @@
 
 
 
-TODO 
+TODO  
 -Account-Account & User-User interaction;  
 -Case-sensitivity & password obfuscation;  
 -Proper navigation pathing;  
@@ -19,6 +19,6 @@ TODO
 * P_0  
 * Tomcat server pokeable by Postman  
 
-TODO
+TODO  
 -JSON Servlet  
 -SQL->JSON  
