@@ -16,8 +16,8 @@ TODO
 - More robust missing table checking
 
 [Project_1]  Web-App interaction  
-*P_0  
-*Tomcat server pokeable by Postman  
+* P_0  
+* Tomcat server pokeable by Postman  
 
 TODO
 - JSON Servlet
