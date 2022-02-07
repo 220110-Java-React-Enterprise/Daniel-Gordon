@@ -1,5 +1,5 @@
 # Daniel-Gordon
-[Project_0]  
+[Project_0]  SimpleApp & SQL  
 * MainLoop;  
 * Console Input;  
 * Menu Navigation;  
@@ -9,8 +9,16 @@
 
 
 
-TODO 
-- Account-Account & User-User interaction;
-- Case-sensitivity & password obfuscation;
-- Proper navigation pathing;
-- More robust missing table checking
+TODO  
+-Account-Account & User-User interaction;  
+-Case-sensitivity & password obfuscation;  
+-Proper navigation pathing;  
+-More robust missing table checking  
+
+[Project_1]  Web-App interaction  
+* P_0  
+* Tomcat server pokeable by Postman  
+
+TODO  
+-JSON Servlet  
+-SQL->JSON  
